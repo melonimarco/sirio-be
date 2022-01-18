@@ -24,7 +24,7 @@ public class Animali {
 	private int numeroEsemplari;
 	
 	@ManyToOne
-	@JoinColumn(name = "tipo_ordine_appartenenza_animali", insertable = false, updatable = false)
+	@JoinColumn(name = "ordine_appartenenza", insertable = false, updatable = false)
 	private TipoOrdineAppartenenzaAnimali tipoOrdineAppartenenzaAnimali;
 	
 	@ManyToOne

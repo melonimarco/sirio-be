@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.accenture.sirio.entity.TipoOrdineAppartenenzaPiante;
+import com.accenture.sirio.repository.TipoOrdineAppartenenzaPianteRepository;
 
 @Service
 public class TipoOrdineAppartenenzaPianteService {
 	@Autowired
-	private TipoOrdineAppartenenzaPiante tipoOrdineAppartenenzaPiante;
+	private TipoOrdineAppartenenzaPianteRepository tipoOrdineAppartenenzaPianteRepository;
 }

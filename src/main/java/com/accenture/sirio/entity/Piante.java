@@ -18,11 +18,11 @@ public class Piante {
 	private String specie;
 	
 	@ManyToOne
-	@JoinColumn(name = "tipo_ordine_appartenenza_piante", insertable = false, updatable = false)
+	@JoinColumn(name = "ordine_appartenenza", insertable = false, updatable = false)
 	private TipoOrdineAppartenenzaPiante tipoOrdineAppartenenzaPiante;
 	
 	@ManyToOne
-	@JoinColumn(name = "tipo_stagione_fioritura", insertable = false, updatable = false)
+	@JoinColumn(name = "stagione_fioritura", insertable = false, updatable = false)
 	private TipoStagioneFioritura tipoStagioneFioritura;
 
 	public Long getId() {
