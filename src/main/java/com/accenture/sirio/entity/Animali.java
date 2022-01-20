@@ -34,6 +34,10 @@ public class Animali {
 	@ManyToOne
 	@JoinColumn(name = "stato_salute", insertable = false, updatable = false)
 	private TipoStatoSalute tipoStatoSalute;
+	
+	@ManyToOne
+	@JoinColumn(name = "parco_naturale", insertable = false, updatable = false)
+	private ParcoNaturale parcoNaturale;
 
 	public Long getId() {
 		return id;
@@ -90,4 +94,14 @@ public class Animali {
 	public void setTipoStatoSalute(TipoStatoSalute tipoStatoSalute) {
 		this.tipoStatoSalute = tipoStatoSalute;
 	}
+
+	public ParcoNaturale getParcoNaturale() {
+		return parcoNaturale;
+	}
+
+	public void setParcoNaturale(ParcoNaturale parcoNaturale) {
+		this.parcoNaturale = parcoNaturale;
+	}
+	
+	
 }

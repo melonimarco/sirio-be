@@ -1,5 +1,7 @@
 package com.accenture.sirio.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +13,7 @@ public class TipoEntitaInserimentoService {
 	@Autowired
 	private TipoEntitaInserimentoRepository tipoEntitaInserimentoRepository;
 
-	public Iterable<TipoEntitaInserimentoTO> findAll() {
+	public List<TipoEntitaInserimentoTO> findAll() {
 		// TODO Auto-generated method stub
 		return tipoEntitaInserimentoRepository.findAllEntita();
 	}

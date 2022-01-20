@@ -24,6 +24,10 @@ public class Piante {
 	@ManyToOne
 	@JoinColumn(name = "stagione_fioritura", insertable = false, updatable = false)
 	private TipoStagioneFioritura tipoStagioneFioritura;
+	
+	@ManyToOne
+	@JoinColumn(name = "parco_naturale", insertable = false, updatable = false)
+	private ParcoNaturale parcoNaturale;
 
 	public Long getId() {
 		return id;
@@ -56,4 +60,14 @@ public class Piante {
 	public void setTipoStagioneFioritura(TipoStagioneFioritura tipoStagioneFioritura) {
 		this.tipoStagioneFioritura = tipoStagioneFioritura;
 	}
+
+	public ParcoNaturale getParcoNaturale() {
+		return parcoNaturale;
+	}
+
+	public void setParcoNaturale(ParcoNaturale parcoNaturale) {
+		this.parcoNaturale = parcoNaturale;
+	}
+	
+	
 }
