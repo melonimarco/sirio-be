@@ -4,53 +4,45 @@ import java.util.List;
 
 public class InitPiantaTO {
 	
-	private List<TipoEntitaInserimentoTO> tipoEntitaInserimentoTOList;
-	private List<TipoStagioneFiorituraTO> tipoStagioneFiorituraList;
-	private List<TipoOrdineAppartenenzaPianteTO> tipoOrdineAppartenenzaPianteList;
-	private List<ParcoNaturaleTO> parcoNaturaleList;
+	private List<TipoEntitaInserimentoTO> listTipoEntita;
+	private List<TipoStagioneFiorituraTO> listStagioni;
+	private List<TipoOrdineAppartenenzaPianteTO> listTipoPianta;
+	private List<ParcoNaturaleTO> listParchi;
 	
-	public InitPiantaTO(List<TipoEntitaInserimentoTO> tipoEntitaInserimentoTOList,
-			List<TipoStagioneFiorituraTO> tipoStagioneFiorituraList,
-			List<TipoOrdineAppartenenzaPianteTO> tipoOrdineAppartenenzaPianteList,
-			List<ParcoNaturaleTO> parcoNaturaleList) {
+	public InitPiantaTO(List<TipoEntitaInserimentoTO> listTipoEntita, List<TipoStagioneFiorituraTO> listStagioni,
+			List<TipoOrdineAppartenenzaPianteTO> listTipoPianta, List<ParcoNaturaleTO> listParchi) {
 		super();
-		this.tipoEntitaInserimentoTOList = tipoEntitaInserimentoTOList;
-		this.tipoStagioneFiorituraList = tipoStagioneFiorituraList;
-		this.tipoOrdineAppartenenzaPianteList = tipoOrdineAppartenenzaPianteList;
-		this.parcoNaturaleList = parcoNaturaleList;
+		this.listTipoEntita = listTipoEntita;
+		this.listStagioni = listStagioni;
+		this.listTipoPianta = listTipoPianta;
+		this.listParchi = listParchi;
 	}
-
-	public List<TipoEntitaInserimentoTO> getTipoEntitaInserimentoTOList() {
-		return tipoEntitaInserimentoTOList;
+	public List<TipoEntitaInserimentoTO> getListTipoEntita() {
+		return listTipoEntita;
 	}
-
-	public void setTipoEntitaInserimentoTOList(List<TipoEntitaInserimentoTO> tipoEntitaInserimentoTOList) {
-		this.tipoEntitaInserimentoTOList = tipoEntitaInserimentoTOList;
+	public void setListTipoEntita(List<TipoEntitaInserimentoTO> listTipoEntita) {
+		this.listTipoEntita = listTipoEntita;
 	}
-
-	public List<TipoStagioneFiorituraTO> getTipoStagioneFiorituraList() {
-		return tipoStagioneFiorituraList;
+	public List<TipoStagioneFiorituraTO> getListStagioni() {
+		return listStagioni;
 	}
-
-	public void setTipoStagioneFiorituraList(List<TipoStagioneFiorituraTO> tipoStagioneFiorituraList) {
-		this.tipoStagioneFiorituraList = tipoStagioneFiorituraList;
+	public void setListStagioni(List<TipoStagioneFiorituraTO> listStagioni) {
+		this.listStagioni = listStagioni;
 	}
-
-	public List<TipoOrdineAppartenenzaPianteTO> getTipoOrdineAppartenenzaPianteList() {
-		return tipoOrdineAppartenenzaPianteList;
+	public List<TipoOrdineAppartenenzaPianteTO> getListTipoPianta() {
+		return listTipoPianta;
 	}
-
-	public void setTipoOrdineAppartenenzaPianteList(List<TipoOrdineAppartenenzaPianteTO> tipoOrdineAppartenenzaPianteList) {
-		this.tipoOrdineAppartenenzaPianteList = tipoOrdineAppartenenzaPianteList;
+	public void setListTipoPianta(List<TipoOrdineAppartenenzaPianteTO> listTipoPianta) {
+		this.listTipoPianta = listTipoPianta;
 	}
-
-	public List<ParcoNaturaleTO> getParcoNaturaleList() {
-		return parcoNaturaleList;
+	public List<ParcoNaturaleTO> getListParchi() {
+		return listParchi;
 	}
-
-	public void setParcoNaturaleList(List<ParcoNaturaleTO> parcoNaturaleList) {
-		this.parcoNaturaleList = parcoNaturaleList;
+	public void setListParchi(List<ParcoNaturaleTO> listParchi) {
+		this.listParchi = listParchi;
 	}
+	
+	
 	
 
 }

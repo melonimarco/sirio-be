@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "parco_naturale")
 public class ParcoNaturale {
@@ -15,6 +17,7 @@ public class ParcoNaturale {
 	@Column(name = "id", nullable = false)
 	private Long id;
 	
+	@JsonProperty(value="descrizione")
 	@Column(name = "nome", nullable = false)
 	private String nome;
 	
@@ -30,10 +33,12 @@ public class ParcoNaturale {
 		this.id = id;
 	}
 
+	@JsonProperty(value="descrizione")
 	public String getNome() {
 		return nome;
 	}
 
+	@JsonProperty(value="descrizione")
 	public void setNome(String nome) {
 		this.nome = nome;
 	}

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.accenture.sirio.entityTO.TipoEntitaInserimentoTO;
 import com.accenture.sirio.repository.TipoEntitaInserimentoRepository;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Service
 public class TipoEntitaInserimentoService {
@@ -14,7 +15,7 @@ public class TipoEntitaInserimentoService {
 	private TipoEntitaInserimentoRepository tipoEntitaInserimentoRepository;
 
 	public List<TipoEntitaInserimentoTO> findAll() {
-		// TODO Auto-generated method stub
+		
 		return tipoEntitaInserimentoRepository.findAllEntita();
 	}
 }

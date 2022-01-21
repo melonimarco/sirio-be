@@ -10,7 +10,7 @@ import com.accenture.sirio.entityTO.ParcoNaturaleTO;
 
 public interface ParcoNaturaleRepository extends JpaRepository<ParcoNaturale, Long>  {
 	
-	@Query("Select new com.accenture.sirio.entityTO.ParcoNaturaleTO(p.id, p.nome, p.regione) "
+	@Query("Select new com.accenture.sirio.entityTO.ParcoNaturaleTO(p.id, p.nome) "
 			+ "FROM ParcoNaturale p ")
 	public List<ParcoNaturaleTO> findAllParchi();
 }

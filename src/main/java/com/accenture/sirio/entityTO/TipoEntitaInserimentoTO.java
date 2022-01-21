@@ -2,6 +2,7 @@ package com.accenture.sirio.entityTO;
 
 public class TipoEntitaInserimentoTO {
 
+	
 	private Long id;
 	
 	private String descrizione;

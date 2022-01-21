@@ -4,55 +4,54 @@ import java.util.List;
 
 public class InitAnimaleTO {
 	
-	private List<TipoEntitaInserimentoTO> tipoEntitaInserimentoTOList;
-	private List<TipoStatoSaluteTO> tipoStatoSaluteTOList;
-	private List<TipoOrdineAppartenenzaAnimaliTO> tipoOrdineAppartenenzaAnimaliTOList;
-	private List<TipoEtaTO> tipoEtaTOList;
-	private List<ParcoNaturaleTO> parcoNaturaleTOList;
+	private List<TipoEntitaInserimentoTO> listTipoEntita;
+	private List<TipoStatoSaluteTO> listTipoStatoSalute;
+	private List<TipoOrdineAppartenenzaAnimaliTO> listTipoAnimale;
+	private List<TipoEtaTO> listTipoEta;
+	private List<ParcoNaturaleTO> listParchi;
 	
-	public InitAnimaleTO(List<TipoEntitaInserimentoTO> tipoEntitaInserimentoTOList,
-			List<TipoStatoSaluteTO> tipoStatoSaluteTOList,
-			List<TipoOrdineAppartenenzaAnimaliTO> tipoOrdineAppartenenzaAnimaliTOList, List<TipoEtaTO> tipoEtaTOList,
-			List<ParcoNaturaleTO> parcoNaturaleTOList) {
+	public InitAnimaleTO(List<TipoEntitaInserimentoTO> listTipoEntita, List<TipoStatoSaluteTO> listTipoStatoSalute,
+			List<TipoOrdineAppartenenzaAnimaliTO> listTipoAnimale, List<TipoEtaTO> listTipoEta,
+			List<ParcoNaturaleTO> listParchi) {
 		super();
-		this.tipoEntitaInserimentoTOList = tipoEntitaInserimentoTOList;
-		this.tipoStatoSaluteTOList = tipoStatoSaluteTOList;
-		this.tipoOrdineAppartenenzaAnimaliTOList = tipoOrdineAppartenenzaAnimaliTOList;
-		this.tipoEtaTOList = tipoEtaTOList;
-		this.parcoNaturaleTOList = parcoNaturaleTOList;
+		this.listTipoEntita = listTipoEntita;
+		this.listTipoStatoSalute = listTipoStatoSalute;
+		this.listTipoAnimale = listTipoAnimale;
+		this.listTipoEta = listTipoEta;
+		this.listParchi = listParchi;
+	}
+	public List<TipoEntitaInserimentoTO> getListTipoEntita() {
+		return listTipoEntita;
+	}
+	public void setListTipoEntita(List<TipoEntitaInserimentoTO> listTipoEntita) {
+		this.listTipoEntita = listTipoEntita;
+	}
+	public List<TipoStatoSaluteTO> getListTipoStatoSalute() {
+		return listTipoStatoSalute;
+	}
+	public void setListTipoStatoSalute(List<TipoStatoSaluteTO> listTipoStatoSalute) {
+		this.listTipoStatoSalute = listTipoStatoSalute;
+	}
+	public List<TipoOrdineAppartenenzaAnimaliTO> getListTipoAnimale() {
+		return listTipoAnimale;
+	}
+	public void setListTipoAnimale(List<TipoOrdineAppartenenzaAnimaliTO> listTipoAnimale) {
+		this.listTipoAnimale = listTipoAnimale;
+	}
+	public List<TipoEtaTO> getListTipoEta() {
+		return listTipoEta;
+	}
+	public void setListTipoEta(List<TipoEtaTO> listTipoEta) {
+		this.listTipoEta = listTipoEta;
+	}
+	public List<ParcoNaturaleTO> getListParchi() {
+		return listParchi;
+	}
+	public void setListParchi(List<ParcoNaturaleTO> listParchi) {
+		this.listParchi = listParchi;
 	}
 	
-	public List<TipoEntitaInserimentoTO> getTipoEntitaInserimentoTOList() {
-		return tipoEntitaInserimentoTOList;
-	}
-	public void setTipoEntitaInserimentoTOList(List<TipoEntitaInserimentoTO> tipoEntitaInserimentoTOList) {
-		this.tipoEntitaInserimentoTOList = tipoEntitaInserimentoTOList;
-	}
-	public List<TipoStatoSaluteTO> getTipoStatoSaluteTOList() {
-		return tipoStatoSaluteTOList;
-	}
-	public void setTipoStatoSaluteTOList(List<TipoStatoSaluteTO> tipoStatoSaluteTOList) {
-		this.tipoStatoSaluteTOList = tipoStatoSaluteTOList;
-	}
-	public List<TipoOrdineAppartenenzaAnimaliTO> getTipoOrdineAppartenenzaAnimaliTOList() {
-		return tipoOrdineAppartenenzaAnimaliTOList;
-	}
-	public void setTipoOrdineAppartenenzaAnimaliTOList(
-			List<TipoOrdineAppartenenzaAnimaliTO> tipoOrdineAppartenenzaAnimaliTOList) {
-		this.tipoOrdineAppartenenzaAnimaliTOList = tipoOrdineAppartenenzaAnimaliTOList;
-	}
-	public List<TipoEtaTO> getTipoEtaTOList() {
-		return tipoEtaTOList;
-	}
-	public void setTipoEtaTOList(List<TipoEtaTO> tipoEtaTOList) {
-		this.tipoEtaTOList = tipoEtaTOList;
-	}
-	public List<ParcoNaturaleTO> getParcoNaturaleTOList() {
-		return parcoNaturaleTOList;
-	}
-	public void setParcoNaturaleTOList(List<ParcoNaturaleTO> parcoNaturaleTOList) {
-		this.parcoNaturaleTOList = parcoNaturaleTOList;
-	}
+	
 	
 	
 }
