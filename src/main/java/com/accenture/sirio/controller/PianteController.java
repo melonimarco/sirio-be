@@ -14,7 +14,7 @@ import com.accenture.sirio.facade.TipoEntitaInserimentoFacade;
 
 @RequestMapping(path="/pianta")
 @RestController
-public class PiantaController {
+public class PianteController {
 	@Autowired
 	private PianteFacade piantaFacade;
 	
