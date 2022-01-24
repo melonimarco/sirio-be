@@ -7,17 +7,15 @@ public class InitAnimaleTO {
 	private List<TipoEntitaInserimentoTO> listTipoEntita;
 	private List<TipoStatoSaluteTO> listTipoStatoSalute;
 	private List<TipoOrdineAppartenenzaAnimaliTO> listTipoAnimale;
-	private List<TipoEtaTO> listTipoEta;
 	private List<ParcoNaturaleTO> listParchi;
 	
 	public InitAnimaleTO(List<TipoEntitaInserimentoTO> listTipoEntita, List<TipoStatoSaluteTO> listTipoStatoSalute,
-			List<TipoOrdineAppartenenzaAnimaliTO> listTipoAnimale, List<TipoEtaTO> listTipoEta,
+			List<TipoOrdineAppartenenzaAnimaliTO> listTipoAnimale,
 			List<ParcoNaturaleTO> listParchi) {
 		super();
 		this.listTipoEntita = listTipoEntita;
 		this.listTipoStatoSalute = listTipoStatoSalute;
 		this.listTipoAnimale = listTipoAnimale;
-		this.listTipoEta = listTipoEta;
 		this.listParchi = listParchi;
 	}
 	public List<TipoEntitaInserimentoTO> getListTipoEntita() {
@@ -38,12 +36,7 @@ public class InitAnimaleTO {
 	public void setListTipoAnimale(List<TipoOrdineAppartenenzaAnimaliTO> listTipoAnimale) {
 		this.listTipoAnimale = listTipoAnimale;
 	}
-	public List<TipoEtaTO> getListTipoEta() {
-		return listTipoEta;
-	}
-	public void setListTipoEta(List<TipoEtaTO> listTipoEta) {
-		this.listTipoEta = listTipoEta;
-	}
+
 	public List<ParcoNaturaleTO> getListParchi() {
 		return listParchi;
 	}

@@ -13,4 +13,9 @@ public interface TipoOrdineAppartenenzaAnimaliRepository extends JpaRepository<T
 	@Query("Select new com.accenture.sirio.entityTO.TipoOrdineAppartenenzaAnimaliTO(o.id, o.descrizione) "
 			+ "FROM TipoOrdineAppartenenzaAnimali o ")
 	public List<TipoOrdineAppartenenzaAnimaliTO> findAllOrdiniAppAnimali();
+	
+	@Query("Select new com.accenture.sirio.entityTO.TipoOrdineAppartenenzaAnimaliTO(o.id, o.descrizione) "
+			+ "FROM TipoOrdineAppartenenzaAnimali o "
+			+ "WHERE o.id=?1")
+	public TipoOrdineAppartenenzaAnimaliTO findOrdineAppAnimaliById(Long id);
 }

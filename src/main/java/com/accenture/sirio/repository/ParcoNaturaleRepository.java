@@ -13,4 +13,9 @@ public interface ParcoNaturaleRepository extends JpaRepository<ParcoNaturale, Lo
 	@Query("Select new com.accenture.sirio.entityTO.ParcoNaturaleTO(p.id, p.nome) "
 			+ "FROM ParcoNaturale p ")
 	public List<ParcoNaturaleTO> findAllParchi();
+	
+	@Query("Select new com.accenture.sirio.entityTO.ParcoNaturaleTO(p.id, p.nome) "
+			+ "FROM ParcoNaturale p "
+			+ "WHERE p.id=?1")
+	public ParcoNaturaleTO findParcoById(Long id);
 }

@@ -13,4 +13,9 @@ public interface TipoStatoSaluteRepository extends JpaRepository<TipoStatoSalute
 	@Query("Select new com.accenture.sirio.entityTO.TipoStatoSaluteTO(s.id, s.descrizione) "
 			+ "FROM TipoStatoSalute s ")
 	public List<TipoStatoSaluteTO> findAllStatiSalute();
+	
+	@Query("Select new com.accenture.sirio.entityTO.TipoStatoSaluteTO(s.id, s.descrizione) "
+			+ "FROM TipoStatoSalute s "
+			+ "WHERE s.id=?1")
+	public TipoStatoSaluteTO findStatoSaluteById(Long id);
 }

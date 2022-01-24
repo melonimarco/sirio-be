@@ -2,16 +2,20 @@ package com.accenture.sirio.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.accenture.sirio.entityTO.AnimaleTO;
+
 @Entity
 @Table(name = "animali")
 public class Animali {
 	@Id
-	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "specie", nullable = false)
@@ -21,23 +25,41 @@ public class Animali {
 	private Character sesso;
 	
 	@Column(name = "numero_esemplari", nullable = false)
-	private int numeroEsemplari;
+	private Integer numeroEsemplari;
 	
 	@ManyToOne
 	@JoinColumn(name = "ordine_appartenenza", insertable = false, updatable = false)
-	private TipoOrdineAppartenenzaAnimali tipoOrdineAppartenenzaAnimali;
+	private TipoOrdineAppartenenzaAnimali tipoOrdineAppartenenzaAnimaliBean;
 	
-	@ManyToOne
-	@JoinColumn(name = "eta", insertable = false, updatable = false)
-	private TipoEta tipoEta;
+	@Column(name = "ordine_appartenenza", nullable = false)
+	private Long tipoOrdineAppartenenzaAnimali;
 	
 	@ManyToOne
 	@JoinColumn(name = "stato_salute", insertable = false, updatable = false)
-	private TipoStatoSalute tipoStatoSalute;
+	private TipoStatoSalute tipoStatoSaluteBean;
+	
+	@Column(name = "stato_salute", nullable = false)
+	private Long tipoStatoSalute;
 	
 	@ManyToOne
 	@JoinColumn(name = "parco_naturale", insertable = false, updatable = false)
-	private ParcoNaturale parcoNaturale;
+	private ParcoNaturale parcoNaturaleBean;
+	
+	@Column(name = "parco_naturale", nullable = false)
+	private Long parcoNaturale;
+
+	public Animali(AnimaleTO animaleTO) {
+		this.specie = animaleTO.getSpecie();
+		this.sesso = animaleTO.getSesso();
+		this.numeroEsemplari = animaleTO.getNumEsemplari();
+		this.tipoOrdineAppartenenzaAnimali = animaleTO.getTipoAnimale();
+		this.tipoStatoSalute = animaleTO.getTipoStatoSalute();
+		this.parcoNaturale = animaleTO.getParco();
+		
+	}
+
+	public Animali() {
+	}
 
 	public Long getId() {
 		return id;
@@ -63,45 +85,60 @@ public class Animali {
 		this.sesso = sesso;
 	}
 
-	public int getNumeroEsemplari() {
+	public Integer getNumeroEsemplari() {
 		return numeroEsemplari;
 	}
 
-	public void setNumeroEsemplari(int numeroEsemplari) {
+	public void setNumeroEsemplari(Integer numeroEsemplari) {
 		this.numeroEsemplari = numeroEsemplari;
 	}
 
-	public TipoOrdineAppartenenzaAnimali getTipoOrdineAppartenenzaAnimali() {
+	public TipoOrdineAppartenenzaAnimali getTipoOrdineAppartenenzaAnimaliBean() {
+		return tipoOrdineAppartenenzaAnimaliBean;
+	}
+
+	public void setTipoOrdineAppartenenzaAnimaliBean(TipoOrdineAppartenenzaAnimali tipoOrdineAppartenenzaAnimaliBean) {
+		this.tipoOrdineAppartenenzaAnimaliBean = tipoOrdineAppartenenzaAnimaliBean;
+	}
+
+	public Long getTipoOrdineAppartenenzaAnimali() {
 		return tipoOrdineAppartenenzaAnimali;
 	}
 
-	public void setTipoOrdineAppartenenzaAnimali(TipoOrdineAppartenenzaAnimali tipoOrdineAppartenenzaAnimali) {
+	public void setTipoOrdineAppartenenzaAnimali(Long tipoOrdineAppartenenzaAnimali) {
 		this.tipoOrdineAppartenenzaAnimali = tipoOrdineAppartenenzaAnimali;
 	}
 
-	public TipoEta getTipoEta() {
-		return tipoEta;
+	public TipoStatoSalute getTipoStatoSaluteBean() {
+		return tipoStatoSaluteBean;
 	}
 
-	public void setTipoEta(TipoEta tipoEta) {
-		this.tipoEta = tipoEta;
+	public void setTipoStatoSaluteBean(TipoStatoSalute tipoStatoSaluteBean) {
+		this.tipoStatoSaluteBean = tipoStatoSaluteBean;
 	}
 
-	public TipoStatoSalute getTipoStatoSalute() {
+	public Long getTipoStatoSalute() {
 		return tipoStatoSalute;
 	}
 
-	public void setTipoStatoSalute(TipoStatoSalute tipoStatoSalute) {
+	public void setTipoStatoSalute(Long tipoStatoSalute) {
 		this.tipoStatoSalute = tipoStatoSalute;
 	}
 
-	public ParcoNaturale getParcoNaturale() {
+	public ParcoNaturale getParcoNaturaleBean() {
+		return parcoNaturaleBean;
+	}
+
+	public void setParcoNaturaleBean(ParcoNaturale parcoNaturaleBean) {
+		this.parcoNaturaleBean = parcoNaturaleBean;
+	}
+
+	public Long getParcoNaturale() {
 		return parcoNaturale;
 	}
 
-	public void setParcoNaturale(ParcoNaturale parcoNaturale) {
+	public void setParcoNaturale(Long parcoNaturale) {
 		this.parcoNaturale = parcoNaturale;
 	}
-	
 	
 }
