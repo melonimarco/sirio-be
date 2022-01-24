@@ -53,7 +53,10 @@ public class AnimaliService {
 	}
 	
 	public void findSpecie(String specie, String messaggio) throws SpecieAlreadyExistException {
-		if(animaliRepository.findSpecie(specie).equalsIgnoreCase(specie)) {
+		
+		String AnimaleFound = animaliRepository.findSpecie(specie);
+		
+		if(AnimaleFound!=null && !AnimaleFound.isEmpty() && AnimaleFound.equalsIgnoreCase(specie)) {
 			throw new SpecieAlreadyExistException(messaggio);
 		}
 	}

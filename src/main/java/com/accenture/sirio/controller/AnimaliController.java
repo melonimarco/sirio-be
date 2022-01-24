@@ -1,5 +1,8 @@
 package com.accenture.sirio.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +41,11 @@ public class AnimaliController {
 		} catch (EmptyException | MinException | SpecieAlreadyExistException e) {
 			
 			e.printStackTrace();
-			ErrorMessageTO error = new ErrorMessageTO(e.getMessage());	
+			
+			List<String> eList = new ArrayList<>();
+			eList.add(e.getMessage());
+			
+			ErrorMessageTO error = new ErrorMessageTO(eList);	
 			return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 		}
 	}
