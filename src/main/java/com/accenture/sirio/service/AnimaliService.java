@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.accenture.sirio.entity.Animali;
 import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.InitAnimaleTO;
+import com.accenture.sirio.exceptions.MinException;
+import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
 import com.accenture.sirio.repository.AnimaliRepository;
 import com.accenture.sirio.repository.ParcoNaturaleRepository;
 import com.accenture.sirio.repository.TipoEntitaInserimentoRepository;
@@ -46,6 +48,12 @@ public class AnimaliService {
 		Animali save = animaliRepository.save(animale);
 		return save.getId();
 		
+	}
+	
+	public void findSpecie(String specie, String messaggio) throws SpecieAlreadyExistException {
+		if(animaliRepository.findSpecie(specie).equalsIgnoreCase(specie)) {
+			throw new SpecieAlreadyExistException(messaggio);
+		}
 	}
 	
 	

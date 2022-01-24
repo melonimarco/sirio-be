@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.ErrorMessageTO;
 import com.accenture.sirio.exceptions.EmptyException;
+import com.accenture.sirio.exceptions.MinException;
+import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
 import com.accenture.sirio.facade.AnimaliFacade;
 
 
@@ -33,10 +35,9 @@ public class AnimaliController {
 	public ResponseEntity<Object> saveAnimale(@RequestBody AnimaleTO animaleTO){
 		try {
 			return new ResponseEntity<>(animaliFacade.saveAnimale(animaleTO), HttpStatus.OK);
-		} catch (EmptyException e) {
+		} catch (EmptyException | MinException | SpecieAlreadyExistException e) {
 			
 			e.printStackTrace();
-			
 			ErrorMessageTO error = new ErrorMessageTO(e.getMessage());	
 			return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
