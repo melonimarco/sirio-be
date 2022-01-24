@@ -39,7 +39,7 @@ public class AnimaliController {
 			
 			e.printStackTrace();
 			ErrorMessageTO error = new ErrorMessageTO(e.getMessage());	
-			return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 		}
 	}
 

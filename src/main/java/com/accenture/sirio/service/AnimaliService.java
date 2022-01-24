@@ -2,6 +2,7 @@ package com.accenture.sirio.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.accenture.sirio.entity.Animali;
 import com.accenture.sirio.entityTO.AnimaleTO;
@@ -41,7 +42,8 @@ public class AnimaliService {
 		
 		return initAnimaleTO ;
 	}
-
+	
+	@Transactional
 	public Long saveAnimale(AnimaleTO animaleTO) {
 		
 		Animali animale = new Animali(animaleTO);
