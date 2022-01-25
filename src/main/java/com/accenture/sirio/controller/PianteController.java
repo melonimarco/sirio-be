@@ -2,6 +2,12 @@ package com.accenture.sirio.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.ErrorMessageTO;
 import com.accenture.sirio.entityTO.PiantaTO;
 import com.accenture.sirio.exceptions.EmptyException;
@@ -35,17 +42,27 @@ public class PianteController {
 	
 	@PostMapping()
 	public ResponseEntity<Object> savePianta(@RequestBody PiantaTO piantaTO){
-		try {
-			return new ResponseEntity<>(piantaFacade.savePianta(piantaTO), HttpStatus.OK);
-		} catch (EmptyException | SpecieAlreadyExistException e) {
-			e.printStackTrace();
-			
-			List<String> eList = new ArrayList<>();
-			eList.add(e.getMessage());
-			
-			ErrorMessageTO error = new ErrorMessageTO(eList);	
-			return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+		
+		List<String> eList = new ArrayList<>();
+		
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		Set<ConstraintViolation<PiantaTO>> violations = validator.validate(piantaTO);
+		
+		for (ConstraintViolation<PiantaTO> violation : violations) {
+		    eList.add(violation.getMessage()); 
 		}
+		
+		try {
+			
+			return new ResponseEntity<>(piantaFacade.savePianta(piantaTO), HttpStatus.OK);
+		} catch (SpecieAlreadyExistException e) {
+			
+			e.printStackTrace();
+			eList.add(e.getMessage());
+
+		}
+		return new ResponseEntity<>(eList, HttpStatus.BAD_REQUEST);
 	}
 
 }

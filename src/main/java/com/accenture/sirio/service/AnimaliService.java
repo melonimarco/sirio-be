@@ -52,11 +52,11 @@ public class AnimaliService {
 		
 	}
 	
-	public void findSpecie(String specie, String messaggio) throws SpecieAlreadyExistException {
+	public void findSpecie(AnimaleTO animaleTO, String messaggio) throws SpecieAlreadyExistException {
 		
-		String AnimaleFound = animaliRepository.findSpecie(specie);
+		String AnimaleFound = animaliRepository.findSpecie(animaleTO.getSpecie(), animaleTO.getSesso());
 		
-		if(AnimaleFound!=null && !AnimaleFound.isEmpty() && AnimaleFound.equalsIgnoreCase(specie)) {
+		if(AnimaleFound!=null && !AnimaleFound.isEmpty() && AnimaleFound.equalsIgnoreCase(animaleTO.getSpecie())) {
 			throw new SpecieAlreadyExistException(messaggio);
 		}
 	}

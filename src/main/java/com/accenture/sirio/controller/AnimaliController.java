@@ -2,6 +2,12 @@ package com.accenture.sirio.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,18 +42,27 @@ public class AnimaliController {
 	
 	@PostMapping()
 	public ResponseEntity<Object> saveAnimale(@RequestBody AnimaleTO animaleTO){
+		
+		List<String> eList = new ArrayList<>();
+		
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		Set<ConstraintViolation<AnimaleTO>> violations = validator.validate(animaleTO);
+		
+		for (ConstraintViolation<AnimaleTO> violation : violations) {
+		    eList.add(violation.getMessage()); 
+		}
+		
 		try {
+			
 			return new ResponseEntity<>(animaliFacade.saveAnimale(animaleTO), HttpStatus.OK);
-		} catch (EmptyException | MinException | SpecieAlreadyExistException e) {
+		} catch (SpecieAlreadyExistException e) {
 			
 			e.printStackTrace();
-			
-			List<String> eList = new ArrayList<>();
 			eList.add(e.getMessage());
-			
-			ErrorMessageTO error = new ErrorMessageTO(eList);	
-			return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+
 		}
+		return new ResponseEntity<>(eList, HttpStatus.BAD_REQUEST);
 	}
 
 }

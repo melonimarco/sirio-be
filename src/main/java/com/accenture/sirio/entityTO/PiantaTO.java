@@ -1,13 +1,19 @@
 package com.accenture.sirio.entityTO;
 
+import javax.validation.constraints.NotNull;
+
 public class PiantaTO {
 	
+	@NotNull(message = "Specie cannot be null")
 	private String specie;
 
+	@NotNull(message = "Tipo Pianta cannot be null")
 	private Long tipoPianta;
 
+	@NotNull(message = "Stagione Fioritura cannot be null")
 	private Long StagioneFioritura;
 
+	@NotNull(message = "Parco cannot be null")
 	private Long parco;
 
 	public String getSpecie() {

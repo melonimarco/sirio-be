@@ -23,7 +23,7 @@ public class PianteFacade {
 		return piantaService.initCreazione();
 	}
 
-	public Object savePianta(PiantaTO piantaTO) throws EmptyException, SpecieAlreadyExistException {
+	public Object savePianta(PiantaTO piantaTO) throws SpecieAlreadyExistException {
 		
 		savePiantaCheckErrors.savePiantaCheck(piantaTO);
 		

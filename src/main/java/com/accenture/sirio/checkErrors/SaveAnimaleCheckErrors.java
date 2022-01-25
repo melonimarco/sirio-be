@@ -15,16 +15,8 @@ public class SaveAnimaleCheckErrors extends BaseCheckErrors{
 	@Autowired
 	private AnimaliService animaliService;
 	
-	
-	
-	public void saveAnimaleCheck(AnimaleTO animaleTO) throws EmptyException, MinException, SpecieAlreadyExistException {
-		emptyLongCheck(animaleTO.getParco(), "Il campo Parco è vuoto");
-		emptyLongCheck(animaleTO.getTipoAnimale(), "Il campo Tipo Animale è vuoto");
-		emptyStringCheck(animaleTO.getSpecie(), "Il campo Specie è vuoto");
-		emptyCharacterCheck(animaleTO.getSesso(), "Il campo Sesso è vuoto");
-		emptyLongCheck(animaleTO.getTipoStatoSalute(), "Il campo Stato Salute è vuoto");
-		emptyIntCheck(animaleTO.getNumEsemplari(), "Il campo Numero Esemplari è vuoto");
-		minNumberCheck(animaleTO.getNumEsemplari(), "Il campo Numero Esemplari non può essere inferiore a 1 ");
-		animaliService.findSpecie(animaleTO.getSpecie(), "La specie è già stata inserita");
+	public void saveAnimaleCheck(AnimaleTO animaleTO) throws SpecieAlreadyExistException {
+
+		animaliService.findSpecie(animaleTO, "La specie è già stata inserita");
 	}
 }

@@ -1,17 +1,27 @@
 package com.accenture.sirio.entityTO;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class AnimaleTO {
 	
+	@NotNull(message = "Specie cannot be null")
 	private String specie;
 	
+	@NotNull(message = "Sesso cannot be null")
 	private Character sesso;
 	
+	@NotNull(message = "Numero Esemplari cannot be null")
+	@Min(value = 1, message = "Numero Esemplari should not be less than 1")
 	private Integer numEsemplari;
 	
+	@NotNull(message = "Tipo Animale cannot be null")
 	private Long tipoAnimale;
 	
+	@NotNull(message = "Stato Salute cannot be null")
 	private Long tipoStatoSalute;
 	
+	@NotNull(message = "Parco cannot be null")
 	private Long parco;
 	
 	public AnimaleTO() {

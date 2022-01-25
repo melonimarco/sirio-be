@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import com.accenture.sirio.entityTO.AnimaleTO;
 
@@ -18,12 +20,15 @@ public class Animali {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull(message = "Specie cannot be null")
 	@Column(name = "specie", nullable = false)
 	private String specie;
 	
+	@NotNull(message = "Sesso cannot be null")
 	@Column(name = "sesso", nullable = false)
 	private Character sesso;
 	
+	@Min(value = 1, message = "Numero Esemplari should not be less than 1")
 	@Column(name = "numero_esemplari", nullable = false)
 	private Integer numeroEsemplari;
 	
@@ -31,6 +36,7 @@ public class Animali {
 	@JoinColumn(name = "ordine_appartenenza", insertable = false, updatable = false)
 	private TipoOrdineAppartenenzaAnimali tipoOrdineAppartenenzaAnimaliBean;
 	
+	@NotNull(message = "Tipo Animale cannot be null")
 	@Column(name = "ordine_appartenenza", nullable = false)
 	private Long tipoOrdineAppartenenzaAnimali;
 	
@@ -38,6 +44,7 @@ public class Animali {
 	@JoinColumn(name = "stato_salute", insertable = false, updatable = false)
 	private TipoStatoSalute tipoStatoSaluteBean;
 	
+	@NotNull(message = "Stato Salute cannot be null")
 	@Column(name = "stato_salute", nullable = false)
 	private Long tipoStatoSalute;
 	
@@ -45,6 +52,7 @@ public class Animali {
 	@JoinColumn(name = "parco_naturale", insertable = false, updatable = false)
 	private ParcoNaturale parcoNaturaleBean;
 	
+	@NotNull(message = "Parco cannot be null")
 	@Column(name = "parco_naturale", nullable = false)
 	private Long parcoNaturale;
 

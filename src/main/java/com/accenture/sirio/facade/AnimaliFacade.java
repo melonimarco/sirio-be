@@ -27,7 +27,7 @@ public class AnimaliFacade {
 	}
 	
 	@Transactional
-	public Long saveAnimale(AnimaleTO animaleTO) throws EmptyException, MinException, SpecieAlreadyExistException {
+	public Long saveAnimale(AnimaleTO animaleTO) throws SpecieAlreadyExistException {
 		
 		saveAnimaleCheckErrors.saveAnimaleCheck(animaleTO);
 		

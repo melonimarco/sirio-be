@@ -10,6 +10,7 @@ public interface AnimaliRepository extends JpaRepository<Animali, Long>{
 	
 	@Query("SELECT a.specie "
 			+ "FROM Animali a "
-			+ "WHERE a.specie = ?1")
-	public String findSpecie(String specie);
+			+ "WHERE a.specie = ?1 "
+			+ "AND a.sesso = ?2")
+	public String findSpecie(String specie, Character sesso);
 }
