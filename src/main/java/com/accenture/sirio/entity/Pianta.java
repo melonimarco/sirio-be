@@ -13,7 +13,7 @@ import com.accenture.sirio.entityTO.PiantaTO;
 
 @Entity
 @Table(name = "piante")
-public class Piante {
+public class Pianta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -23,7 +23,7 @@ public class Piante {
 	
 	@ManyToOne
 	@JoinColumn(name = "ordine_appartenenza", insertable = false, updatable = false)
-	private TipoOrdineAppartenenzaPiante tipoOrdineAppartenenzaPianteBean;
+	private TipoOrdineAppartenenzaPianta tipoOrdineAppartenenzaPianteBean;
 	
 	@Column(name = "ordine_appartenenza", nullable = false)
 	private Long tipoOrdineAppartenenzaPiante;
@@ -42,7 +42,7 @@ public class Piante {
 	@Column(name = "parco_naturale", nullable = false)
 	private Long parcoNaturale;
 
-	public Piante(PiantaTO piantaTO) {
+	public Pianta(PiantaTO piantaTO) {
 		this.specie = piantaTO.getSpecie();
 		this.tipoOrdineAppartenenzaPiante = piantaTO.getTipoPianta();
 		this.tipoStagioneFioritura = piantaTO.getStagioneFioritura();
@@ -65,11 +65,11 @@ public class Piante {
 		this.specie = specie;
 	}
 
-	public TipoOrdineAppartenenzaPiante getTipoOrdineAppartenenzaPianteBean() {
+	public TipoOrdineAppartenenzaPianta getTipoOrdineAppartenenzaPianteBean() {
 		return tipoOrdineAppartenenzaPianteBean;
 	}
 
-	public void setTipoOrdineAppartenenzaPianteBean(TipoOrdineAppartenenzaPiante tipoOrdineAppartenenzaPianteBean) {
+	public void setTipoOrdineAppartenenzaPianteBean(TipoOrdineAppartenenzaPianta tipoOrdineAppartenenzaPianteBean) {
 		this.tipoOrdineAppartenenzaPianteBean = tipoOrdineAppartenenzaPianteBean;
 	}
 

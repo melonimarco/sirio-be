@@ -1,21 +1,33 @@
 package com.accenture.sirio.checkErrors;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.accenture.sirio.entityTO.PiantaTO;
 import com.accenture.sirio.exceptions.EmptyException;
 import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
-import com.accenture.sirio.service.PianteService;
+import com.accenture.sirio.service.PiantaService;
 
 @Service
 public class SavePiantaCheckErrors extends BaseCheckErrors{
 	@Autowired
-	private PianteService piantaService;
+	private PiantaService piantaService;
 	
-	public void savePiantaCheck(PiantaTO piantaTO) throws SpecieAlreadyExistException {
+	public List<String> savePiantaCheck(PiantaTO piantaTO) {
 		
-		piantaService.checkSpecieAlreadyExist(piantaTO.getSpecie(), "La specie è già stata inserita");
+		List<String> messaggiList = new ArrayList<>();
+		
+		String messaggio = piantaService.checkSpecieAlreadyExist(piantaTO, "La specie è già stata inserita");
+		
+		if(messaggio!=null) {
+			messaggiList.add(messaggio);
+		}
+		
+		
+		return messaggiList;
 		
 	}
 }

@@ -4,22 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.accenture.sirio.entity.Animali;
+import com.accenture.sirio.entity.Animale;
 import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.InitAnimaleTO;
 import com.accenture.sirio.exceptions.MinException;
 import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
-import com.accenture.sirio.repository.AnimaliRepository;
+import com.accenture.sirio.repository.AnimaleRepository;
 import com.accenture.sirio.repository.ParcoNaturaleRepository;
 import com.accenture.sirio.repository.TipoEntitaInserimentoRepository;
-import com.accenture.sirio.repository.TipoOrdineAppartenenzaAnimaliRepository;
+import com.accenture.sirio.repository.TipoOrdineAppartenenzaAnimaleRepository;
 import com.accenture.sirio.repository.TipoStatoSaluteRepository;
 
 @Service
-public class AnimaliService {
+public class AnimaleService {
 
 	@Autowired
-	private AnimaliRepository animaliRepository;
+	private AnimaleRepository animaliRepository;
 	
 	@Autowired
 	private TipoEntitaInserimentoRepository tipoEntitaInserimentoRepository;
@@ -28,7 +28,7 @@ public class AnimaliService {
 	private TipoStatoSaluteRepository tipoStatoSaluteRepository;
 	
 	@Autowired
-	private TipoOrdineAppartenenzaAnimaliRepository tipoOrdineAppartenenzaAnimaliRepository;
+	private TipoOrdineAppartenenzaAnimaleRepository tipoOrdineAppartenenzaAnimaliRepository;
 	
 	@Autowired
 	private ParcoNaturaleRepository parcoNaturaleRepository;
@@ -45,20 +45,22 @@ public class AnimaliService {
 	
 	@Transactional
 	public Long saveAnimale(AnimaleTO animaleTO) {
-		
-		Animali animale = new Animali(animaleTO);
-		Animali save = animaliRepository.save(animale);
+		Animale animale = new Animale(animaleTO);
+		Animale save = animaliRepository.save(animale);
 		return save.getId();
 		
 	}
 	
-	public void findSpecie(AnimaleTO animaleTO, String messaggio) throws SpecieAlreadyExistException {
+	public String checkSpecieAlreadyExist(AnimaleTO animaleTO, String messaggio) {
 		
-		String AnimaleFound = animaliRepository.findSpecie(animaleTO.getSpecie(), animaleTO.getSesso());
+		String animaleFound = animaliRepository.findSpecie(animaleTO.getSpecie(), animaleTO.getSesso(), animaleTO.getParco());
 		
-		if(AnimaleFound!=null && !AnimaleFound.isEmpty() && AnimaleFound.equalsIgnoreCase(animaleTO.getSpecie())) {
-			throw new SpecieAlreadyExistException(messaggio);
+		if(animaleFound!=null) {
+			return messaggio;
 		}
+		
+		return null;
+		
 	}
 	
 	

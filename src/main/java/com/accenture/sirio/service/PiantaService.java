@@ -3,27 +3,27 @@ package com.accenture.sirio.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.accenture.sirio.entity.Animali;
-import com.accenture.sirio.entity.Piante;
+import com.accenture.sirio.entity.Animale;
+import com.accenture.sirio.entity.Pianta;
 import com.accenture.sirio.entityTO.InitPiantaTO;
 import com.accenture.sirio.entityTO.PiantaTO;
 import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
 import com.accenture.sirio.repository.ParcoNaturaleRepository;
-import com.accenture.sirio.repository.PianteRepository;
+import com.accenture.sirio.repository.PiantaRepository;
 import com.accenture.sirio.repository.TipoEntitaInserimentoRepository;
-import com.accenture.sirio.repository.TipoOrdineAppartenenzaPianteRepository;
+import com.accenture.sirio.repository.TipoOrdineAppartenenzaPiantaRepository;
 import com.accenture.sirio.repository.TipoStagioneFiorituraRepository;
 
 @Service
-public class PianteService {
+public class PiantaService {
 	@Autowired
-	private PianteRepository pianteRepository;
+	private PiantaRepository pianteRepository;
 	
 	@Autowired
 	private ParcoNaturaleRepository parcoNaturaleRepository;
 	
 	@Autowired
-	private TipoOrdineAppartenenzaPianteRepository tipoOrdineAppartenenzaPianteRepository;
+	private TipoOrdineAppartenenzaPiantaRepository tipoOrdineAppartenenzaPianteRepository;
 	
 	@Autowired
 	private TipoStagioneFiorituraRepository tipoStagioneFiorituraRepository;
@@ -43,18 +43,20 @@ public class PianteService {
 
 	public Long savePianta(PiantaTO piantaTO) {
 		
-		Piante pianta = new Piante(piantaTO);
-		Piante save = pianteRepository.save(pianta);
+		Pianta pianta = new Pianta(piantaTO);
+		Pianta save = pianteRepository.save(pianta);
 		return save.getId();
 	}
 
-	public void checkSpecieAlreadyExist(String specie, String messaggio) throws SpecieAlreadyExistException {
+	public String checkSpecieAlreadyExist(PiantaTO piantaTO, String messaggio) {
 		
-		String specieFound = pianteRepository.findSpecie(specie);
+		String specieFound = pianteRepository.findSpecie(piantaTO.getSpecie(), piantaTO.getParco());
 		
-		if(specieFound!=null && !specieFound.isEmpty() && specieFound.equalsIgnoreCase(specie)) {
-			throw new SpecieAlreadyExistException(messaggio);
+		if(specieFound!=null) {
+			return messaggio;
 		}
+		
+		return null;
 		
 	}
 }

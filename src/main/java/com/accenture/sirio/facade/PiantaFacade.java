@@ -1,5 +1,7 @@
 package com.accenture.sirio.facade;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,12 +10,12 @@ import com.accenture.sirio.entityTO.InitPiantaTO;
 import com.accenture.sirio.entityTO.PiantaTO;
 import com.accenture.sirio.exceptions.EmptyException;
 import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
-import com.accenture.sirio.service.PianteService;
+import com.accenture.sirio.service.PiantaService;
 
 @Service
-public class PianteFacade {
+public class PiantaFacade {
 	@Autowired
-	private PianteService piantaService;
+	private PiantaService piantaService;
 	
 	@Autowired
 	private SavePiantaCheckErrors savePiantaCheckErrors;
@@ -22,10 +24,13 @@ public class PianteFacade {
 		
 		return piantaService.initCreazione();
 	}
-
-	public Object savePianta(PiantaTO piantaTO) throws SpecieAlreadyExistException {
+	
+	public List<String> savePiantaBridge (PiantaTO piantaTO){
 		
-		savePiantaCheckErrors.savePiantaCheck(piantaTO);
+		return savePiantaCheckErrors.savePiantaCheck(piantaTO);
+	}
+
+	public Object savePianta(PiantaTO piantaTO) {
 		
 		return piantaService.savePianta(piantaTO);
 	}

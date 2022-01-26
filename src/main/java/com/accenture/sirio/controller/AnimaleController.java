@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
@@ -12,6 +13,7 @@ import javax.validation.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,15 +26,15 @@ import com.accenture.sirio.entityTO.ErrorMessageTO;
 import com.accenture.sirio.exceptions.EmptyException;
 import com.accenture.sirio.exceptions.MinException;
 import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
-import com.accenture.sirio.facade.AnimaliFacade;
+import com.accenture.sirio.facade.AnimaleFacade;
 
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path="/animale")
 @RestController
-public class AnimaliController {
+public class AnimaleController extends BaseController {
 	@Autowired
-	private AnimaliFacade animaliFacade;
+	private AnimaleFacade animaliFacade;
 	
 	@GetMapping(path="/getInitCreazione")
 	public ResponseEntity<Object> getInitCreazione(){
@@ -41,28 +43,15 @@ public class AnimaliController {
 	
 	
 	@PostMapping()
-	public ResponseEntity<Object> saveAnimale(@RequestBody AnimaleTO animaleTO){
+	public ResponseEntity<Object> saveAnimale(@Valid @RequestBody AnimaleTO animaleTO){
 		
-		List<String> eList = new ArrayList<>();
+		List<String> eList = animaliFacade.saveAnimaleBridge(animaleTO);
 		
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<AnimaleTO>> violations = validator.validate(animaleTO);
-		
-		for (ConstraintViolation<AnimaleTO> violation : violations) {
-		    eList.add(violation.getMessage()); 
-		}
-		
-		try {
-			
+		if(ObjectUtils.isEmpty(eList)) {
 			return new ResponseEntity<>(animaliFacade.saveAnimale(animaleTO), HttpStatus.OK);
-		} catch (SpecieAlreadyExistException e) {
-			
-			e.printStackTrace();
-			eList.add(e.getMessage());
-
+		} else {
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-		return new ResponseEntity<>(eList, HttpStatus.BAD_REQUEST);
 	}
 
 }

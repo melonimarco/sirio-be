@@ -15,28 +15,24 @@ import com.accenture.sirio.entityTO.AnimaleTO;
 
 @Entity
 @Table(name = "animali")
-public class Animali {
+public class Animale {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull(message = "Specie cannot be null")
 	@Column(name = "specie", nullable = false)
 	private String specie;
 	
-	@NotNull(message = "Sesso cannot be null")
 	@Column(name = "sesso", nullable = false)
 	private Character sesso;
 	
-	@Min(value = 1, message = "Numero Esemplari should not be less than 1")
 	@Column(name = "numero_esemplari", nullable = false)
 	private Integer numeroEsemplari;
 	
 	@ManyToOne
 	@JoinColumn(name = "ordine_appartenenza", insertable = false, updatable = false)
-	private TipoOrdineAppartenenzaAnimali tipoOrdineAppartenenzaAnimaliBean;
+	private TipoOrdineAppartenenzaAnimale tipoOrdineAppartenenzaAnimaliBean;
 	
-	@NotNull(message = "Tipo Animale cannot be null")
 	@Column(name = "ordine_appartenenza", nullable = false)
 	private Long tipoOrdineAppartenenzaAnimali;
 	
@@ -44,7 +40,6 @@ public class Animali {
 	@JoinColumn(name = "stato_salute", insertable = false, updatable = false)
 	private TipoStatoSalute tipoStatoSaluteBean;
 	
-	@NotNull(message = "Stato Salute cannot be null")
 	@Column(name = "stato_salute", nullable = false)
 	private Long tipoStatoSalute;
 	
@@ -52,11 +47,10 @@ public class Animali {
 	@JoinColumn(name = "parco_naturale", insertable = false, updatable = false)
 	private ParcoNaturale parcoNaturaleBean;
 	
-	@NotNull(message = "Parco cannot be null")
 	@Column(name = "parco_naturale", nullable = false)
 	private Long parcoNaturale;
 
-	public Animali(AnimaleTO animaleTO) {
+	public Animale(AnimaleTO animaleTO) {
 		this.specie = animaleTO.getSpecie();
 		this.sesso = animaleTO.getSesso();
 		this.numeroEsemplari = animaleTO.getNumEsemplari();
@@ -66,7 +60,7 @@ public class Animali {
 		
 	}
 
-	public Animali() {
+	public Animale() {
 	}
 
 	public Long getId() {
@@ -101,11 +95,11 @@ public class Animali {
 		this.numeroEsemplari = numeroEsemplari;
 	}
 
-	public TipoOrdineAppartenenzaAnimali getTipoOrdineAppartenenzaAnimaliBean() {
+	public TipoOrdineAppartenenzaAnimale getTipoOrdineAppartenenzaAnimaliBean() {
 		return tipoOrdineAppartenenzaAnimaliBean;
 	}
 
-	public void setTipoOrdineAppartenenzaAnimaliBean(TipoOrdineAppartenenzaAnimali tipoOrdineAppartenenzaAnimaliBean) {
+	public void setTipoOrdineAppartenenzaAnimaliBean(TipoOrdineAppartenenzaAnimale tipoOrdineAppartenenzaAnimaliBean) {
 		this.tipoOrdineAppartenenzaAnimaliBean = tipoOrdineAppartenenzaAnimaliBean;
 	}
 

@@ -1,12 +1,12 @@
 package com.accenture.sirio.entityTO;
 
-public class TipoOrdineAppartenenzaPianteTO {
+public class TipoOrdineAppartenenzaAnimaleTO {
 
 	private Long id;
 	
 	private String descrizione;
 	
-	public TipoOrdineAppartenenzaPianteTO(Long id, String descrizione) {
+	public TipoOrdineAppartenenzaAnimaleTO(Long id, String descrizione) {
 		super();
 		this.id = id;
 		this.descrizione = descrizione;

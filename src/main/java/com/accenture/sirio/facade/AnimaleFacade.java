@@ -1,5 +1,7 @@
 package com.accenture.sirio.facade;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,13 +12,13 @@ import com.accenture.sirio.entityTO.InitAnimaleTO;
 import com.accenture.sirio.exceptions.EmptyException;
 import com.accenture.sirio.exceptions.MinException;
 import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
-import com.accenture.sirio.service.AnimaliService;
+import com.accenture.sirio.service.AnimaleService;
 
 @Service
-public class AnimaliFacade {
+public class AnimaleFacade {
 	
 	@Autowired
-	private AnimaliService animaliService;
+	private AnimaleService animaliService;
 	
 	@Autowired
 	private SaveAnimaleCheckErrors saveAnimaleCheckErrors;
@@ -26,11 +28,12 @@ public class AnimaliFacade {
 		return animaliService.initCreazione();
 	}
 	
+	public List<String> saveAnimaleBridge(AnimaleTO animaleTO){
+		return saveAnimaleCheckErrors.saveAnimaleCheck(animaleTO);
+	}
+	
 	@Transactional
-	public Long saveAnimale(AnimaleTO animaleTO) throws SpecieAlreadyExistException {
-		
-		saveAnimaleCheckErrors.saveAnimaleCheck(animaleTO);
-		
+	public Long saveAnimale(AnimaleTO animaleTO){	
 		return animaliService.saveAnimale(animaleTO);
 	}
 }

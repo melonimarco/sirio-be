@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
@@ -12,11 +13,16 @@ import javax.validation.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accenture.sirio.entityTO.AnimaleTO;
@@ -24,16 +30,16 @@ import com.accenture.sirio.entityTO.ErrorMessageTO;
 import com.accenture.sirio.entityTO.PiantaTO;
 import com.accenture.sirio.exceptions.EmptyException;
 import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
-import com.accenture.sirio.facade.PianteFacade;
+import com.accenture.sirio.facade.PiantaFacade;
 import com.accenture.sirio.facade.TipoEntitaInserimentoFacade;
 
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path="/pianta")
 @RestController
-public class PianteController {
+public class PiantaController extends BaseController {
 	@Autowired
-	private PianteFacade piantaFacade;
+	private PiantaFacade piantaFacade;
 
 	@GetMapping(path="/getInitCreazione")
 	public ResponseEntity<Object> getInitCreazione(){
@@ -41,28 +47,16 @@ public class PianteController {
 	}
 	
 	@PostMapping()
-	public ResponseEntity<Object> savePianta(@RequestBody PiantaTO piantaTO){
+	public ResponseEntity<Object> savePianta(@Valid @RequestBody PiantaTO piantaTO){
 		
-		List<String> eList = new ArrayList<>();
+		List<String> eList = piantaFacade.savePiantaBridge(piantaTO);
 		
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<PiantaTO>> violations = validator.validate(piantaTO);
-		
-		for (ConstraintViolation<PiantaTO> violation : violations) {
-		    eList.add(violation.getMessage()); 
-		}
-		
-		try {
-			
+		if(ObjectUtils.isEmpty(eList)) {
 			return new ResponseEntity<>(piantaFacade.savePianta(piantaTO), HttpStatus.OK);
-		} catch (SpecieAlreadyExistException e) {
-			
-			e.printStackTrace();
-			eList.add(e.getMessage());
-
+		} else {
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-		return new ResponseEntity<>(eList, HttpStatus.BAD_REQUEST);
+			
 	}
 
 }

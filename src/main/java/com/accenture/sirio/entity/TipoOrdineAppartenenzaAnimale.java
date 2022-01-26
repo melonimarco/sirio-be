@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tipo_ordine_appartenenza_animali")
-public class TipoOrdineAppartenenzaAnimali {
+public class TipoOrdineAppartenenzaAnimale {
 	@Id
 	@Column(name = "id", nullable = false)
 	private Long id;

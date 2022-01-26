@@ -6,11 +6,11 @@ public class InitPiantaTO {
 	
 	private List<TipoEntitaInserimentoTO> listTipoEntita;
 	private List<TipoStagioneFiorituraTO> listStagioni;
-	private List<TipoOrdineAppartenenzaPianteTO> listTipoPianta;
+	private List<TipoOrdineAppartenenzaPiantaTO> listTipoPianta;
 	private List<ParcoNaturaleTO> listParchi;
 	
 	public InitPiantaTO(List<TipoEntitaInserimentoTO> listTipoEntita, List<TipoStagioneFiorituraTO> listStagioni,
-			List<TipoOrdineAppartenenzaPianteTO> listTipoPianta, List<ParcoNaturaleTO> listParchi) {
+			List<TipoOrdineAppartenenzaPiantaTO> listTipoPianta, List<ParcoNaturaleTO> listParchi) {
 		super();
 		this.listTipoEntita = listTipoEntita;
 		this.listStagioni = listStagioni;
@@ -29,10 +29,10 @@ public class InitPiantaTO {
 	public void setListStagioni(List<TipoStagioneFiorituraTO> listStagioni) {
 		this.listStagioni = listStagioni;
 	}
-	public List<TipoOrdineAppartenenzaPianteTO> getListTipoPianta() {
+	public List<TipoOrdineAppartenenzaPiantaTO> getListTipoPianta() {
 		return listTipoPianta;
 	}
-	public void setListTipoPianta(List<TipoOrdineAppartenenzaPianteTO> listTipoPianta) {
+	public void setListTipoPianta(List<TipoOrdineAppartenenzaPiantaTO> listTipoPianta) {
 		this.listTipoPianta = listTipoPianta;
 	}
 	public List<ParcoNaturaleTO> getListParchi() {
