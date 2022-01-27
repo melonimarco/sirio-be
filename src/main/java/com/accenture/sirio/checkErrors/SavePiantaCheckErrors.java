@@ -20,12 +20,9 @@ public class SavePiantaCheckErrors extends BaseCheckErrors{
 		
 		List<String> messaggiList = new ArrayList<>();
 		
-		String messaggio = piantaService.checkSpecieAlreadyExist(piantaTO, "La specie è già stata inserita");
-		
-		if(messaggio!=null) {
-			messaggiList.add(messaggio);
+		if(piantaService.checkSpecieAlreadyExist(piantaTO)) {
+			messaggiList.add("La specie è già stata inserita");
 		}
-		
 		
 		return messaggiList;
 		

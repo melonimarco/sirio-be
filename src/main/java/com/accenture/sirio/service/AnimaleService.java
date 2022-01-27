@@ -51,15 +51,13 @@ public class AnimaleService {
 		
 	}
 	
-	public String checkSpecieAlreadyExist(AnimaleTO animaleTO, String messaggio) {
+	public Boolean checkSpecieAlreadyExist(AnimaleTO animaleTO) {
 		
-		String animaleFound = animaliRepository.findSpecie(animaleTO.getSpecie(), animaleTO.getSesso(), animaleTO.getParco());
-		
-		if(animaleFound!=null) {
-			return messaggio;
+		if(animaliRepository.findSpecie(animaleTO.getSpecie(), animaleTO.getSesso(), animaleTO.getParco())!=null) {
+			return true;
 		}
 		
-		return null;
+		return false;
 		
 	}
 	

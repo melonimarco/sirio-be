@@ -23,9 +23,8 @@ public class SaveAnimaleCheckErrors extends BaseCheckErrors{
 		
 		List<String> messaggiList = new ArrayList<>();
 		
-		String messaggio = animaliService.checkSpecieAlreadyExist(animaleTO, "La specie è già stata inserita");
-		if(messaggio!=null) {
-			messaggiList.add(messaggio);
+		if(animaliService.checkSpecieAlreadyExist(animaleTO)) {
+			messaggiList.add("La specie è già stata inserita");
 		}
 		
 		Character sesso = animaleTO.getSesso();

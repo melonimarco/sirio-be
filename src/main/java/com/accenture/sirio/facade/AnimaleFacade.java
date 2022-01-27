@@ -28,10 +28,6 @@ public class AnimaleFacade {
 		return animaliService.initCreazione();
 	}
 	
-	public List<String> saveAnimaleBridge(AnimaleTO animaleTO){
-		return saveAnimaleCheckErrors.saveAnimaleCheck(animaleTO);
-	}
-	
 	@Transactional
 	public Long saveAnimale(AnimaleTO animaleTO){	
 		return animaliService.saveAnimale(animaleTO);

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accenture.sirio.checkErrors.SaveAnimaleCheckErrors;
 import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.ErrorMessageTO;
 import com.accenture.sirio.exceptions.EmptyException;
@@ -33,8 +34,12 @@ import com.accenture.sirio.facade.AnimaleFacade;
 @RequestMapping(path="/animale")
 @RestController
 public class AnimaleController extends BaseController {
+	
 	@Autowired
 	private AnimaleFacade animaliFacade;
+	
+	@Autowired
+	private SaveAnimaleCheckErrors saveAnimaleCheckErrors;
 	
 	@GetMapping(path="/getInitCreazione")
 	public ResponseEntity<Object> getInitCreazione(){
@@ -45,7 +50,7 @@ public class AnimaleController extends BaseController {
 	@PostMapping()
 	public ResponseEntity<Object> saveAnimale(@Valid @RequestBody AnimaleTO animaleTO){
 		
-		List<String> eList = animaliFacade.saveAnimaleBridge(animaleTO);
+		List<String> eList = saveAnimaleCheckErrors.saveAnimaleCheck(animaleTO);
 		
 		if(ObjectUtils.isEmpty(eList)) {
 			return new ResponseEntity<>(animaliFacade.saveAnimale(animaleTO), HttpStatus.OK);

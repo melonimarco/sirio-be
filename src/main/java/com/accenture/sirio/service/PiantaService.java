@@ -48,15 +48,13 @@ public class PiantaService {
 		return save.getId();
 	}
 
-	public String checkSpecieAlreadyExist(PiantaTO piantaTO, String messaggio) {
+	public Boolean checkSpecieAlreadyExist(PiantaTO piantaTO) {
 		
-		String specieFound = pianteRepository.findSpecie(piantaTO.getSpecie(), piantaTO.getParco());
-		
-		if(specieFound!=null) {
-			return messaggio;
+		if(pianteRepository.findSpecie(piantaTO.getSpecie(), piantaTO.getParco())!=null) {
+			return true;
 		}
 		
-		return null;
+		return false;
 		
 	}
 }
