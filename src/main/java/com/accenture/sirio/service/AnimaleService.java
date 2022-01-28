@@ -52,12 +52,8 @@ public class AnimaleService {
 	}
 	
 	public Boolean checkSpecieAlreadyExist(AnimaleTO animaleTO) {
-		
-		if(animaliRepository.findSpecie(animaleTO.getSpecie(), animaleTO.getSesso(), animaleTO.getParco())!=null) {
-			return true;
-		}
-		
-		return false;
+
+		return animaliRepository.findSpecie(animaleTO.getSpecie(), animaleTO.getSesso(), animaleTO.getParco())!=null;
 		
 	}
 	

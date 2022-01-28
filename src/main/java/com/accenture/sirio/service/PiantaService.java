@@ -50,11 +50,7 @@ public class PiantaService {
 
 	public Boolean checkSpecieAlreadyExist(PiantaTO piantaTO) {
 		
-		if(pianteRepository.findSpecie(piantaTO.getSpecie(), piantaTO.getParco())!=null) {
-			return true;
-		}
-		
-		return false;
-		
+		return pianteRepository.findSpecie(piantaTO.getSpecie(), piantaTO.getParco())!=null;
+
 	}
 }
