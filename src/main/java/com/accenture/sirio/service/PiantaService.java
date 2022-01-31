@@ -31,9 +31,6 @@ public class PiantaService {
 	
 	@Autowired
 	private TipoEntitaInserimentoRepository tipoEntitaInserimentoRepository;
-	
-	@Autowired 
-	private PiantaFacade piantaFacade;
 
 	public InitPiantaTO initCreazione() {
 		
@@ -47,8 +44,19 @@ public class PiantaService {
 
 	public Long savePianta(PiantaTO piantaTO) {
 		
-		Pianta save = pianteRepository.save(piantaFacade.convertToPianta(piantaTO));
+		Pianta save = pianteRepository.save(convertToPianta(piantaTO));
 		return save.getId();
+	}
+	
+	public Pianta convertToPianta(PiantaTO piantaTO) {
+		
+		Pianta pianta = new Pianta();
+		
+		pianta.setSpecie(piantaTO.getSpecie());
+		pianta.setTipoOrdineAppartenenzaPiante(piantaTO.getTipoPianta());
+		pianta.setTipoStagioneFioritura(piantaTO.getStagioneFioritura());
+		pianta.setParcoNaturale(piantaTO.getParco());
+		return pianta;
 	}
 
 	public Boolean checkSpecieAlreadyExist(PiantaTO piantaTO) {

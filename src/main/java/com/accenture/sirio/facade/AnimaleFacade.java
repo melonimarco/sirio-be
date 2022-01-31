@@ -34,18 +34,4 @@ public class AnimaleFacade {
 		return animaliService.saveAnimale(animaleTO);
 	}
 	
-	public Animale convertTOAnimale(AnimaleTO animaleTO) {
-		
-		Animale animale = new Animale();
-		
-		animale.setSpecie(animaleTO.getSpecie());
-		animale.setSesso(animaleTO.getSesso());
-		animale.setNumeroEsemplari(animaleTO.getNumEsemplari());
-		animale.setTipoOrdineAppartenenzaAnimali(animaleTO.getTipoAnimale());
-		animale.setTipoStatoSalute(animaleTO.getTipoStatoSalute());
-		animale.setParcoNaturale(animaleTO.getParco());
-		
-		return animale;
-			
-	}
 }

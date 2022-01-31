@@ -27,14 +27,5 @@ public class PiantaFacade {
 		return piantaService.savePianta(piantaTO);
 	}
 	
-	public Pianta convertToPianta(PiantaTO piantaTO) {
-		
-		Pianta pianta = new Pianta();
-		
-		pianta.setSpecie(piantaTO.getSpecie());
-		pianta.setTipoOrdineAppartenenzaPiante(piantaTO.getTipoPianta());
-		pianta.setTipoStagioneFioritura(piantaTO.getStagioneFioritura());
-		pianta.setParcoNaturale(piantaTO.getParco());
-		return pianta;
-	}
+	
 }

@@ -33,9 +33,6 @@ public class AnimaleService {
 	
 	@Autowired
 	private ParcoNaturaleRepository parcoNaturaleRepository;
-	
-	@Autowired
-	private AnimaleFacade animaleFacade;
 
 	public InitAnimaleTO initCreazione() {
 		
@@ -50,9 +47,24 @@ public class AnimaleService {
 	@Transactional
 	public Long saveAnimale(AnimaleTO animaleTO) {
 		
-		Animale save = animaliRepository.save(animaleFacade.convertTOAnimale(animaleTO));
+		Animale save = animaliRepository.save(convertTOAnimale(animaleTO));
 		return save.getId();
 		
+	}
+	
+	public Animale convertTOAnimale(AnimaleTO animaleTO) {
+		
+		Animale animale = new Animale();
+		
+		animale.setSpecie(animaleTO.getSpecie());
+		animale.setSesso(animaleTO.getSesso());
+		animale.setNumeroEsemplari(animaleTO.getNumEsemplari());
+		animale.setTipoOrdineAppartenenzaAnimali(animaleTO.getTipoAnimale());
+		animale.setTipoStatoSalute(animaleTO.getTipoStatoSalute());
+		animale.setParcoNaturale(animaleTO.getParco());
+		
+		return animale;
+			
 	}
 	
 	public Boolean checkSpecieAlreadyExist(AnimaleTO animaleTO) {
