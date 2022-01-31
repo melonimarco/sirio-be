@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.accenture.sirio.checkErrors.SaveAnimaleCheckErrors;
+import com.accenture.sirio.entity.Animale;
 import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.InitAnimaleTO;
 import com.accenture.sirio.exceptions.EmptyException;
@@ -31,5 +32,20 @@ public class AnimaleFacade {
 	@Transactional
 	public Long saveAnimale(AnimaleTO animaleTO){	
 		return animaliService.saveAnimale(animaleTO);
+	}
+	
+	public Animale convertTOAnimale(AnimaleTO animaleTO) {
+		
+		Animale animale = new Animale();
+		
+		animale.setSpecie(animaleTO.getSpecie());
+		animale.setSesso(animaleTO.getSesso());
+		animale.setNumeroEsemplari(animaleTO.getNumEsemplari());
+		animale.setTipoOrdineAppartenenzaAnimali(animaleTO.getTipoAnimale());
+		animale.setTipoStatoSalute(animaleTO.getTipoStatoSalute());
+		animale.setParcoNaturale(animaleTO.getParco());
+		
+		return animale;
+			
 	}
 }

@@ -9,6 +9,7 @@ import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.InitAnimaleTO;
 import com.accenture.sirio.exceptions.MinException;
 import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
+import com.accenture.sirio.facade.AnimaleFacade;
 import com.accenture.sirio.repository.AnimaleRepository;
 import com.accenture.sirio.repository.ParcoNaturaleRepository;
 import com.accenture.sirio.repository.TipoEntitaInserimentoRepository;
@@ -32,6 +33,9 @@ public class AnimaleService {
 	
 	@Autowired
 	private ParcoNaturaleRepository parcoNaturaleRepository;
+	
+	@Autowired
+	private AnimaleFacade animaleFacade;
 
 	public InitAnimaleTO initCreazione() {
 		
@@ -45,8 +49,8 @@ public class AnimaleService {
 	
 	@Transactional
 	public Long saveAnimale(AnimaleTO animaleTO) {
-		Animale animale = new Animale(animaleTO);
-		Animale save = animaliRepository.save(animale);
+		
+		Animale save = animaliRepository.save(animaleFacade.convertTOAnimale(animaleTO));
 		return save.getId();
 		
 	}

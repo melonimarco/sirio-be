@@ -42,11 +42,8 @@ public class Pianta {
 	@Column(name = "parco_naturale", nullable = false)
 	private Long parcoNaturale;
 
-	public Pianta(PiantaTO piantaTO) {
-		this.specie = piantaTO.getSpecie();
-		this.tipoOrdineAppartenenzaPiante = piantaTO.getTipoPianta();
-		this.tipoStagioneFioritura = piantaTO.getStagioneFioritura();
-		this.parcoNaturale = piantaTO.getParco();
+	public Pianta() {
+		
 	}
 
 	public Long getId() {

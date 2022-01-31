@@ -8,6 +8,7 @@ import com.accenture.sirio.entity.Pianta;
 import com.accenture.sirio.entityTO.InitPiantaTO;
 import com.accenture.sirio.entityTO.PiantaTO;
 import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
+import com.accenture.sirio.facade.PiantaFacade;
 import com.accenture.sirio.repository.ParcoNaturaleRepository;
 import com.accenture.sirio.repository.PiantaRepository;
 import com.accenture.sirio.repository.TipoEntitaInserimentoRepository;
@@ -30,6 +31,9 @@ public class PiantaService {
 	
 	@Autowired
 	private TipoEntitaInserimentoRepository tipoEntitaInserimentoRepository;
+	
+	@Autowired 
+	private PiantaFacade piantaFacade;
 
 	public InitPiantaTO initCreazione() {
 		
@@ -43,8 +47,7 @@ public class PiantaService {
 
 	public Long savePianta(PiantaTO piantaTO) {
 		
-		Pianta pianta = new Pianta(piantaTO);
-		Pianta save = pianteRepository.save(pianta);
+		Pianta save = pianteRepository.save(piantaFacade.convertToPianta(piantaTO));
 		return save.getId();
 	}
 

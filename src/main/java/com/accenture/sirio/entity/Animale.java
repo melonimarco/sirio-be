@@ -50,16 +50,6 @@ public class Animale {
 	@Column(name = "parco_naturale", nullable = false)
 	private Long parcoNaturale;
 
-	public Animale(AnimaleTO animaleTO) {
-		this.specie = animaleTO.getSpecie();
-		this.sesso = animaleTO.getSesso();
-		this.numeroEsemplari = animaleTO.getNumEsemplari();
-		this.tipoOrdineAppartenenzaAnimali = animaleTO.getTipoAnimale();
-		this.tipoStatoSalute = animaleTO.getTipoStatoSalute();
-		this.parcoNaturale = animaleTO.getParco();
-		
-	}
-
 	public Animale() {
 	}
 
