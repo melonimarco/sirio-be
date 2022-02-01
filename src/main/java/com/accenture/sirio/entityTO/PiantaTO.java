@@ -16,6 +16,7 @@ public class PiantaTO {
 	@NotNull(message = "Parco cannot be null")
 	private Long parco;
 
+	
 	public String getSpecie() {
 		return specie;
 	}

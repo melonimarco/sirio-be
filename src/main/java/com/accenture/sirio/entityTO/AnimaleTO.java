@@ -27,8 +27,6 @@ public class AnimaleTO {
 	public AnimaleTO() {
 		super();
 	}
-	
-
 
 	public String getSpecie() {
 		return specie;
@@ -54,44 +52,28 @@ public class AnimaleTO {
 		this.numEsemplari = numEsemplari;
 	}
 
-
-
 	public Long getTipoAnimale() {
 		return tipoAnimale;
 	}
-
-
 
 	public void setTipoAnimale(Long tipoAnimale) {
 		this.tipoAnimale = tipoAnimale;
 	}
 
-
-
 	public Long getTipoStatoSalute() {
 		return tipoStatoSalute;
 	}
-
-
 
 	public void setTipoStatoSalute(Long tipoStatoSalute) {
 		this.tipoStatoSalute = tipoStatoSalute;
 	}
 
-
-
 	public Long getParco() {
 		return parco;
 	}
 
-
-
 	public void setParco(Long parco) {
 		this.parco = parco;
 	}
-
-	
-
-	
 	
 }

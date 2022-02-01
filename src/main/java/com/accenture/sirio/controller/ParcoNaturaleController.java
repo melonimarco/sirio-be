@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,6 +46,12 @@ public class ParcoNaturaleController {
 		response.put("listParchi", parcoNaturaleFacade.getListParchi());
 		
 		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	@GetMapping(path="/getInfoParco/{idParco}")
+	public ResponseEntity<Object> getInfoParco(@PathVariable Long idParco){
+		
+		return new ResponseEntity<>(parcoNaturaleFacade.getInfoParco(idParco), HttpStatus.OK);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.accenture.sirio.entityTO.InfoParcoTO;
 import com.accenture.sirio.entityTO.ParcoNaturaleTO;
 import com.accenture.sirio.service.ParcoNaturaleService;
 
@@ -15,6 +16,11 @@ public class ParcoNaturaleFacade {
 
 	public List<ParcoNaturaleTO> getListParchi() {
 		return parcoNaturaleService.getListParchi();
+	}
+
+	public InfoParcoTO getInfoParco(Long idParco) {
+		
+		return parcoNaturaleService.getInfoParco(idParco);
 	}
 	
 	
