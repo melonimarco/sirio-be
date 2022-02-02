@@ -4,14 +4,14 @@ import java.util.List;
 
 public class InfoParcoTO {
 	private ParcoNaturaleTO parco;
-	private List<AnimaleTO> listAnimali;
-	private List<PiantaTO> listPiante;
+	private List<InfoAnimaleTO> listAnimali;
+	private List<InfoPiantaTO> listPiante;
 	
 	public InfoParcoTO() {
 		
 	}
 	
-	public InfoParcoTO(ParcoNaturaleTO parco, List<AnimaleTO> listAnimali, List<PiantaTO> listPiante) {
+	public InfoParcoTO(ParcoNaturaleTO parco, List<InfoAnimaleTO> listAnimali, List<InfoPiantaTO> listPiante) {
 		super();
 		this.parco = parco;
 		this.listAnimali = listAnimali;
@@ -26,19 +26,19 @@ public class InfoParcoTO {
 		this.parco = parco;
 	}
 
-	public List<AnimaleTO> getListAnimali() {
+	public List<InfoAnimaleTO> getListAnimali() {
 		return listAnimali;
 	}
 
-	public void setListAnimali(List<AnimaleTO> listAnimali) {
+	public void setListAnimali(List<InfoAnimaleTO> listAnimali) {
 		this.listAnimali = listAnimali;
 	}
 
-	public List<PiantaTO> getListPiante() {
+	public List<InfoPiantaTO> getListPiante() {
 		return listPiante;
 	}
 
-	public void setListPiante(List<PiantaTO> listPiante) {
+	public void setListPiante(List<InfoPiantaTO> listPiante) {
 		this.listPiante = listPiante;
 	}
 	

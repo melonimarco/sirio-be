@@ -4,6 +4,8 @@ import javax.validation.constraints.NotNull;
 
 public class PiantaTO {
 	
+	private Long id;
+	
 	@NotNull(message = "Specie cannot be null")
 	private String specie;
 
@@ -16,6 +18,29 @@ public class PiantaTO {
 	@NotNull(message = "Parco cannot be null")
 	private Long parco;
 
+	public PiantaTO() {
+		super();
+	}
+
+	public PiantaTO(Long id, @NotNull(message = "Specie cannot be null") String specie,
+			@NotNull(message = "Tipo Pianta cannot be null") Long tipoPianta,
+			@NotNull(message = "Stagione Fioritura cannot be null") Long stagioneFioritura,
+			@NotNull(message = "Parco cannot be null") Long parco) {
+		super();
+		this.id = id;
+		this.specie = specie;
+		this.tipoPianta = tipoPianta;
+		StagioneFioritura = stagioneFioritura;
+		this.parco = parco;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 	public String getSpecie() {
 		return specie;

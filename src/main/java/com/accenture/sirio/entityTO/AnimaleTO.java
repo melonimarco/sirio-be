@@ -5,6 +5,8 @@ import javax.validation.constraints.NotNull;
 
 public class AnimaleTO {
 	
+	private Long id;
+	
 	@NotNull(message = "Specie cannot be null")
 	private String specie;
 	
@@ -26,6 +28,30 @@ public class AnimaleTO {
 	
 	public AnimaleTO() {
 		super();
+	}
+
+	public AnimaleTO(Long id, @NotNull(message = "Specie cannot be null") String specie,
+			@NotNull(message = "Sesso cannot be null") Character sesso,
+			@NotNull(message = "Numero Esemplari cannot be null") @Min(value = 1, message = "Numero Esemplari should not be less than 1") Integer numEsemplari,
+			@NotNull(message = "Tipo Animale cannot be null") Long tipoAnimale,
+			@NotNull(message = "Stato Salute cannot be null") Long tipoStatoSalute,
+			@NotNull(message = "Parco cannot be null") Long parco) {
+		super();
+		this.id = id;
+		this.specie = specie;
+		this.sesso = sesso;
+		this.numEsemplari = numEsemplari;
+		this.tipoAnimale = tipoAnimale;
+		this.tipoStatoSalute = tipoStatoSalute;
+		this.parco = parco;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getSpecie() {
