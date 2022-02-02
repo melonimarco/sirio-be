@@ -22,5 +22,10 @@ public interface PiantaRepository extends JpaRepository<Pianta, Long>{
 			+ "FROM Pianta p "
 			+ "WHERE p.parcoNaturale=?1")
 	public List<PiantaTO> findPiantaByIdParco(Long id);
+	
+	@Query("Select new com.accenture.sirio.entityTO.PiantaTO(p.id, p.specie, p.tipoOrdineAppartenenzaPiante, p.tipoStagioneFioritura, p.parcoNaturale) "
+			+ "FROM Pianta p "
+			+ "WHERE p.id=?1")
+	public PiantaTO findPiantaById(Long id);
 
 }

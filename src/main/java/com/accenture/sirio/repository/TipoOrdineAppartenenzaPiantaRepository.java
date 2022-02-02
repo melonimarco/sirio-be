@@ -14,4 +14,10 @@ public interface TipoOrdineAppartenenzaPiantaRepository extends JpaRepository<Ti
 	@Query("Select new com.accenture.sirio.entityTO.TipoOrdineAppartenenzaPiantaTO(o.id, o.descrizione) "
 			+ "FROM TipoOrdineAppartenenzaPianta o ")
 	public List<TipoOrdineAppartenenzaPiantaTO> findAllOrdiniAppPiante();
+	
+	@Query("Select new com.accenture.sirio.entityTO.TipoOrdineAppartenenzaPiantaTO(o.id, o.descrizione) "
+			+ "FROM TipoOrdineAppartenenzaPianta o "
+			+ "WHERE o.id=?1")
+	public TipoOrdineAppartenenzaPiantaTO findOrdineAppPianteById(Long id);
+	
 }

@@ -12,4 +12,9 @@ public interface TipoStagioneFiorituraRepository extends JpaRepository<TipoStagi
 	@Query("Select new com.accenture.sirio.entityTO.TipoStagioneFiorituraTO(s.id, s.descrizione) "
 			+ "FROM TipoStagioneFioritura s ")
 	public List<TipoStagioneFiorituraTO> findAllStagioni();
+	
+	@Query("Select new com.accenture.sirio.entityTO.TipoStagioneFiorituraTO(s.id, s.descrizione) "
+			+ "FROM TipoStagioneFioritura s "
+			+ "WHERE s.id=?1")
+	public TipoStagioneFiorituraTO findStagioneById(Long id);
 }

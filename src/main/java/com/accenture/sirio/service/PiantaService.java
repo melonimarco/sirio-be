@@ -5,8 +5,12 @@ import org.springframework.stereotype.Service;
 
 import com.accenture.sirio.entity.Animale;
 import com.accenture.sirio.entity.Pianta;
+import com.accenture.sirio.entityTO.InfoCompletePiantaTO;
 import com.accenture.sirio.entityTO.InitPiantaTO;
+import com.accenture.sirio.entityTO.ParcoNaturaleTO;
 import com.accenture.sirio.entityTO.PiantaTO;
+import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaPiantaTO;
+import com.accenture.sirio.entityTO.TipoStagioneFiorituraTO;
 import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
 import com.accenture.sirio.facade.PiantaFacade;
 import com.accenture.sirio.repository.ParcoNaturaleRepository;
@@ -18,7 +22,7 @@ import com.accenture.sirio.repository.TipoStagioneFiorituraRepository;
 @Service
 public class PiantaService {
 	@Autowired
-	private PiantaRepository pianteRepository;
+	private PiantaRepository piantaRepository;
 	
 	@Autowired
 	private ParcoNaturaleRepository parcoNaturaleRepository;
@@ -44,7 +48,7 @@ public class PiantaService {
 
 	public Long savePianta(PiantaTO piantaTO) {
 		
-		Pianta save = pianteRepository.save(convertToPianta(piantaTO));
+		Pianta save = piantaRepository.save(convertToPianta(piantaTO));
 		return save.getId();
 	}
 	
@@ -61,7 +65,26 @@ public class PiantaService {
 
 	public Boolean checkSpecieAlreadyExist(PiantaTO piantaTO) {
 		
-		return pianteRepository.findSpecie(piantaTO.getSpecie(), piantaTO.getParco())!=null;
+		return piantaRepository.findSpecie(piantaTO.getSpecie(), piantaTO.getParco())!=null;
 
+	}
+
+	public InfoCompletePiantaTO getPianta(Long idPianta) {
+		
+		PiantaTO piantaTO = piantaRepository.findPiantaById(idPianta);
+		
+		TipoOrdineAppartenenzaPiantaTO tipoPianta = tipoOrdineAppartenenzaPianteRepository.findOrdineAppPianteById(piantaTO.getTipoPianta());	
+		TipoStagioneFiorituraTO Stagionefioritura = tipoStagioneFiorituraRepository.findStagioneById(piantaTO.getStagioneFioritura());
+		ParcoNaturaleTO parco = parcoNaturaleRepository.findParcoById(piantaTO.getParco());
+		
+		InfoCompletePiantaTO infoCompletePiantaTO = new InfoCompletePiantaTO();
+		
+		infoCompletePiantaTO.setId(piantaTO.getId());
+		infoCompletePiantaTO.setSpecie(piantaTO.getSpecie());
+		infoCompletePiantaTO.setTipoPianta(tipoPianta);
+		infoCompletePiantaTO.setStagioneFioritura(Stagionefioritura);
+		infoCompletePiantaTO.setParco(parco);
+		
+		return infoCompletePiantaTO;
 	}
 }
