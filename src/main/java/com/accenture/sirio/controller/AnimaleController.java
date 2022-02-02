@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,14 +37,14 @@ import com.accenture.sirio.facade.AnimaleFacade;
 public class AnimaleController extends BaseController {
 	
 	@Autowired
-	private AnimaleFacade animaliFacade;
+	private AnimaleFacade animaleFacade;
 	
 	@Autowired
 	private SaveAnimaleCheckErrors saveAnimaleCheckErrors;
 	
 	@GetMapping(path="/getInitCreazione")
 	public ResponseEntity<Object> getInitCreazione(){
-		return new ResponseEntity<>(animaliFacade.initCreazione(), HttpStatus.OK);
+		return new ResponseEntity<>(animaleFacade.initCreazione(), HttpStatus.OK);
 	}
 	
 	
@@ -53,10 +54,16 @@ public class AnimaleController extends BaseController {
 		List<String> eList = saveAnimaleCheckErrors.saveAnimaleCheck(animaleTO);
 		
 		if(ObjectUtils.isEmpty(eList)) {
-			return new ResponseEntity<>(animaliFacade.saveAnimale(animaleTO), HttpStatus.OK);
+			return new ResponseEntity<>(animaleFacade.saveAnimale(animaleTO), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
 		}
+	}
+	
+	@GetMapping("/{idAnimale}")
+	public ResponseEntity<Object> getAnimale(@PathVariable Long idAnimale){
+		
+		return new ResponseEntity<>(animaleFacade.getAnimale(idAnimale), HttpStatus.OK);
 	}
 
 }

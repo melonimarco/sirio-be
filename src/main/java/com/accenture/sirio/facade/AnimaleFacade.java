@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.accenture.sirio.checkErrors.SaveAnimaleCheckErrors;
 import com.accenture.sirio.entity.Animale;
 import com.accenture.sirio.entityTO.AnimaleTO;
+import com.accenture.sirio.entityTO.InfoCompleteAnimaleTO;
 import com.accenture.sirio.entityTO.InitAnimaleTO;
 import com.accenture.sirio.exceptions.EmptyException;
 import com.accenture.sirio.exceptions.MinException;
@@ -19,19 +20,24 @@ import com.accenture.sirio.service.AnimaleService;
 public class AnimaleFacade {
 	
 	@Autowired
-	private AnimaleService animaliService;
+	private AnimaleService animaleService;
 	
 	@Autowired
 	private SaveAnimaleCheckErrors saveAnimaleCheckErrors;
 	
 
 	public InitAnimaleTO initCreazione() {
-		return animaliService.initCreazione();
+		return animaleService.initCreazione();
 	}
 	
 	@Transactional
 	public Long saveAnimale(AnimaleTO animaleTO){	
-		return animaliService.saveAnimale(animaleTO);
+		return animaleService.saveAnimale(animaleTO);
+	}
+
+	public InfoCompleteAnimaleTO getAnimale(Long idAnimale) {
+		
+		return animaleService.getAnimale(idAnimale);
 	}
 	
 }

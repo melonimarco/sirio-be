@@ -23,4 +23,9 @@ public interface AnimaleRepository extends JpaRepository<Animale, Long>{
 			+ "FROM Animale a "
 			+ "WHERE a.parcoNaturale=?1 ")
 	public List<AnimaleTO> findAnimaleByIdParco(Long id);
+	
+	@Query("Select new com.accenture.sirio.entityTO.AnimaleTO(a.id, a.specie, a.sesso, a.numeroEsemplari, a.tipoOrdineAppartenenzaAnimali, a.tipoStatoSalute, a.parcoNaturale) "
+			+ "FROM Animale a "
+			+ "WHERE a.id=?1 ")
+	public AnimaleTO findAnimaleById(Long id);
 }
