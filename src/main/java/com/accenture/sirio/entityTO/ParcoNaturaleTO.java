@@ -15,6 +15,10 @@ public class ParcoNaturaleTO {
 		this.nome = nome;
 	}
 
+	public ParcoNaturaleTO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -6,8 +6,9 @@ import org.springframework.stereotype.Service;
 import com.accenture.sirio.repository.TipoOrdineAppartenenzaAnimaleRepository;
 
 @Service
-public class TipoOrdineAppartenenzaAnimaliService {
+public class TipoOrdineAppartenenzaAnimaleService {
 	
 	@Autowired
 	private TipoOrdineAppartenenzaAnimaleRepository tipoOrdineAppartenenzaAnimaliRepository;
+	
 }

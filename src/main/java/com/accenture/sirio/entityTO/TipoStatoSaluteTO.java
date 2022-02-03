@@ -20,6 +20,10 @@ public class TipoStatoSaluteTO {
 		this.descrizione = descrizione;
 	}
 
+	public TipoStatoSaluteTO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getDescrizione() {
 		return descrizione;
 	}

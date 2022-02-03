@@ -26,8 +26,6 @@ public class InfoAnimaleRTO {
 		super();
 	}
 	
-	
-
 	public InfoAnimaleRTO(Long id, Long tipoAnimaleLong, String specie, Character sesso, String descrizioneTipoAnimale) {
 		super();
 		
@@ -44,8 +42,6 @@ public class InfoAnimaleRTO {
 		tipoAnimaleTO.setDescrizione(descrizioneTipoAnimale);
 		this.tipoAnimale=tipoAnimaleTO;
 	}
-
-
 
 	public Long getId() {
 		return id;

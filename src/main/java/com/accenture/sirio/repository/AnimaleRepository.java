@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.accenture.sirio.entity.Animale;
 import com.accenture.sirio.entityRTO.InfoAnimaleRTO;
+import com.accenture.sirio.entityRTO.InfoCompleteAnimaleRTO;
 import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.ParcoNaturaleTO;
 
@@ -32,9 +33,16 @@ public interface AnimaleRepository extends JpaRepository<Animale, Long>{
 			+ "AND to.id=a.tipoOrdineAppartenenzaAnimali")
 	public List<InfoAnimaleRTO> findInfoAnimaleByIdParco(Long id);
 	
-	
 	@Query("Select new com.accenture.sirio.entityTO.AnimaleTO(a.id, a.specie, a.sesso, a.numeroEsemplari, a.tipoOrdineAppartenenzaAnimali, a.tipoStatoSalute, a.parcoNaturale) "
 			+ "FROM Animale a "
 			+ "WHERE a.id=?1 ")
 	public AnimaleTO findAnimaleById(Long id);
+	
+	@Query("Select new com.accenture.sirio.entityRTO.InfoCompleteAnimaleRTO(a.id, a.specie, a.sesso, a.numeroEsemplari, a.tipoOrdineAppartenenzaAnimali, a.tipoStatoSalute, a.parcoNaturale, to.descrizione, p.nome, s.descrizione) "
+			+ "FROM Animale a, TipoOrdineAppartenenzaAnimale to, ParcoNaturale p, TipoStatoSalute s "
+			+ "WHERE a.id=?1 "
+			+ "AND to.id = a.tipoOrdineAppartenenzaAnimali "
+			+ "AND p.id = a.parcoNaturale "
+			+ "AND s.id = a.tipoStatoSalute")
+	public InfoCompleteAnimaleRTO findInfoCompleteAnimaleById(Long id);
 }
