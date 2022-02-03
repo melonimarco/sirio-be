@@ -37,16 +37,6 @@ public class AnimaleService {
 	
 	@Autowired
 	private ParcoNaturaleRepository parcoNaturaleRepository;
-
-	public InitAnimaleTO initCreazione() {
-		
-		InitAnimaleTO initAnimaleTO = new InitAnimaleTO(tipoEntitaInserimentoRepository.findAllEntita(), 
-				tipoStatoSaluteRepository.findAllStatiSalute(), 
-				tipoOrdineAppartenenzaAnimaliRepository.findAllOrdiniAppAnimali(), 
-				parcoNaturaleRepository.findAllParchi());
-		
-		return initAnimaleTO;
-	}
 	
 	@Transactional
 	public Long saveAnimale(AnimaleTO animaleTO) {

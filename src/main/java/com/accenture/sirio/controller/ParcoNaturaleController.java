@@ -29,7 +29,7 @@ public class ParcoNaturaleController {
 		
 		ListTipoEntitaInserimentoTO listTipoEntitaInserimentoTO = new ListTipoEntitaInserimentoTO();
 		
-		listTipoEntitaInserimentoTO.setListTipoEntita(tipoEntitaInserimentoFacade.findAll());
+		listTipoEntitaInserimentoTO.setListTipoEntita(tipoEntitaInserimentoFacade.getListEntitaInserimento());
 		
 		return new ResponseEntity<>(listTipoEntitaInserimentoTO, HttpStatus.OK);
 	}
