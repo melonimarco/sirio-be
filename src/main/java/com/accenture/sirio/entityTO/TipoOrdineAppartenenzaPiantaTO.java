@@ -12,6 +12,10 @@ public class TipoOrdineAppartenenzaPiantaTO {
 		this.descrizione = descrizione;
 	}
 
+	public TipoOrdineAppartenenzaPiantaTO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}

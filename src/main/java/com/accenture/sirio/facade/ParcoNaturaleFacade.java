@@ -5,22 +5,37 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.accenture.sirio.entityTO.InfoParcoTO;
+import com.accenture.sirio.entityRTO.InfoParcoRTO;
 import com.accenture.sirio.entityTO.ParcoNaturaleTO;
+import com.accenture.sirio.service.AnimaleService;
 import com.accenture.sirio.service.ParcoNaturaleService;
+import com.accenture.sirio.service.PiantaService;
 
 @Service
 public class ParcoNaturaleFacade {
 	@Autowired
 	private ParcoNaturaleService parcoNaturaleService;
+	
+	@Autowired 
+	private PiantaService piantaService;
+	
+	@Autowired
+	private AnimaleService animaleService;
+	
+	
 
 	public List<ParcoNaturaleTO> getListParchi() {
+		
 		return parcoNaturaleService.getListParchi();
 	}
 
-	public InfoParcoTO getInfoParco(Long idParco) {
+	public InfoParcoRTO getInfoParco(Long idParco) {
 		
-		return parcoNaturaleService.getInfoParco(idParco);
+		InfoParcoRTO infoParcoRTO = new InfoParcoRTO(parcoNaturaleService.getParcoById(idParco), 
+				animaleService.getListInfoAnimaleByIdParco(idParco), 
+				piantaService.getListInfoPiantaTOByIdParco(idParco));
+
+		return infoParcoRTO;
 	}
 	
 	

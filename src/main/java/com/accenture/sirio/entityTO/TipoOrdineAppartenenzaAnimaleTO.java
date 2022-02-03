@@ -12,6 +12,11 @@ public class TipoOrdineAppartenenzaAnimaleTO {
 		this.descrizione = descrizione;
 	}
 
+	public TipoOrdineAppartenenzaAnimaleTO() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.accenture.sirio.entity.Pianta;
+import com.accenture.sirio.entityRTO.InfoPiantaRTO;
 import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.PiantaTO;
 
@@ -22,6 +23,12 @@ public interface PiantaRepository extends JpaRepository<Pianta, Long>{
 			+ "FROM Pianta p "
 			+ "WHERE p.parcoNaturale=?1")
 	public List<PiantaTO> findPiantaByIdParco(Long id);
+	
+	@Query("Select new com.accenture.sirio.entityRTO.InfoPiantaRTO(p.id, p.specie, p.tipoOrdineAppartenenzaPiante, to.descrizione) "
+			+ "FROM Pianta p, TipoOrdineAppartenenzaPianta to "
+			+ "WHERE p.parcoNaturale=?1 "
+			+ "AND to.id=p.tipoOrdineAppartenenzaPiante")
+	public List<InfoPiantaRTO> findInfoPiantaByIdParco(Long id);
 	
 	@Query("Select new com.accenture.sirio.entityTO.PiantaTO(p.id, p.specie, p.tipoOrdineAppartenenzaPiante, p.tipoStagioneFioritura, p.parcoNaturale) "
 			+ "FROM Pianta p "

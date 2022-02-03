@@ -1,10 +1,13 @@
 package com.accenture.sirio.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.accenture.sirio.entity.Animale;
 import com.accenture.sirio.entity.Pianta;
+import com.accenture.sirio.entityRTO.InfoPiantaRTO;
 import com.accenture.sirio.entityTO.InfoCompletePiantaTO;
 import com.accenture.sirio.entityTO.InitPiantaTO;
 import com.accenture.sirio.entityTO.ParcoNaturaleTO;
@@ -67,6 +70,10 @@ public class PiantaService {
 		
 		return piantaRepository.findSpecie(piantaTO.getSpecie(), piantaTO.getParco())!=null;
 
+	}
+	
+	public List<InfoPiantaRTO> getListInfoPiantaTOByIdParco(Long idParco){
+		return piantaRepository.findInfoPiantaByIdParco(idParco);
 	}
 
 	public InfoCompletePiantaTO getPianta(Long idPianta) {

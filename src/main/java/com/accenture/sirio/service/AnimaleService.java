@@ -1,10 +1,13 @@
 package com.accenture.sirio.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.accenture.sirio.entity.Animale;
+import com.accenture.sirio.entityRTO.InfoAnimaleRTO;
 import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.InfoCompleteAnimaleTO;
 import com.accenture.sirio.entityTO.InitAnimaleTO;
@@ -24,7 +27,7 @@ import com.accenture.sirio.repository.TipoStatoSaluteRepository;
 public class AnimaleService {
 
 	@Autowired
-	private AnimaleRepository animaliRepository;
+	private AnimaleRepository animaleRepository;
 	
 	@Autowired
 	private TipoEntitaInserimentoRepository tipoEntitaInserimentoRepository;
@@ -51,7 +54,7 @@ public class AnimaleService {
 	@Transactional
 	public Long saveAnimale(AnimaleTO animaleTO) {
 		
-		Animale save = animaliRepository.save(convertTOAnimale(animaleTO));
+		Animale save = animaleRepository.save(convertTOAnimale(animaleTO));
 		return save.getId();
 		
 	}
@@ -73,13 +76,18 @@ public class AnimaleService {
 	
 	public Boolean checkSpecieAlreadyExist(AnimaleTO animaleTO) {
 
-		return animaliRepository.findSpecie(animaleTO.getSpecie(), animaleTO.getSesso(), animaleTO.getParco())!=null;
+		return animaleRepository.findSpecie(animaleTO.getSpecie(), animaleTO.getSesso(), animaleTO.getParco())!=null;
 		
 	}
+	
+	public List<InfoAnimaleRTO> getListInfoAnimaleByIdParco(Long idParco){
+		return animaleRepository.findInfoAnimaleByIdParco(idParco);
+	}
 
+	//Query con join e inserimento da costruttore
 	public InfoCompleteAnimaleTO getAnimale(Long idAnimale) {
 		
-		AnimaleTO animaleTO = animaliRepository.findAnimaleById(idAnimale);
+		AnimaleTO animaleTO = animaleRepository.findAnimaleById(idAnimale);
 		
 		TipoOrdineAppartenenzaAnimaleTO tipoAnimale = tipoOrdineAppartenenzaAnimaliRepository.findOrdineAppAnimaliById(animaleTO.getTipoAnimale());
 		ParcoNaturaleTO parco = parcoNaturaleRepository.findParcoById(animaleTO.getParco());
