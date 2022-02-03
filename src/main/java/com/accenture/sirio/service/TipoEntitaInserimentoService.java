@@ -14,7 +14,7 @@ public class TipoEntitaInserimentoService {
 	@Autowired
 	private TipoEntitaInserimentoRepository tipoEntitaInserimentoRepository;
 
-	public List<TipoEntitaInserimentoTO> findAll() {
+	public List<TipoEntitaInserimentoTO> getListEntitaInserimento() {
 		
 		return tipoEntitaInserimentoRepository.findAllEntita();
 	}

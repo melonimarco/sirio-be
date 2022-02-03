@@ -14,8 +14,8 @@ public class TipoEntitaInserimentoFacade {
 	@Autowired
 	private TipoEntitaInserimentoService tipoEntitaInserimentoService;
 
-	public List<TipoEntitaInserimentoTO> findAll() {
+	public List<TipoEntitaInserimentoTO> getListEntitaInserimento() {
 		// TODO Auto-generated method stub
-		return tipoEntitaInserimentoService.findAll();
+		return tipoEntitaInserimentoService.getListEntitaInserimento();
 	}
 }

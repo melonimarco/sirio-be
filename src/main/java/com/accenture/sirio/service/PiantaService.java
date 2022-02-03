@@ -20,28 +20,6 @@ import com.accenture.sirio.repository.TipoStagioneFiorituraRepository;
 public class PiantaService {
 	@Autowired
 	private PiantaRepository piantaRepository;
-	
-	@Autowired
-	private ParcoNaturaleRepository parcoNaturaleRepository;
-	
-	@Autowired
-	private TipoOrdineAppartenenzaPiantaRepository tipoOrdineAppartenenzaPianteRepository;
-	
-	@Autowired
-	private TipoStagioneFiorituraRepository tipoStagioneFiorituraRepository;
-	
-	@Autowired
-	private TipoEntitaInserimentoRepository tipoEntitaInserimentoRepository;
-
-	public InitPiantaTO initCreazione() {
-		
-		InitPiantaTO initPiantaTO = new InitPiantaTO(tipoEntitaInserimentoRepository.findAllEntita(),
-				tipoStagioneFiorituraRepository.findAllStagioni(),
-				tipoOrdineAppartenenzaPianteRepository.findAllOrdiniAppPiante(),
-				parcoNaturaleRepository.findAllParchi());
-		
-		return initPiantaTO;
-	}
 
 	public Long savePianta(PiantaTO piantaTO) {
 		
