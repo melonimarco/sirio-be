@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accenture.sirio.entityTO.ListParchiTO;
 import com.accenture.sirio.entityTO.ListTipoEntitaInserimentoTO;
 import com.accenture.sirio.entityTO.ParcoNaturaleTO;
 import com.accenture.sirio.entityTO.TipoEntitaInserimentoTO;
@@ -44,10 +45,11 @@ public class ParcoNaturaleController {
 	@GetMapping(path="/getListParchi")
 	public ResponseEntity<Object> getListParchi(){
 		
-		Map<String, List<ParcoNaturaleTO>> response = new HashMap<>();
-		response.put("listParchi", parcoNaturaleFacade.getListParchi());
+		ListParchiTO listParchiTO = new ListParchiTO();
 		
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		listParchiTO.setListParchi(parcoNaturaleFacade.getListParchi());
+		
+		return new ResponseEntity<>(listParchiTO, HttpStatus.OK);
 	}
 	
 	@GetMapping(path="/getInfoParco/{idParco}")
