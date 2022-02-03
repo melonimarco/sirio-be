@@ -12,6 +12,10 @@ public class TipoStagioneFiorituraTO {
 		this.descrizione = descrizione;
 	}
 
+	public TipoStagioneFiorituraTO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}
