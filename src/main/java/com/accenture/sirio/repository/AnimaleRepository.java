@@ -21,6 +21,14 @@ public interface AnimaleRepository extends JpaRepository<Animale, Long>{
 			+ "AND a.parcoNaturale = ?3")
 	public String findSpecie(String specie, Character sesso, Long parco);
 	
+	@Query("SELECT a.specie "
+			+ "FROM Animale a "
+			+ "WHERE a.id <> ?1 "
+			+ "AND a.specie = ?2 "
+			+ "AND a.sesso = ?3 "
+			+ "AND a.parcoNaturale = ?4")
+	public String findSpecieEdit(Long idAnimale, String specie, Character sesso, Long parco);
+	
 	//Serve un RTO (RTO TO generato) (TO TO preso in input)
 	@Query("Select new com.accenture.sirio.entityTO.AnimaleTO(a.id, a.specie, a.sesso, a.numeroEsemplari, a.tipoOrdineAppartenenzaAnimali, a.tipoStatoSalute, a.parcoNaturale) "
 			+ "FROM Animale a "
@@ -45,4 +53,5 @@ public interface AnimaleRepository extends JpaRepository<Animale, Long>{
 			+ "AND p.id = a.parcoNaturale "
 			+ "AND s.id = a.tipoStatoSalute")
 	public InfoCompleteAnimaleRTO findInfoCompleteAnimaleById(Long id);
+
 }

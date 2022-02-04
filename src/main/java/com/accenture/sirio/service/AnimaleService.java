@@ -10,15 +10,8 @@ import com.accenture.sirio.entity.Animale;
 import com.accenture.sirio.entityRTO.InfoAnimaleRTO;
 import com.accenture.sirio.entityRTO.InfoCompleteAnimaleRTO;
 import com.accenture.sirio.entityTO.AnimaleTO;
-import com.accenture.sirio.entityTO.InitAnimaleTO;
-import com.accenture.sirio.entityTO.ParcoNaturaleTO;
-import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaAnimaleTO;
-import com.accenture.sirio.entityTO.TipoStatoSaluteTO;
 import com.accenture.sirio.repository.AnimaleRepository;
-import com.accenture.sirio.repository.ParcoNaturaleRepository;
-import com.accenture.sirio.repository.TipoEntitaInserimentoRepository;
-import com.accenture.sirio.repository.TipoOrdineAppartenenzaAnimaleRepository;
-import com.accenture.sirio.repository.TipoStatoSaluteRepository;
+
 
 @Service
 public class AnimaleService {
@@ -26,26 +19,14 @@ public class AnimaleService {
 	@Autowired
 	private AnimaleRepository animaleRepository;
 	
-	@Autowired
-	private TipoEntitaInserimentoRepository tipoEntitaInserimentoRepository;
-	
-	@Autowired
-	private TipoStatoSaluteRepository tipoStatoSaluteRepository;
-	
-	@Autowired
-	private TipoOrdineAppartenenzaAnimaleRepository tipoOrdineAppartenenzaAnimaliRepository;
-	
-	@Autowired
-	private ParcoNaturaleRepository parcoNaturaleRepository;
-	
+	//Metodo che salva un Animale
 	@Transactional
 	public Long saveAnimale(AnimaleTO animaleTO) {
-		
 		Animale save = animaleRepository.save(convertToAnimale(animaleTO));
 		return save.getId();
-		
 	}
 	
+	//Metodo che converte un TO in una nuova Entità Animale - CREA nuovo ID
 	public Animale convertToAnimale(AnimaleTO animaleTO) {
 		
 		Animale animale = new Animale();
@@ -61,21 +42,51 @@ public class AnimaleService {
 			
 	}
 	
+	//Metodo che controlla se sul DB esiste un animale con quelle caratteristiche - Ignora l'ID
 	public Boolean checkSpecieAlreadyExist(AnimaleTO animaleTO) {
-
 		return animaleRepository.findSpecie(animaleTO.getSpecie(), animaleTO.getSesso(), animaleTO.getParco())!=null;
-		
 	}
 	
+	//Metodo che prende dal DB una lista di tutti gli animali di un parco
 	public List<InfoAnimaleRTO> getListInfoAnimaleByIdParco(Long idParco){
 		return animaleRepository.findInfoAnimaleByIdParco(idParco);
 	}
 
+	//Metodo che prende dal DB un animale
 	public InfoCompleteAnimaleRTO getAnimale(Long idAnimale) {
-		
 		return animaleRepository.findInfoCompleteAnimaleById(idAnimale);
-		
 	}
+	
+	//-----Inizio gestione Edit Animale-----
+	
+	//Metodo che controlla se esiste a DB un animale con quelle caratteristiche - controlla ID
+	public boolean checkSpecieAlreadyExistEdit(AnimaleTO animaleTO, Long idAnimale) {
+		return animaleRepository.findSpecieEdit(idAnimale, animaleTO.getSpecie(), animaleTO.getSesso(), animaleTO.getParco())!=null;
+	}
+
+	//Metodo che salva le modifiche in un animale preesistente
+	@Transactional
+	public Long editAnimale(AnimaleTO animaleTO, Long idAnimale) {
+		Animale save = animaleRepository.save(convertToAnimaleEdit(animaleTO, idAnimale));
+		return save.getId();
+	}
+
+	//Metodo che converte un TO in un'Entità Animale esistente - NON crea nuovo ID
+	private Animale convertToAnimaleEdit(AnimaleTO animaleTO, Long idAnimale) {
+		Animale animale = new Animale();
+		
+		animale.setId(idAnimale);
+		animale.setSpecie(animaleTO.getSpecie());
+		animale.setSesso(animaleTO.getSesso());
+		animale.setNumeroEsemplari(animaleTO.getNumEsemplari());
+		animale.setTipoOrdineAppartenenzaAnimali(animaleTO.getTipoAnimale());
+		animale.setTipoStatoSalute(animaleTO.getTipoStatoSalute());
+		animale.setParcoNaturale(animaleTO.getParco());
+		
+		return animale;
+	}
+
+	//-----Fine gestione Edit Animale-----
 	
 	
 }

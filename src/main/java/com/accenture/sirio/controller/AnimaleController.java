@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,6 +55,23 @@ public class AnimaleController extends BaseController {
 	public ResponseEntity<Object> getAnimale(@PathVariable Long idAnimale){
 		
 		return new ResponseEntity<>(animaleFacade.getAnimale(idAnimale), HttpStatus.OK);
+	}
+	
+	@GetMapping("/initEdit/{idAnimale}")
+	public ResponseEntity<Object> initEditAnimale(@PathVariable Long idAnimale){
+		return new ResponseEntity<>(animaleFacade.initEditAnimale(idAnimale), HttpStatus.OK);
+	}
+	
+	@PutMapping("/{idAnimale}")
+	public ResponseEntity<Object> editAnimale(@Valid @RequestBody AnimaleTO animaleTO, @PathVariable Long idAnimale){
+		
+		List<String> eList = saveAnimaleCheckErrors.editAnimaleCheck(animaleTO, idAnimale);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			return new ResponseEntity<>(animaleFacade.editAnimale(animaleTO, idAnimale), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 	}
 
 }
