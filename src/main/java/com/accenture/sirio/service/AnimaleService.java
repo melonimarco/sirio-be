@@ -67,15 +67,16 @@ public class AnimaleService {
 	//Metodo che salva le modifiche in un animale preesistente
 	@Transactional
 	public Long editAnimale(AnimaleTO animaleTO, Long idAnimale) {
-		Animale save = animaleRepository.save(convertToAnimaleEdit(animaleTO, idAnimale));
+		
+		Animale animale = animaleRepository.getById(idAnimale);
+		
+		Animale save = animaleRepository.save(convertToAnimaleEdit(animale, animaleTO));
 		return save.getId();
 	}
 
 	//Metodo che converte un TO in un'Entità Animale esistente - NON crea nuovo ID
-	private Animale convertToAnimaleEdit(AnimaleTO animaleTO, Long idAnimale) {
-		Animale animale = new Animale();
+	private Animale convertToAnimaleEdit(Animale animale, AnimaleTO animaleTO) {
 		
-		animale.setId(idAnimale);
 		animale.setSpecie(animaleTO.getSpecie());
 		animale.setSesso(animaleTO.getSesso());
 		animale.setNumeroEsemplari(animaleTO.getNumEsemplari());

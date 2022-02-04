@@ -1,75 +1,26 @@
 package com.accenture.sirio.entityRTO;
 
-import java.util.List;
-
-import com.accenture.sirio.entityTO.ParcoNaturaleTO;
-import com.accenture.sirio.entityTO.TipoEntitaInserimentoTO;
-import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaAnimaleTO;
-import com.accenture.sirio.entityTO.TipoStatoSaluteTO;
 
 public class InitEditAnimaleRTO {
 	
-	List<TipoEntitaInserimentoTO> listEntita;
-	List<TipoStatoSaluteTO> listTipoStatoSalute;
-	List<TipoOrdineAppartenenzaAnimaleTO> listTipoAnimale;
-	List<ParcoNaturaleTO> listParchi;
-	InfoCompleteAnimaleRTO dettaglio;
-	
+	private InitCreazioneRTO initCreazione;
+
 	public InitEditAnimaleRTO() {
 		super();
 	}
 
-	public InitEditAnimaleRTO(List<TipoEntitaInserimentoTO> listEntita, List<TipoStatoSaluteTO> listTipoStatoSalute,
-			List<TipoOrdineAppartenenzaAnimaleTO> listTipoAnimale, List<ParcoNaturaleTO> listParchi,
-			InfoCompleteAnimaleRTO dettaglio) {
+	public InitEditAnimaleRTO(InitCreazioneRTO initCreazione) {
 		super();
-		this.listEntita = listEntita;
-		this.listTipoStatoSalute = listTipoStatoSalute;
-		this.listTipoAnimale = listTipoAnimale;
-		this.listParchi = listParchi;
-		this.dettaglio = dettaglio;
+		this.initCreazione = initCreazione;
 	}
 
-	public List<TipoEntitaInserimentoTO> getListEntita() {
-		return listEntita;
+	public InitCreazioneRTO getInitCreazione() {
+		return initCreazione;
 	}
 
-	public void setListEntita(List<TipoEntitaInserimentoTO> listEntita) {
-		this.listEntita = listEntita;
+	public void setInitCreazione(InitCreazioneRTO initCreazione) {
+		this.initCreazione = initCreazione;
 	}
-
-	public List<TipoStatoSaluteTO> getListTipoStatoSalute() {
-		return listTipoStatoSalute;
-	}
-
-	public void setListTipoStatoSalute(List<TipoStatoSaluteTO> listTipoStatoSalute) {
-		this.listTipoStatoSalute = listTipoStatoSalute;
-	}
-
-	public List<TipoOrdineAppartenenzaAnimaleTO> getListTipoAnimale() {
-		return listTipoAnimale;
-	}
-
-	public void setListTipoAnimale(List<TipoOrdineAppartenenzaAnimaleTO> listTipoAnimale) {
-		this.listTipoAnimale = listTipoAnimale;
-	}
-
-	public List<ParcoNaturaleTO> getListParchi() {
-		return listParchi;
-	}
-
-	public void setListParchi(List<ParcoNaturaleTO> listParchi) {
-		this.listParchi = listParchi;
-	}
-
-	public InfoCompleteAnimaleRTO getDettaglio() {
-		return dettaglio;
-	}
-
-	public void setDettaglio(InfoCompleteAnimaleRTO dettaglio) {
-		this.dettaglio = dettaglio;
-	}
-
 	
 	
 }
