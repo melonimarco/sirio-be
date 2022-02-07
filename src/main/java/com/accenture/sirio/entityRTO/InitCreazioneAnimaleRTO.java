@@ -7,7 +7,7 @@ import com.accenture.sirio.entityTO.TipoEntitaInserimentoTO;
 import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaAnimaleTO;
 import com.accenture.sirio.entityTO.TipoStatoSaluteTO;
 
-public class InitCreazioneRTO {
+public class InitCreazioneAnimaleRTO {
 	List<TipoEntitaInserimentoTO> listEntita;
 	List<TipoStatoSaluteTO> listTipoStatoSalute;
 	List<TipoOrdineAppartenenzaAnimaleTO> listTipoAnimale;
@@ -15,11 +15,11 @@ public class InitCreazioneRTO {
 	InfoCompleteAnimaleRTO dettaglio;
 	
 
-	public InitCreazioneRTO() {
+	public InitCreazioneAnimaleRTO() {
 		super();
 	}
 	
-	public InitCreazioneRTO(List<TipoEntitaInserimentoTO> listEntita, List<TipoStatoSaluteTO> listTipoStatoSalute,
+	public InitCreazioneAnimaleRTO(List<TipoEntitaInserimentoTO> listEntita, List<TipoStatoSaluteTO> listTipoStatoSalute,
 			List<TipoOrdineAppartenenzaAnimaleTO> listTipoAnimale, List<ParcoNaturaleTO> listParchi,
 			InfoCompleteAnimaleRTO dettaglio) {
 		super();

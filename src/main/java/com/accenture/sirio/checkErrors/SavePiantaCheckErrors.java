@@ -27,4 +27,22 @@ public class SavePiantaCheckErrors extends BaseCheckErrors{
 		return messaggiList;
 		
 	}
+	
+	public List<String> editPiantaCheck(PiantaTO piantaTO, Long idPianta) {
+		
+		List<String> messaggiList = new ArrayList<>();
+		
+		if(idPianta!=null) {
+
+			if(piantaService.checkSpecieAlreadyExistEdit(piantaTO, idPianta)) {
+				messaggiList.add("La specie è già stata inserita");
+			}
+		} else {
+			messaggiList.add("L'id non può essere null");
+		}
+		
+		
+		return messaggiList;
+		
+	}
 }

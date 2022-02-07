@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.accenture.sirio.entity.Pianta;
 import com.accenture.sirio.entityRTO.InfoCompletePiantaRTO;
 import com.accenture.sirio.entityRTO.InfoPiantaRTO;
+import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.InitPiantaTO;
 import com.accenture.sirio.entityTO.PiantaTO;
 import com.accenture.sirio.repository.ParcoNaturaleRepository;
@@ -52,4 +53,30 @@ public class PiantaService {
 		
 		return piantaRepository.findInfoCompletePiantaById(idPianta);
 	}
+	
+	//-----Gestione Update Pianta-----
+	
+	public boolean checkSpecieAlreadyExistEdit(PiantaTO piantaTO, Long idPianta) {
+		return piantaRepository.findSpecieEdit(idPianta, piantaTO.getSpecie(), piantaTO.getParco())!=null;
+	}
+
+	public Long editPianta(PiantaTO piantaTO, Long idPianta) {
+		
+		Pianta pianta = piantaRepository.getById(idPianta);
+		
+		Pianta save = piantaRepository.save(convertToPiantaEdit(pianta, piantaTO));
+		return save.getId();
+	}
+
+	private Pianta convertToPiantaEdit(Pianta pianta, PiantaTO piantaTO) {
+		
+		pianta.setSpecie(piantaTO.getSpecie());
+		pianta.setTipoOrdineAppartenenzaPiante(piantaTO.getTipoPianta());
+		pianta.setTipoStagioneFioritura(piantaTO.getStagioneFioritura());
+		pianta.setParcoNaturale(piantaTO.getParco());
+		
+		return pianta;
+	}
+	
+	//-----Fine Gestione Update Pianta-----
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,6 +54,23 @@ public class PiantaController extends BaseController {
 	@GetMapping("/{idPianta}")
 	public ResponseEntity<Object> getPianta(@PathVariable Long idPianta){
 		return new ResponseEntity<>(piantaFacade.getPianta(idPianta), HttpStatus.OK);
+	}
+	
+	@GetMapping("/initEdit/{idPianta}")
+	public ResponseEntity<Object> initEditPianta(@PathVariable Long idPianta){
+		return new ResponseEntity<>(piantaFacade.initEditPianta(idPianta), HttpStatus.OK);
+	}
+	
+	@PutMapping("/{idPianta}")
+	public ResponseEntity<Object> editPianta(@Valid @RequestBody PiantaTO piantaTO, @PathVariable Long idPianta){
+		
+		List<String> eList = savePiantaCheckErrors.editPiantaCheck(piantaTO, idPianta);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			return new ResponseEntity<>(piantaFacade.editPianta(piantaTO, idPianta), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 	}
 
 }

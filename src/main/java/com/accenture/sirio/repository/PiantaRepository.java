@@ -44,4 +44,12 @@ public interface PiantaRepository extends JpaRepository<Pianta, Long>{
 			+ "AND pn.id = p.parcoNaturale ")
 	public InfoCompletePiantaRTO findInfoCompletePiantaById(Long id);
 
+	
+	@Query("SELECT p.specie "
+			+ "FROM Pianta p "
+			+ "WHERE p.id <> ?1 "
+			+ "AND p.specie = ?2 "
+			+ "AND p.parcoNaturale = ?3")
+	public PiantaTO findSpecieEdit(Long idPianta, String specie, Long parco);
+
 }

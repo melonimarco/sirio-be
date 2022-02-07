@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.accenture.sirio.entityRTO.InfoCompleteAnimaleRTO;
-import com.accenture.sirio.entityRTO.InitCreazioneRTO;
+import com.accenture.sirio.entityRTO.InitCreazioneAnimaleRTO;
 import com.accenture.sirio.entityRTO.InitEditAnimaleRTO;
 import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.InitAnimaleTO;
@@ -59,7 +59,7 @@ public class AnimaleFacade {
 
 	public InitEditAnimaleRTO initEditAnimale(Long idAnimale) {
 		
-		InitCreazioneRTO initCreazione = new InitCreazioneRTO(tipoEntitaInserimentoService.getListEntitaInserimento(), 
+		InitCreazioneAnimaleRTO initCreazione = new InitCreazioneAnimaleRTO(tipoEntitaInserimentoService.getListEntitaInserimento(), 
 				tipoStatoSaluteService.getListStatiSalute(), tipoOrdineAppartenenzaAnimaleService.getListOrdAppAnimale(),
 				parcoNaturaleService.getListParchi(), animaleService.getAnimale(idAnimale));
 		

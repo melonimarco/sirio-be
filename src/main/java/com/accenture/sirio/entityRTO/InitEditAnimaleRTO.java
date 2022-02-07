@@ -3,22 +3,22 @@ package com.accenture.sirio.entityRTO;
 
 public class InitEditAnimaleRTO {
 	
-	private InitCreazioneRTO initCreazione;
+	private InitCreazioneAnimaleRTO initCreazione;
 
 	public InitEditAnimaleRTO() {
 		super();
 	}
 
-	public InitEditAnimaleRTO(InitCreazioneRTO initCreazione) {
+	public InitEditAnimaleRTO(InitCreazioneAnimaleRTO initCreazione) {
 		super();
 		this.initCreazione = initCreazione;
 	}
 
-	public InitCreazioneRTO getInitCreazione() {
+	public InitCreazioneAnimaleRTO getInitCreazione() {
 		return initCreazione;
 	}
 
-	public void setInitCreazione(InitCreazioneRTO initCreazione) {
+	public void setInitCreazione(InitCreazioneAnimaleRTO initCreazione) {
 		this.initCreazione = initCreazione;
 	}
 	
