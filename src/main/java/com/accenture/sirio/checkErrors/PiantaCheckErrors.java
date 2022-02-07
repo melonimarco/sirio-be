@@ -12,7 +12,7 @@ import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
 import com.accenture.sirio.service.PiantaService;
 
 @Service
-public class SavePiantaCheckErrors extends BaseCheckErrors{
+public class PiantaCheckErrors extends BaseCheckErrors{
 	@Autowired
 	private PiantaService piantaService;
 	
@@ -45,4 +45,22 @@ public class SavePiantaCheckErrors extends BaseCheckErrors{
 		return messaggiList;
 		
 	}
+	
+public List<String> deletePiantaCheck(Long idPianta) {
+		
+		List<String> messaggiList = new ArrayList<>();
+		
+		if(idPianta!=null) {
+			if(!piantaService.checkIfPiantaExist(idPianta)) {
+				messaggiList.add("La pianta non è stata trovata");
+			}
+		} else {
+			messaggiList.add("L'id non può essere null");
+		}
+		
+		
+		return messaggiList;
+		
+	}
+	
 }

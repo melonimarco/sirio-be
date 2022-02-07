@@ -15,7 +15,7 @@ import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
 import com.accenture.sirio.service.AnimaleService;
 
 @Service
-public class SaveAnimaleCheckErrors extends BaseCheckErrors{
+public class AnimaleCheckErrors extends BaseCheckErrors{
 	
 	@Autowired
 	private AnimaleService animaliService;

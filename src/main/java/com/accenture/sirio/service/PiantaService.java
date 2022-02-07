@@ -79,4 +79,15 @@ public class PiantaService {
 	}
 	
 	//-----Fine Gestione Update Pianta-----
+	
+	public Long deletePianta(Long idPianta) {
+		
+		piantaRepository.deleteById(idPianta);
+		
+		return idPianta;
+	}
+
+	public boolean checkIfPiantaExist(Long idPianta) {
+		return piantaRepository.findPiantaById(idPianta)!=null;
+	}
 }

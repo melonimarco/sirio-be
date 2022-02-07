@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.accenture.sirio.checkErrors.SaveAnimaleCheckErrors;
+import com.accenture.sirio.checkErrors.AnimaleCheckErrors;
 import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.facade.AnimaleFacade;
 
@@ -31,7 +31,7 @@ public class AnimaleController extends BaseController {
 	private AnimaleFacade animaleFacade;
 	
 	@Autowired
-	private SaveAnimaleCheckErrors saveAnimaleCheckErrors;
+	private AnimaleCheckErrors animaleCheckErrors;
 	
 	@GetMapping(path="/getInitCreazione")
 	public ResponseEntity<Object> getInitCreazione(){
@@ -42,7 +42,7 @@ public class AnimaleController extends BaseController {
 	@PostMapping()
 	public ResponseEntity<Object> saveAnimale(@Valid @RequestBody AnimaleTO animaleTO){
 		
-		List<String> eList = saveAnimaleCheckErrors.saveAnimaleCheck(animaleTO);
+		List<String> eList = animaleCheckErrors.saveAnimaleCheck(animaleTO);
 		
 		if(ObjectUtils.isEmpty(eList)) {
 			return new ResponseEntity<>(animaleFacade.saveAnimale(animaleTO), HttpStatus.OK);
@@ -65,7 +65,7 @@ public class AnimaleController extends BaseController {
 	@PutMapping("/{idAnimale}")
 	public ResponseEntity<Object> editAnimale(@Valid @RequestBody AnimaleTO animaleTO, @PathVariable Long idAnimale){
 		
-		List<String> eList = saveAnimaleCheckErrors.editAnimaleCheck(animaleTO, idAnimale);
+		List<String> eList = animaleCheckErrors.editAnimaleCheck(animaleTO, idAnimale);
 		
 		if(ObjectUtils.isEmpty(eList)) {
 			return new ResponseEntity<>(animaleFacade.editAnimale(animaleTO, idAnimale), HttpStatus.OK);

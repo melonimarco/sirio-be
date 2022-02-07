@@ -69,6 +69,10 @@ public class PiantaFacade {
 		return piantaService.editPianta(piantaTO, idPianta);
 	}
 
+	public Object deletePianta(Long idPianta) {
+		return piantaService.deletePianta(idPianta);
+	}
+
 	
 	
 	
