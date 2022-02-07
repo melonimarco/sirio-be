@@ -55,8 +55,23 @@ public class AnimaleCheckErrors extends BaseCheckErrors{
 			messaggiList.add("L'id non può essere null");
 		}
 		
+		return messaggiList;
+	}
+
+	public List<String> deleteAnimaleCheck(Long idAnimale) {
 		
+		List<String> messaggiList = new ArrayList<>();
 		
+		if(idAnimale!=null) {
+			
+			if(!animaliService.checkIfSpecieExist(idAnimale)) {
+				messaggiList.add("L'animale non è stato trovato");
+			}
+
+		} else {
+			messaggiList.add("L'id non può essere null");
+		}
+			
 		return messaggiList;
 	}
 }

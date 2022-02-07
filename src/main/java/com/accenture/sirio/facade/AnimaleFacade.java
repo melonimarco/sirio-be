@@ -72,5 +72,10 @@ public class AnimaleFacade {
 	public Object editAnimale(AnimaleTO animaleTO, Long idAnimale) {
 		return animaleService.editAnimale(animaleTO, idAnimale);
 	}
+
+	public Long deleteAnimale(Long idAnimale) {
+		
+		return animaleService.deleteAnimale(idAnimale);
+	}
 	
 }

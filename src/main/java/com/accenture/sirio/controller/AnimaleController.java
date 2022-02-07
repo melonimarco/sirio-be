@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -69,6 +70,18 @@ public class AnimaleController extends BaseController {
 		
 		if(ObjectUtils.isEmpty(eList)) {
 			return new ResponseEntity<>(animaleFacade.editAnimale(animaleTO, idAnimale), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
+	
+	@DeleteMapping("/{idAnimale}")
+	public ResponseEntity<Object> deleteAnimale(@PathVariable Long idAnimale){
+		
+		List<String> eList = animaleCheckErrors.deleteAnimaleCheck(idAnimale);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			return new ResponseEntity<>(animaleFacade.deleteAnimale(idAnimale), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
 		}

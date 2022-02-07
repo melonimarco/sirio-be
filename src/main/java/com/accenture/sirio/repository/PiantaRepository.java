@@ -50,6 +50,6 @@ public interface PiantaRepository extends JpaRepository<Pianta, Long>{
 			+ "WHERE p.id <> ?1 "
 			+ "AND p.specie = ?2 "
 			+ "AND p.parcoNaturale = ?3")
-	public PiantaTO findSpecieEdit(Long idPianta, String specie, Long parco);
+	public String findSpecieEdit(Long idPianta, String specie, Long parco);
 
 }

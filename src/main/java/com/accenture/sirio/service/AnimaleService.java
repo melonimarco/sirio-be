@@ -89,5 +89,13 @@ public class AnimaleService {
 
 	//-----Fine gestione Edit Animale-----
 	
+	public boolean checkIfSpecieExist(Long idAnimale) {
+		return animaleRepository.findAnimaleById(idAnimale)!=null;
+	}
+
+	public Long deleteAnimale(Long idAnimale) {
+		animaleRepository.deleteById(idAnimale);
+		return idAnimale;
+	}
 	
 }
