@@ -52,6 +52,7 @@ public class PiantaController extends BaseController {
 			
 	}
 	
+	//Dettaglio pianta
 	@GetMapping("/{idPianta}")
 	public ResponseEntity<Object> getPianta(@PathVariable Long idPianta){
 		return new ResponseEntity<>(piantaFacade.getPianta(idPianta), HttpStatus.OK);

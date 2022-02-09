@@ -1,15 +1,20 @@
 package com.accenture.sirio.facade;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.accenture.sirio.entityRTO.InfoCompletePiantaRTO;
-import com.accenture.sirio.entityRTO.InitCreazionePiantaRTO;
 import com.accenture.sirio.entityRTO.InitEditPiantaRTO;
 import com.accenture.sirio.entityTO.InitPiantaTO;
+import com.accenture.sirio.entityTO.ParcoNaturaleTO;
 import com.accenture.sirio.entityTO.PiantaTO;
+import com.accenture.sirio.entityTO.TipoEntitaInserimentoTO;
+import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaPiantaTO;
+import com.accenture.sirio.entityTO.TipoStagioneFiorituraTO;
 import com.accenture.sirio.service.ParcoNaturaleService;
 import com.accenture.sirio.service.PiantaService;
 import com.accenture.sirio.service.TipoEntitaInserimentoService;
@@ -22,44 +27,47 @@ public class PiantaFacade {
 	private PiantaService piantaService;
 	
 	@Autowired
-	TipoEntitaInserimentoService tipoEntitaInserimentoService;
+	private TipoEntitaInserimentoService tipoEntitaInserimentoService;
 	
 	@Autowired 
-	TipoStagioneFiorituraService tipoStagioneFiorituraService;
+	private TipoStagioneFiorituraService tipoStagioneFiorituraService;
 	
 	@Autowired
-	TipoOrdineAppartenenzaPianteService tipoOrdineAppartenenzaPianteService;
+	private TipoOrdineAppartenenzaPianteService tipoOrdineAppartenenzaPianteService;
 	
 	@Autowired
-	ParcoNaturaleService parcoNaturaleService;
+	private ParcoNaturaleService parcoNaturaleService;
 
 	public InitPiantaTO initCreazione() {
 		
-		InitPiantaTO initPiantaTO = new InitPiantaTO(tipoEntitaInserimentoService.getListEntitaInserimento(),
-				tipoStagioneFiorituraService.getListStagioniFioritura(),
-				tipoOrdineAppartenenzaPianteService.getListOrdAppPiante(),
-				parcoNaturaleService.getListParchi());
+		List<TipoEntitaInserimentoTO> listEntitaInserimento = tipoEntitaInserimentoService.getListEntitaInserimento();
+		List<TipoStagioneFiorituraTO> listStagioniFioritura = tipoStagioneFiorituraService.getListStagioniFioritura();
+		List<TipoOrdineAppartenenzaPiantaTO> listOrdAppPiante = tipoOrdineAppartenenzaPianteService.getListOrdAppPiante();
+		List<ParcoNaturaleTO> listParchi = parcoNaturaleService.getListParchi();
+		
+		InitPiantaTO initPiantaTO = new InitPiantaTO(listEntitaInserimento, listStagioniFioritura,
+				listOrdAppPiante, listParchi);
 		
 		return initPiantaTO;
 	}
 
-	public Object savePianta(PiantaTO piantaTO) {
+	@Transactional
+	public Long savePianta(PiantaTO piantaTO) {
 		
 		return piantaService.savePianta(piantaTO);
 	}
 
+	//Dettaglio pianta
 	public InfoCompletePiantaRTO getPianta(Long idPianta) {
 		return piantaService.getPianta(idPianta);
 	}
 
 	public InitEditPiantaRTO initEditPianta(Long idPianta) {
 		
-		InitCreazionePiantaRTO initCreazionePiantaRTO = new InitCreazionePiantaRTO(tipoEntitaInserimentoService.getListEntitaInserimento(),
-				tipoStagioneFiorituraService.getListStagioniFioritura(),
-				tipoOrdineAppartenenzaPianteService.getListOrdAppPiante(),
-				parcoNaturaleService.getListParchi(), piantaService.getPianta(idPianta));
-		
-		InitEditPiantaRTO initEditPiantaRTO = new InitEditPiantaRTO(initCreazionePiantaRTO);
+		InitPiantaTO initPiantaRTO = initCreazione();
+		InfoCompletePiantaRTO pianta = getPianta(idPianta);
+
+		InitEditPiantaRTO initEditPiantaRTO = new InitEditPiantaRTO(initPiantaRTO, pianta);
 		
 		return initEditPiantaRTO;
 	}
@@ -69,6 +77,7 @@ public class PiantaFacade {
 		return piantaService.editPianta(piantaTO, idPianta);
 	}
 
+	@Transactional
 	public Object deletePianta(Long idPianta) {
 		return piantaService.deletePianta(idPianta);
 	}

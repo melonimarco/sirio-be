@@ -9,6 +9,7 @@ import com.accenture.sirio.entity.Pianta;
 import com.accenture.sirio.entityRTO.InfoCompletePiantaRTO;
 import com.accenture.sirio.entityRTO.InfoPiantaRTO;
 import com.accenture.sirio.entityTO.AnimaleTO;
+import com.accenture.sirio.entityTO.InfoCompletePiantaTO;
 import com.accenture.sirio.entityTO.PiantaTO;
 
 
@@ -42,7 +43,7 @@ public interface PiantaRepository extends JpaRepository<Pianta, Long>{
 			+ "AND to.id = p.tipoOrdineAppartenenzaPiante "
 			+ "AND ss.id = p.tipoStagioneFioritura "
 			+ "AND pn.id = p.parcoNaturale ")
-	public InfoCompletePiantaRTO findInfoCompletePiantaById(Long id);
+	public InfoCompletePiantaTO findInfoCompletePiantaById(Long id);
 
 	
 	@Query("SELECT p.specie "
