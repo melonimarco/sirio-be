@@ -55,7 +55,13 @@ public class AnimaleController extends BaseController {
 	@GetMapping("/{idAnimale}")
 	public ResponseEntity<Object> getAnimale(@PathVariable Long idAnimale){
 		
-		return new ResponseEntity<>(animaleFacade.getAnimale(idAnimale), HttpStatus.OK);
+		List<String> eList = animaleCheckErrors.checkIdExist(idAnimale);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			return new ResponseEntity<>(animaleFacade.getAnimale(idAnimale), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 	}
 	
 	@GetMapping("/initEdit/{idAnimale}")

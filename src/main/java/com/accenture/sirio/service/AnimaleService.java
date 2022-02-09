@@ -111,7 +111,7 @@ public class AnimaleService {
 
 	//-----Fine gestione Edit Animale-----
 	
-	public boolean checkIfSpecieExist(Long idAnimale) {
+	public boolean checkIfAnimaleExist(Long idAnimale) {
 		return animaleRepository.findAnimaleById(idAnimale)!=null;
 	}
 

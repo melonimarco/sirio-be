@@ -64,7 +64,7 @@ public class AnimaleCheckErrors extends BaseCheckErrors{
 		
 		if(idAnimale!=null) {
 			
-			if(!animaliService.checkIfSpecieExist(idAnimale)) {
+			if(!animaliService.checkIfAnimaleExist(idAnimale)) {
 				messaggiList.add("L'animale non è stato trovato");
 			}
 
@@ -72,6 +72,17 @@ public class AnimaleCheckErrors extends BaseCheckErrors{
 			messaggiList.add("L'id non può essere null");
 		}
 			
+		return messaggiList;
+	}
+
+	public List<String> checkIdExist(Long idAnimale) {
+		
+		List<String> messaggiList = new ArrayList<>();
+		
+		if(!animaliService.checkIfAnimaleExist(idAnimale)) {
+			messaggiList.add("Id non trovato");
+		}
+		
 		return messaggiList;
 	}
 }
