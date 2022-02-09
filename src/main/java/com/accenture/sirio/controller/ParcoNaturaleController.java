@@ -1,14 +1,18 @@
 package com.accenture.sirio.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accenture.sirio.checkErrors.ParcoCheckErrors;
 import com.accenture.sirio.entityTO.ListParchiTO;
 import com.accenture.sirio.entityTO.ListTipoEntitaInserimentoTO;
 import com.accenture.sirio.facade.ParcoNaturaleFacade;
@@ -23,6 +27,9 @@ public class ParcoNaturaleController {
 	
 	@Autowired
 	private ParcoNaturaleFacade parcoNaturaleFacade;
+	
+	@Autowired
+	private ParcoCheckErrors parcoCheckErrors;
 	
 	@GetMapping(path="/getInitCreazione")
 	public ResponseEntity<Object> getInitCreazione(){
@@ -47,7 +54,14 @@ public class ParcoNaturaleController {
 	@GetMapping(path="/getInfoParco/{idParco}")
 	public ResponseEntity<Object> getInfoParco(@PathVariable Long idParco){
 		
-		return new ResponseEntity<>(parcoNaturaleFacade.getInfoParco(idParco), HttpStatus.OK);
+		List<String> eList = parcoCheckErrors.checkIdExist(idParco);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			return new ResponseEntity<>(parcoNaturaleFacade.getInfoParco(idParco), HttpStatus.OK);
+			} else {
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+		
 	}
 
 }
