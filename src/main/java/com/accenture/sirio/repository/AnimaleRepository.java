@@ -9,7 +9,6 @@ import com.accenture.sirio.entity.Animale;
 import com.accenture.sirio.entityRTO.InfoAnimaleRTO;
 import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.InfoCompleteAnimaleTO;
-import com.accenture.sirio.entityTO.ParcoNaturaleTO;
 
 
 public interface AnimaleRepository extends JpaRepository<Animale, Long>{

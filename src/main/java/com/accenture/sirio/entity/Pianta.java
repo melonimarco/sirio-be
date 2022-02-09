@@ -9,8 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.accenture.sirio.entityTO.PiantaTO;
-
 @Entity
 @Table(name = "piante")
 public class Pianta {

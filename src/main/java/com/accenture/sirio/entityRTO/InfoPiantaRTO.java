@@ -1,7 +1,5 @@
 package com.accenture.sirio.entityRTO;
 
-import javax.validation.constraints.NotNull;
-
 import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaPiantaTO;
 
 public class InfoPiantaRTO {

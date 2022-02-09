@@ -1,7 +1,5 @@
 package com.accenture.sirio.entityRTO;
 
-import javax.validation.constraints.NotNull;
-
 import com.accenture.sirio.entityTO.ParcoNaturaleTO;
 import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaPiantaTO;
 import com.accenture.sirio.entityTO.TipoStagioneFiorituraTO;

@@ -6,9 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.accenture.sirio.entity.Pianta;
-import com.accenture.sirio.entityRTO.InfoCompletePiantaRTO;
 import com.accenture.sirio.entityRTO.InfoPiantaRTO;
-import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.InfoCompletePiantaTO;
 import com.accenture.sirio.entityTO.PiantaTO;
 

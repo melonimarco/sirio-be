@@ -1,8 +1,5 @@
 package com.accenture.sirio.entityRTO;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-
 import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaAnimaleTO;
 
 

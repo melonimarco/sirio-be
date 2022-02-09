@@ -8,15 +8,9 @@ import org.springframework.stereotype.Service;
 import com.accenture.sirio.entity.Pianta;
 import com.accenture.sirio.entityRTO.InfoCompletePiantaRTO;
 import com.accenture.sirio.entityRTO.InfoPiantaRTO;
-import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.InfoCompletePiantaTO;
-import com.accenture.sirio.entityTO.InitPiantaTO;
 import com.accenture.sirio.entityTO.PiantaTO;
-import com.accenture.sirio.repository.ParcoNaturaleRepository;
 import com.accenture.sirio.repository.PiantaRepository;
-import com.accenture.sirio.repository.TipoEntitaInserimentoRepository;
-import com.accenture.sirio.repository.TipoOrdineAppartenenzaPiantaRepository;
-import com.accenture.sirio.repository.TipoStagioneFiorituraRepository;
 
 @Service
 public class PiantaService {

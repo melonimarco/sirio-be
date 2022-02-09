@@ -1,11 +1,5 @@
 package com.accenture.sirio.entityTO;
 
-import javax.validation.constraints.NotNull;
-
-import com.accenture.sirio.entityTO.ParcoNaturaleTO;
-import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaPiantaTO;
-import com.accenture.sirio.entityTO.TipoStagioneFiorituraTO;
-
 public class InfoCompletePiantaTO {
 	
 	private Long id;

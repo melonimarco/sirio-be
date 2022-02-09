@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.accenture.sirio.entity.TipoOrdineAppartenenzaPianta;
 import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaPiantaTO;
 import com.accenture.sirio.repository.TipoOrdineAppartenenzaPiantaRepository;
 

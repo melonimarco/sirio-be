@@ -3,15 +3,10 @@ package com.accenture.sirio.checkErrors;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.accenture.sirio.entityTO.AnimaleTO;
-import com.accenture.sirio.exceptions.EmptyException;
-import com.accenture.sirio.exceptions.MinException;
-import com.accenture.sirio.exceptions.SpecieAlreadyExistException;
 import com.accenture.sirio.service.AnimaleService;
 
 @Service

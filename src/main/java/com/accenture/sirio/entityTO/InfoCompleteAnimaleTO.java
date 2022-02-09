@@ -1,9 +1,5 @@
 package com.accenture.sirio.entityTO;
 
-import com.accenture.sirio.entityTO.ParcoNaturaleTO;
-import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaAnimaleTO;
-import com.accenture.sirio.entityTO.TipoStatoSaluteTO;
-
 public class InfoCompleteAnimaleTO {
 	
 	private Long id;

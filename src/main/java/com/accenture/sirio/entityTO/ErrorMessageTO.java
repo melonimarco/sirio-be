@@ -1,7 +1,5 @@
 package com.accenture.sirio.entityTO;
 
-import java.util.List;
-
 public class ErrorMessageTO {
 	
 	private String messaggio;
