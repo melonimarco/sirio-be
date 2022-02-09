@@ -1,6 +1,8 @@
 package com.accenture.sirio.facade;
 
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.accenture.sirio.entityRTO.InfoCompleteAnimaleRTO;
-import com.accenture.sirio.entityRTO.InitCreazioneAnimaleRTO;
 import com.accenture.sirio.entityRTO.InitEditAnimaleRTO;
 import com.accenture.sirio.entityTO.AnimaleTO;
+import com.accenture.sirio.entityTO.InfoCompleteAnimaleTO;
 import com.accenture.sirio.entityTO.InitAnimaleTO;
+import com.accenture.sirio.entityTO.ParcoNaturaleTO;
+import com.accenture.sirio.entityTO.TipoEntitaInserimentoTO;
+import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaAnimaleTO;
+import com.accenture.sirio.entityTO.TipoStatoSaluteTO;
 import com.accenture.sirio.service.AnimaleService;
 import com.accenture.sirio.service.ParcoNaturaleService;
 import com.accenture.sirio.service.TipoEntitaInserimentoService;
@@ -39,10 +45,13 @@ public class AnimaleFacade {
 
 	public InitAnimaleTO initCreazione() {
 		
-		InitAnimaleTO initAnimaleTO = new InitAnimaleTO(tipoEntitaInserimentoService.getListEntitaInserimento(), 
-				tipoStatoSaluteService.getListStatiSalute(), 
-				tipoOrdineAppartenenzaAnimaleService.getListOrdAppAnimale(), 
-				parcoNaturaleService.getListParchi());
+		List<TipoEntitaInserimentoTO> listEntitaInserimento = tipoEntitaInserimentoService.getListEntitaInserimento();
+		List<TipoStatoSaluteTO> listStatiSalute = tipoStatoSaluteService.getListStatiSalute();
+		List<TipoOrdineAppartenenzaAnimaleTO> listOrdAppAnimale = tipoOrdineAppartenenzaAnimaleService.getListOrdAppAnimale();
+		List<ParcoNaturaleTO> listParchi = parcoNaturaleService.getListParchi();
+		
+		InitAnimaleTO initAnimaleTO = new InitAnimaleTO(listEntitaInserimento, listStatiSalute,
+				listOrdAppAnimale, listParchi);
 		
 		return initAnimaleTO;
 	}
@@ -58,21 +67,21 @@ public class AnimaleFacade {
 	}
 
 	public InitEditAnimaleRTO initEditAnimale(Long idAnimale) {
+
+		InitAnimaleTO initCreazione = initCreazione();
+		InfoCompleteAnimaleRTO animale = animaleService.getAnimale(idAnimale);
 		
-		InitCreazioneAnimaleRTO initCreazione = new InitCreazioneAnimaleRTO(tipoEntitaInserimentoService.getListEntitaInserimento(), 
-				tipoStatoSaluteService.getListStatiSalute(), tipoOrdineAppartenenzaAnimaleService.getListOrdAppAnimale(),
-				parcoNaturaleService.getListParchi(), animaleService.getAnimale(idAnimale));
-		
-		InitEditAnimaleRTO initEditAnimaleRTO = new InitEditAnimaleRTO(initCreazione);
+		InitEditAnimaleRTO initEditAnimaleRTO = new InitEditAnimaleRTO(initCreazione, animale);
 		
 		return initEditAnimaleRTO;
 	}
 
 	@Transactional
-	public Object editAnimale(AnimaleTO animaleTO, Long idAnimale) {
+	public Long editAnimale(AnimaleTO animaleTO, Long idAnimale) {
 		return animaleService.editAnimale(animaleTO, idAnimale);
 	}
 
+	@Transactional
 	public Long deleteAnimale(Long idAnimale) {
 		
 		return animaleService.deleteAnimale(idAnimale);
