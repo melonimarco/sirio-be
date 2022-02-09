@@ -62,5 +62,15 @@ public List<String> deletePiantaCheck(Long idPianta) {
 		return messaggiList;
 		
 	}
+
+public List<String> checkIdExist(Long idPianta) {
+	List<String> messaggiList = new ArrayList<>();
+	
+	if(!piantaService.checkIfPiantaExist(idPianta)) {
+		messaggiList.add("Id non trovato");
+	}
+	
+	return messaggiList;
+}
 	
 }

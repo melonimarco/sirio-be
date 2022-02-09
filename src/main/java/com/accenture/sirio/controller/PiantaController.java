@@ -55,7 +55,14 @@ public class PiantaController extends BaseController {
 	//Dettaglio pianta
 	@GetMapping("/{idPianta}")
 	public ResponseEntity<Object> getPianta(@PathVariable Long idPianta){
-		return new ResponseEntity<>(piantaFacade.getPianta(idPianta), HttpStatus.OK);
+		
+		List<String> eList = piantaCheckErrors.checkIdExist(idPianta);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			return new ResponseEntity<>(piantaFacade.getPianta(idPianta), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 	}
 	
 	@GetMapping("/initEdit/{idPianta}")
