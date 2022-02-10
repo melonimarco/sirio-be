@@ -60,13 +60,20 @@ public class AnimaleController extends BaseController {
 		if(ObjectUtils.isEmpty(eList)) {
 			return new ResponseEntity<>(animaleFacade.getAnimale(idAnimale), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+			return new ResponseEntity<>(eList, HttpStatus.NOT_FOUND);
 		}
 	}
 	
 	@GetMapping("/initEdit/{idAnimale}")
 	public ResponseEntity<Object> initEditAnimale(@PathVariable Long idAnimale){
-		return new ResponseEntity<>(animaleFacade.initEditAnimale(idAnimale), HttpStatus.OK);
+		
+		List<String> eList = animaleCheckErrors.checkIdExist(idAnimale);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			return new ResponseEntity<>(animaleFacade.initEditAnimale(idAnimale), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(eList, HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@PutMapping("/{idAnimale}")
@@ -84,7 +91,7 @@ public class AnimaleController extends BaseController {
 	@DeleteMapping("/{idAnimale}")
 	public ResponseEntity<Object> deleteAnimale(@PathVariable Long idAnimale){
 		
-		List<String> eList = animaleCheckErrors.deleteAnimaleCheck(idAnimale);
+		List<String> eList = animaleCheckErrors.checkIdExist(idAnimale);
 		
 		if(ObjectUtils.isEmpty(eList)) {
 			return new ResponseEntity<>(animaleFacade.deleteAnimale(idAnimale), HttpStatus.OK);
