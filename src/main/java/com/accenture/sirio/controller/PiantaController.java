@@ -42,7 +42,7 @@ public class PiantaController extends BaseController {
 	@PostMapping()
 	public ResponseEntity<Object> savePianta(@Valid @RequestBody PiantaTO piantaTO){
 		
-		List<String> eList = piantaCheckErrors.savePiantaCheck(piantaTO);
+		List<String> eList = piantaCheckErrors.checkSpecieAlreadyExist(piantaTO);
 		
 		if(ObjectUtils.isEmpty(eList)) {
 			return new ResponseEntity<>(piantaFacade.savePianta(piantaTO), HttpStatus.OK);
@@ -67,7 +67,16 @@ public class PiantaController extends BaseController {
 	
 	@GetMapping("/initEdit/{idPianta}")
 	public ResponseEntity<Object> initEditPianta(@PathVariable Long idPianta){
-		return new ResponseEntity<>(piantaFacade.initEditPianta(idPianta), HttpStatus.OK);
+		
+		List<String> eList = piantaCheckErrors.checkIdExist(idPianta);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			return new ResponseEntity<>(piantaFacade.initEditPianta(idPianta), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+		
+		
 	}
 	
 	@PutMapping("/{idPianta}")
@@ -84,7 +93,7 @@ public class PiantaController extends BaseController {
 	
 	@DeleteMapping("/{idPianta}")
 	public ResponseEntity<Object> deletePianta(@PathVariable Long idPianta){
-		List<String> eList = piantaCheckErrors.deletePiantaCheck(idPianta);
+		List<String> eList = piantaCheckErrors.checkIdExist(idPianta);
 		
 		if(ObjectUtils.isEmpty(eList)) {
 			return new ResponseEntity<>(piantaFacade.deletePianta(idPianta), HttpStatus.OK);
