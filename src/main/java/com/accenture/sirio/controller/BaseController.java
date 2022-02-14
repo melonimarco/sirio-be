@@ -3,6 +3,8 @@ package com.accenture.sirio.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BaseController {
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
+	
 	@ResponseStatus(HttpStatus.BAD_REQUEST) //<--- STATUS DA RESTITUIRE IN CASO DI VALIDAZIONE NON AVVENUTA CON SUCCESSO
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public List<String> handleValidationExceptions(final MethodArgumentNotValidException ex) {
@@ -22,6 +26,7 @@ public class BaseController {
 		for(int i=0; i<ex.getBindingResult().getAllErrors().size(); i++) {
 			errors.add(ex.getBindingResult().getAllErrors().get(i).getDefaultMessage());
 		}
+		LOGGER.error("Errori di validazione " + errors.toString());
 		return errors;
 	}
 }

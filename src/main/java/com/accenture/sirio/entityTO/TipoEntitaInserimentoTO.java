@@ -28,4 +28,11 @@ public class TipoEntitaInserimentoTO {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+
+	@Override
+	public String toString() {
+		return "TipoEntitaInserimentoTO [id=" + id + ", descrizione=" + descrizione + "]";
+	}
+	
+	
 }

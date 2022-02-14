@@ -104,6 +104,13 @@ public class InfoCompleteAnimaleRTO {
 	public void setNumEsemplari(Integer numEsemplari) {
 		this.numEsemplari = numEsemplari;
 	}
+
+	@Override
+	public String toString() {
+		return "InfoCompleteAnimaleRTO [id=" + id + ", tipoAnimale=" + tipoAnimale + ", specie=" + specie + ", sesso="
+				+ sesso + ", parco=" + parco + ", tipoStatoSalute=" + tipoStatoSalute + ", numEsemplari=" + numEsemplari
+				+ "]";
+	}
 	
 	
 }

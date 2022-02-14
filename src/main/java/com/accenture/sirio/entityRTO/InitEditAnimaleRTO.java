@@ -33,6 +33,11 @@ public class InitEditAnimaleRTO {
 		this.dettaglio = dettaglio;
 	}
 
+	@Override
+	public String toString() {
+		return "InitEditAnimaleRTO [initCreazione=" + initCreazione + ", dettaglio=" + dettaglio + "]";
+	}
+
 	
 	
 	

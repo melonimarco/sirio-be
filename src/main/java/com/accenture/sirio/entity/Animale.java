@@ -129,5 +129,14 @@ public class Animale {
 	public void setParcoNaturale(Long parcoNaturale) {
 		this.parcoNaturale = parcoNaturale;
 	}
+
+	@Override
+	public String toString() {
+		return "Animale [id=" + id + ", specie=" + specie + ", sesso=" + sesso + ", numeroEsemplari=" + numeroEsemplari
+				+ ", tipoOrdineAppartenenzaAnimaliBean=" + tipoOrdineAppartenenzaAnimaliBean
+				+ ", tipoOrdineAppartenenzaAnimali=" + tipoOrdineAppartenenzaAnimali + ", tipoStatoSaluteBean="
+				+ tipoStatoSaluteBean + ", tipoStatoSalute=" + tipoStatoSalute + ", parcoNaturaleBean="
+				+ parcoNaturaleBean + ", parcoNaturale=" + parcoNaturale + "]";
+	}
 	
 }

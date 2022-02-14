@@ -3,6 +3,8 @@ package com.accenture.sirio.checkErrors;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +14,19 @@ import com.accenture.sirio.service.AnimaleService;
 @Service
 public class AnimaleCheckErrors extends BaseCheckErrors{
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(AnimaleCheckErrors.class);
+	
 	@Autowired
 	private AnimaleService animaleService;
 	
 	//Controllo che l'id non sia null e che sia presente a DB
 	public List<String> checkIdExist(Long idAnimale) {
-		
+		LOGGER.info("Controlli campo id");
 		List<String> messaggiList = new ArrayList<>();
 		
+		LOGGER.info("Controllo se l'id è null");
 		if(idAnimale!=null) {
+			LOGGER.info("Controllo se l'id è presente a DB");
 			if(!animaleService.checkIfAnimaleExist(idAnimale)) {
 				messaggiList.add("Id non trovato");
 			}
@@ -32,7 +38,7 @@ public class AnimaleCheckErrors extends BaseCheckErrors{
 	
 	//Controllo che il sesso sia stato inserito correttamente
 	public List<String> checkSesso(Character sesso) {
-		
+		LOGGER.info("Controllo il campo sesso");
 		List<String> messaggiList = new ArrayList<>();
 		
 		if(!sesso.equals('M') && !sesso.equals('F')) {
@@ -43,7 +49,7 @@ public class AnimaleCheckErrors extends BaseCheckErrors{
 	
 	//Controllo se quella specie è già presente controllando specie, sesso e parco
 	public List<String> checkSpecieAlreadyExist(AnimaleTO animaleTO) {
-		
+		LOGGER.info("Controllo se la specie è già presente nel parco");
 		List<String> messaggiList = new ArrayList<>();
 		
 		if(animaleService.checkSpecieAlreadyExist(animaleTO)) {
@@ -54,7 +60,7 @@ public class AnimaleCheckErrors extends BaseCheckErrors{
 	
 	//Controllo se quella specie è già presente controllando id, specie, sesso e parco
 	public List<String> checkSpecieAlreadyExistEdit(AnimaleTO animaleTO, Long idAnimale){
-		
+		LOGGER.info("Controllo se una specie con id diverso è già presente nel parco");
 		List<String> messaggiList = new ArrayList<>();
 		
 		if(animaleService.checkSpecieAlreadyExistEdit(animaleTO, idAnimale)) {
@@ -67,6 +73,8 @@ public class AnimaleCheckErrors extends BaseCheckErrors{
 	
 	//Controlli per save di un nuovo animale
 	public List<String> saveAnimaleCheck(AnimaleTO animaleTO) {
+		LOGGER.info("Controllo i campi inseriti in input per save");
+		
 		List<String> messaggiList = new ArrayList<>();
 
 		messaggiList.addAll(checkSpecieAlreadyExist(animaleTO));
@@ -78,6 +86,7 @@ public class AnimaleCheckErrors extends BaseCheckErrors{
 
 	//Controllo per Edit di un animale esistente
 	public List<String> editAnimaleCheck(AnimaleTO animaleTO, Long idAnimale) {
+		LOGGER.info("Controllo i campi inseriti in input per edit");
 		
 		List<String> messaggiList = new ArrayList<>();
 		

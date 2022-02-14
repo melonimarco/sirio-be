@@ -42,6 +42,12 @@ public class InitPiantaTO {
 		this.listParchi = listParchi;
 	}
 	
+	@Override
+	public String toString() {
+		return "InitPiantaTO [listTipoEntita=" + listTipoEntita + ", listStagioni=" + listStagioni + ", listTipoPianta="
+				+ listTipoPianta + ", listParchi=" + listParchi + "]";
+	}
+	
 	
 	
 

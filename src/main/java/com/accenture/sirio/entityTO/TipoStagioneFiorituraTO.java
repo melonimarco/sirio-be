@@ -31,4 +31,11 @@ public class TipoStagioneFiorituraTO {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+
+	@Override
+	public String toString() {
+		return "TipoStagioneFiorituraTO [id=" + id + ", descrizione=" + descrizione + "]";
+	}
+	
+	
 }

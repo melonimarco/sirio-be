@@ -12,6 +12,12 @@ public class ListParchiTO {
 	public void setListParchi(List<ParcoNaturaleTO> listParchi) {
 		this.listParchi = listParchi;
 	}
+
+	@Override
+	public String toString() {
+		return "ListParchiTO [listParchi=" + listParchi + "]";
+	}
+	
 	
 	
 }

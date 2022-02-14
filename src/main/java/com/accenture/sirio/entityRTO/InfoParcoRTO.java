@@ -43,6 +43,11 @@ public class InfoParcoRTO {
 	public void setListPiante(List<InfoPiantaRTO> listPiante) {
 		this.listPiante = listPiante;
 	}
+
+	@Override
+	public String toString() {
+		return "InfoParcoRTO [parco=" + parco + ", listAnimali=" + listAnimali + ", listPiante=" + listPiante + "]";
+	}
 	
 	
 	

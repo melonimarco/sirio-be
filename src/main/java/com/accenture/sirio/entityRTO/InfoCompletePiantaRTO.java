@@ -70,4 +70,12 @@ public class InfoCompletePiantaRTO {
 		this.parco = parco;
 	}
 
+	@Override
+	public String toString() {
+		return "InfoCompletePiantaRTO [id=" + id + ", specie=" + specie + ", tipoPianta=" + tipoPianta
+				+ ", stagioneFioritura=" + stagioneFioritura + ", parco=" + parco + "]";
+	}
+	
+	
+
 }

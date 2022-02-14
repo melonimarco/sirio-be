@@ -31,5 +31,12 @@ public class InitEditPiantaRTO {
 	public void setDettaglio(InfoCompletePiantaRTO dettaglio) {
 		this.dettaglio = dettaglio;
 	}
+
+	@Override
+	public String toString() {
+		return "InitEditPiantaRTO [initCreazione=" + initCreazione + ", dettaglio=" + dettaglio + "]";
+	}
+	
+	
 	
 }

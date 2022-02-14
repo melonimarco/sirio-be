@@ -37,4 +37,11 @@ public class ParcoNaturaleTO {
 		this.nome = nome;
 	}
 
+	@Override
+	public String toString() {
+		return "ParcoNaturaleTO [id=" + id + ", nome=" + nome + "]";
+	}
+
+	
+	
 }

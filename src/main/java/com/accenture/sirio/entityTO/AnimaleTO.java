@@ -101,5 +101,13 @@ public class AnimaleTO {
 	public void setParco(Long parco) {
 		this.parco = parco;
 	}
+
+	@Override
+	public String toString() {
+		return "AnimaleTO [id=" + id + ", specie=" + specie + ", sesso=" + sesso + ", numEsemplari=" + numEsemplari
+				+ ", tipoAnimale=" + tipoAnimale + ", tipoStatoSalute=" + tipoStatoSalute + ", parco=" + parco + "]";
+	}
+	
+	
 	
 }

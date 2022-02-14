@@ -2,10 +2,14 @@ package com.accenture.sirio.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.accenture.sirio.controller.BaseController;
+import com.accenture.sirio.controller.PiantaController;
 import com.accenture.sirio.entity.Animale;
 import com.accenture.sirio.entityRTO.InfoAnimaleRTO;
 import com.accenture.sirio.entityRTO.InfoCompleteAnimaleRTO;
@@ -16,7 +20,7 @@ import com.accenture.sirio.repository.AnimaleRepository;
 
 @Service
 public class AnimaleService {
-
+	
 	@Autowired
 	private AnimaleRepository animaleRepository;
 	
@@ -93,6 +97,7 @@ public class AnimaleService {
 		Animale animale = animaleRepository.getById(idAnimale);
 		
 		Animale save = animaleRepository.save(convertToAnimaleEdit(animale, animaleTO));
+		
 		return save.getId();
 	}
 

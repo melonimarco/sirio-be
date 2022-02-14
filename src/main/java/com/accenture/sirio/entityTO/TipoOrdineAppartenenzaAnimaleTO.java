@@ -32,4 +32,11 @@ public class TipoOrdineAppartenenzaAnimaleTO {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+
+	@Override
+	public String toString() {
+		return "TipoOrdineAppartenenzaAnimaleTO [id=" + id + ", descrizione=" + descrizione + "]";
+	}
+	
+	
 }

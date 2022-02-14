@@ -74,6 +74,12 @@ public class PiantaTO {
 		this.parco = parco;
 	}
 
+	@Override
+	public String toString() {
+		return "PiantaTO [id=" + id + ", specie=" + specie + ", tipoPianta=" + tipoPianta + ", StagioneFioritura="
+				+ StagioneFioritura + ", parco=" + parco + "]";
+	}
+
 	
 
 	

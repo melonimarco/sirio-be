@@ -78,7 +78,7 @@ public class PiantaFacade {
 	}
 
 	@Transactional
-	public Object deletePianta(Long idPianta) {
+	public Long deletePianta(Long idPianta) {
 		return piantaService.deletePianta(idPianta);
 	}
 

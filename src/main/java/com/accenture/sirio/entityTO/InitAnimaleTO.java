@@ -43,6 +43,11 @@ public class InitAnimaleTO {
 	public void setListParchi(List<ParcoNaturaleTO> listParchi) {
 		this.listParchi = listParchi;
 	}
+	@Override
+	public String toString() {
+		return "InitAnimaleTO [listTipoEntita=" + listTipoEntita + ", listTipoStatoSalute=" + listTipoStatoSalute
+				+ ", listTipoAnimale=" + listTipoAnimale + ", listParchi=" + listParchi + "]";
+	}
 	
 	
 	

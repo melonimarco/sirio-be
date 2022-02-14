@@ -17,6 +17,12 @@ public class ListTipoEntitaInserimentoTO {
 	public void setListTipoEntita(List<TipoEntitaInserimentoTO> listTipoEntita) {
 		this.listTipoEntita = listTipoEntita;
 	}
+
+	@Override
+	public String toString() {
+		return "ListTipoEntitaInserimentoTO [listTipoEntita=" + listTipoEntita + "]";
+	}
+	
 	
 	
 }

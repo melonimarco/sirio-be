@@ -3,32 +3,47 @@ package com.accenture.sirio.checkErrors;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.accenture.sirio.controller.PiantaController;
 import com.accenture.sirio.entityTO.PiantaTO;
 import com.accenture.sirio.service.PiantaService;
 
 @Service
 public class PiantaCheckErrors extends BaseCheckErrors{
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(PiantaCheckErrors.class);
+	
 	@Autowired
 	private PiantaService piantaService;
 	
+	//Controllo che l'id non sia null e che sia presente a DB
 	public List<String> checkIdExist(Long idPianta) {
+		LOGGER.info("Controlli campo id");
 		List<String> messaggiList = new ArrayList<>();
 		
+		LOGGER.info("Controllo se l'id è null");
 		if(idPianta!=null) {
+			LOGGER.info("id valorizzato");
+			
 			if(!piantaService.checkIfPiantaExist(idPianta)) {
+				LOGGER.info("Controllo se l'id è presente a DB");
 				messaggiList.add("La pianta non è stata trovata");
 			}
 		} else {
+			LOGGER.error("id null");
 			messaggiList.add("L'id non può essere null");
 		}
 		
 		return messaggiList;
 	}
 	
+	//Controllo se quella specie è già presente controllando specie e parco
 	public List<String> checkSpecieAlreadyExist(PiantaTO piantaTO){
+		LOGGER.info("Controllo se la specie è già presente nel parco");
 		List<String> messaggiList = new ArrayList<>();
 		
 		if(piantaService.checkSpecieAlreadyExist(piantaTO)) {
@@ -38,8 +53,9 @@ public class PiantaCheckErrors extends BaseCheckErrors{
 		return messaggiList;
 	}
 	
-	public List<String> checkIfPiantaExist(PiantaTO piantaTO, Long idPianta) {
-		
+	//Controllo se quella specie è già presente controllando id, specie, sesso e parco
+	public List<String> checkSpecieAlreadyExistEdit(PiantaTO piantaTO, Long idPianta) {
+		LOGGER.info("Controllo se una specie con id diverso è già presente nel parco");
 		List<String> messaggiList = new ArrayList<>();
 
 		if(piantaService.checkSpecieAlreadyExistEdit(piantaTO, idPianta)) {
@@ -50,16 +66,18 @@ public class PiantaCheckErrors extends BaseCheckErrors{
 		
 	}
 	
+	//Controlli per save di una nuova pianta
 	public List<String> editPiantaCheck(PiantaTO piantaTO, Long idPianta) {
-		
+		LOGGER.info("Controllo i campi inseriti in input per edit");
 		List<String> messaggiList = new ArrayList<>();
 		
 		messaggiList.addAll(checkIdExist(idPianta));
 		
 		if(messaggiList.isEmpty()) {
-			messaggiList.addAll(checkIfPiantaExist(piantaTO, idPianta));
+			messaggiList.addAll(checkSpecieAlreadyExistEdit(piantaTO, idPianta));
 		} 
-			
+		
+		LOGGER.info("Fine controlli per edit");
 		return messaggiList;
 		
 	}

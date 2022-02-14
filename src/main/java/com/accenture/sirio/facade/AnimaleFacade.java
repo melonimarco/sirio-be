@@ -3,10 +3,13 @@ package com.accenture.sirio.facade;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.accenture.sirio.controller.AnimaleController;
 import com.accenture.sirio.entityRTO.InfoCompleteAnimaleRTO;
 import com.accenture.sirio.entityRTO.InitEditAnimaleRTO;
 import com.accenture.sirio.entityTO.AnimaleTO;
@@ -23,6 +26,8 @@ import com.accenture.sirio.service.TipoStatoSaluteService;
 
 @Service
 public class AnimaleFacade {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(AnimaleFacade.class);
 	
 	@Autowired
 	private AnimaleService animaleService;
@@ -54,12 +59,11 @@ public class AnimaleFacade {
 	}
 	
 	@Transactional
-	public Long saveAnimale(AnimaleTO animaleTO){	
+	public Long saveAnimale(AnimaleTO animaleTO){
 		return animaleService.saveAnimale(animaleTO);
 	}
 
 	public InfoCompleteAnimaleRTO getAnimale(Long idAnimale) {
-		
 		return animaleService.getAnimale(idAnimale);
 	}
 
