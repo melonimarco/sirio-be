@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -29,7 +30,7 @@ public class XlsInfoParchiFacade {
 	@Autowired
 	private ParcoNaturaleService parcoNaturaleService;
 	
-	public void createXls() throws IOException {
+	public String createXls() throws IOException {
 		
 		Workbook workbook = new XSSFWorkbook();
 
@@ -116,9 +117,17 @@ public class XlsInfoParchiFacade {
 		String fileLocation = path.substring(0, path.length() - 1) + "temp.xlsx";
 
 		FileOutputStream outputStream = new FileOutputStream(fileLocation);
-		workbook.write(outputStream);
-		workbook.close();
 		
+		//outputStream.toString().getBytes()
+
+		workbook.write(outputStream);
+		
+		String encodedString = Base64.getEncoder().encodeToString(workbook.toString().getBytes());
+		
+		workbook.close();
+		outputStream.close();
+		
+		return encodedString;
 	}
 }
 
