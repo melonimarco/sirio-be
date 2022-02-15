@@ -1,5 +1,6 @@
 package com.accenture.sirio.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ import com.accenture.sirio.entityTO.ListParchiTO;
 import com.accenture.sirio.entityTO.ListTipoEntitaInserimentoTO;
 import com.accenture.sirio.facade.ParcoNaturaleFacade;
 import com.accenture.sirio.facade.TipoEntitaInserimentoFacade;
+import com.accenture.sirio.facade.XlsInfoParchiFacade;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path="/parco")
@@ -36,6 +38,9 @@ public class ParcoNaturaleController {
 	
 	@Autowired
 	private ParcoCheckErrors parcoCheckErrors;
+	
+	@Autowired
+	private XlsInfoParchiFacade xlsInfoParchiFacade;
 	
 	@GetMapping(path="/getInitCreazione")
 	public ResponseEntity<Object> getInitCreazione(){
@@ -78,6 +83,16 @@ public class ParcoNaturaleController {
 			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		
+	}
+	
+	@GetMapping(path="/generateXls")
+	public ResponseEntity<Object> generateXls(){
+		try {
+			xlsInfoParchiFacade.createXls();
+		} catch (IOException e) {
+			return new ResponseEntity<>(e, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+		return null;
 	}
 
 }
