@@ -20,7 +20,7 @@ public interface ParcoNaturaleRepository extends JpaRepository<ParcoNaturale, Lo
 			+ "WHERE p.id=?1")
 	public ParcoNaturaleTO findParcoById(Long id);
 	
-	@Query("Select new com.accenture.sirio.entityRTO.XlsInfoParchiRTO(pa.id, pa.nome, i.descrizione, a.specie) "
+	@Query("Select distinct new com.accenture.sirio.entityRTO.XlsInfoParchiRTO(pa.id, pa.nome, i.descrizione, a.specie) "
 			+ "FROM ParcoNaturale pa, TipoEntitaInserimento i, Animale a "
 			+ "WHERE a.parcoNaturale = pa.id "
 			+ "AND i.id=2 ")
