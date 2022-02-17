@@ -85,10 +85,10 @@ public class ParcoNaturaleController {
 		
 	}
 	
-	@GetMapping(path="/generateXls")
-	public ResponseEntity<Object> generateXls(){
+	@GetMapping(path="/getXls")
+	public ResponseEntity<Object> getXls(){
 		try {
-			return new ResponseEntity<>(xlsInfoParchiFacade.createXls(), HttpStatus.UNPROCESSABLE_ENTITY);
+			return new ResponseEntity<>(xlsInfoParchiFacade.createXls(), HttpStatus.OK);
 		} catch (IOException e) {
 			return new ResponseEntity<>(e, HttpStatus.UNPROCESSABLE_ENTITY);
 		}

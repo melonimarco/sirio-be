@@ -1,5 +1,6 @@
 package com.accenture.sirio.facade;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,6 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.accenture.sirio.entityRTO.Base64Xlsx;
 import com.accenture.sirio.entityRTO.XlsInfoParchiRTO;
 import com.accenture.sirio.service.ParcoNaturaleService;
 
@@ -30,7 +32,7 @@ public class XlsInfoParchiFacade {
 	@Autowired
 	private ParcoNaturaleService parcoNaturaleService;
 	
-	public String createXls() throws IOException {
+	public Base64Xlsx createXls() throws IOException {
 		
 		Workbook workbook = new XSSFWorkbook();
 
@@ -112,22 +114,17 @@ public class XlsInfoParchiFacade {
 					
 		}
 		
-		File currDir = new File(".");
-		String path = currDir.getAbsolutePath();
-		String fileLocation = path.substring(0, path.length() - 1) + "temp.xlsx";
-
-		FileOutputStream outputStream = new FileOutputStream(fileLocation);
+		Base64Xlsx base64Xlsx = new Base64Xlsx();
 		
-		//outputStream.toString().getBytes()
-
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		
 		workbook.write(outputStream);
 		
-		String encodedString = Base64.getEncoder().encodeToString(workbook.toString().getBytes());
+		base64Xlsx.setBase64(Base64.getEncoder().encodeToString(outputStream.toByteArray()));
+		base64Xlsx.setFileName("Info_Parchi");
+		base64Xlsx.setMimeType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 		
-		workbook.close();
-		outputStream.close();
-		
-		return encodedString;
+		return base64Xlsx;
 	}
 }
 
