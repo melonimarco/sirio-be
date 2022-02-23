@@ -3,6 +3,7 @@ package com.accenture.sirio.facade;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,6 +81,11 @@ public class PiantaFacade {
 	@Transactional
 	public Long deletePianta(Long idPianta) {
 		return piantaService.deletePianta(idPianta);
+	}
+
+	@Transactional
+	public Long duplicatePianta(PiantaTO piantaTO, Long idPianta) {
+		return piantaService.duplicatePianta(piantaTO, idPianta);
 	}
 
 	

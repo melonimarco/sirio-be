@@ -139,5 +139,21 @@ public class PiantaController extends BaseController {
 			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
+	
+	@PostMapping("/duplicate/{idPianta}")
+	public ResponseEntity<Object> duplicatePianta(@Valid @RequestBody PiantaTO piantaTO, @PathVariable Long idPianta){
+		LOGGER.info("Enter duplicatePianta");
+		LOGGER.info("piantaTO in input : {}", piantaTO.toString());
+		LOGGER.info("IdPianta in input : {}", idPianta.toString());
+		
+		List<String> eList = piantaCheckErrors.duplicatePiantaCheck(piantaTO, idPianta);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			return new ResponseEntity<>(piantaFacade.duplicatePianta(piantaTO, idPianta), HttpStatus.OK);
+		} else {
+			LOGGER.error("Errori in duplicatePianta : " + eList.toString());
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
 
 }

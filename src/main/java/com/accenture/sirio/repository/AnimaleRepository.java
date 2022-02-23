@@ -53,4 +53,10 @@ public interface AnimaleRepository extends JpaRepository<Animale, Long>{
 			+ "AND s.id = a.tipoStatoSalute")
 	public InfoCompleteAnimaleTO findInfoCompleteAnimaleById(Long id);
 
+	@Query("SELECT a.specie "
+			+ "FROM Animale a "
+			+ "WHERE a.id = ?1 "
+			+ "AND a.parcoNaturale = ?2 ")
+	public String findIfParcoChanged(Long idAnimale, Long parco);
+
 }

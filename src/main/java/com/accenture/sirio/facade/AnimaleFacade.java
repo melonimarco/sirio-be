@@ -87,5 +87,10 @@ public class AnimaleFacade {
 		
 		return animaleService.deleteAnimale(idAnimale);
 	}
+
+	@Transactional
+	public Long duplicateAnimale(AnimaleTO animaleTO, Long idAnimale) {
+		return animaleService.duplicateAnimale(animaleTO, idAnimale);
+	}
 	
 }

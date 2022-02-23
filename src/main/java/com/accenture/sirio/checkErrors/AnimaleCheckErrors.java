@@ -81,6 +81,12 @@ public class AnimaleCheckErrors extends BaseCheckErrors{
 		
 	}
 	
+	public boolean checkIfParcoChanged(Long idAnimale, Long parco) {
+		LOGGER.info("Controllo se il parco è cambiato");
+		
+		return animaleService.checkIfParcoChanged(idAnimale, parco);
+	}
+	
 	//---Controlli congiunti---
 	
 	//Controlli per save di un nuovo animale
@@ -114,6 +120,31 @@ public class AnimaleCheckErrors extends BaseCheckErrors{
 		
 		return messaggiList;
 	}
+	
+	//Controllo per Dupliate di un animale esistente
+		public List<String> duplicateAnimaleCheck(AnimaleTO animaleTO, Long idAnimale) {
+			LOGGER.info("Controllo i campi inseriti in input per duplicate");
+			
+			List<String> messaggiList = new ArrayList<>();
+			
+			messaggiList.addAll(checkIdExist(idAnimale));
+			
+			if(messaggiList.isEmpty()) {
+				messaggiList.addAll(checkValoreSelect(animaleTO.getParco(), "Inserire un parco"));
+				messaggiList.addAll(checkValoreSelect(animaleTO.getTipoAnimale(), "Inserire un tipo animale"));
+				messaggiList.addAll(checkValoreSelect(animaleTO.getTipoStatoSalute(), "Inserire un tipo stato salute"));
+				messaggiList.addAll(checkSesso(animaleTO.getSesso()));
+
+//				if(checkIfParcoChanged(idAnimale, animaleTO.getParco())) {
+					messaggiList.addAll(checkSpecieAlreadyExist(animaleTO));
+//				} else {
+//					messaggiList.addAll(checkSpecieAlreadyExistEdit(animaleTO, idAnimale));
+//				}
+
+			}
+			
+			return messaggiList;
+		}
 
 	
 }

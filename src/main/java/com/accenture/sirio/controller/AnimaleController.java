@@ -88,6 +88,7 @@ public class AnimaleController extends BaseController {
 		}
 	}
 	
+	//Uso initEdit per edit e duplicate
 	@GetMapping("/initEdit/{idAnimale}")
 	public ResponseEntity<Object> initEditAnimale(@PathVariable Long idAnimale){
 		LOGGER.info("Enter initEditAnimale Animale");
@@ -125,7 +126,7 @@ public class AnimaleController extends BaseController {
 	
 	@DeleteMapping("/{idAnimale}")
 	public ResponseEntity<Object> deleteAnimale(@PathVariable Long idAnimale){
-		LOGGER.info("Enter deleteAnimale Animale");
+		LOGGER.info("Enter deleteAnimale");
 		LOGGER.info(idAnimale.toString());
 		
 		List<String> eList = animaleCheckErrors.checkIdExist(idAnimale);
@@ -136,6 +137,24 @@ public class AnimaleController extends BaseController {
 			return new ResponseEntity<>(deleteAnimale, HttpStatus.OK);
 		} else {
 			LOGGER.error("Errori in deleteAnimale : " + eList.toString());
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
+	
+	@PostMapping("/duplicate/{idAnimale}")
+	public ResponseEntity<Object> duplicateAnimale(@Valid @RequestBody AnimaleTO animaleTO, @PathVariable Long idAnimale) {
+		LOGGER.info("Enter duplicateAnimale");
+		LOGGER.info("animaleTO in input : {}", animaleTO.toString());
+		LOGGER.info("id in input : {}" , idAnimale.toString());
+		
+		List<String> eList = animaleCheckErrors.duplicateAnimaleCheck(animaleTO, idAnimale);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			Long duplicateAnimale = animaleFacade.duplicateAnimale(animaleTO, idAnimale);
+			LOGGER.info("Output duplicateAnimale : " + duplicateAnimale.toString());
+			return new ResponseEntity<>(duplicateAnimale, HttpStatus.OK);
+		} else {
+			LOGGER.error("Errori in duplicateAnimale : " + eList.toString());
 			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
