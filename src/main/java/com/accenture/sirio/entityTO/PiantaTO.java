@@ -1,5 +1,6 @@
 package com.accenture.sirio.entityTO;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class PiantaTO {
@@ -7,6 +8,7 @@ public class PiantaTO {
 	private Long id;
 	
 	@NotNull(message = "Specie cannot be null")
+	@NotBlank(message = "Specie cannot be null")
 	private String specie;
 
 	@NotNull(message = "Tipo Pianta cannot be null")
@@ -22,7 +24,10 @@ public class PiantaTO {
 		super();
 	}
 
-	public PiantaTO(Long id, @NotNull(message = "Specie cannot be null") String specie,
+	
+
+	public PiantaTO(Long id,
+			@NotNull(message = "Specie cannot be null") @NotBlank(message = "Specie cannot be null") String specie,
 			@NotNull(message = "Tipo Pianta cannot be null") Long tipoPianta,
 			@NotNull(message = "Stagione Fioritura cannot be null") Long stagioneFioritura,
 			@NotNull(message = "Parco cannot be null") Long parco) {
@@ -30,9 +35,11 @@ public class PiantaTO {
 		this.id = id;
 		this.specie = specie;
 		this.tipoPianta = tipoPianta;
-		StagioneFioritura = stagioneFioritura;
+		this.StagioneFioritura = stagioneFioritura;
 		this.parco = parco;
 	}
+
+
 
 	public Long getId() {
 		return id;

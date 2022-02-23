@@ -66,7 +66,21 @@ public class PiantaCheckErrors extends BaseCheckErrors{
 		
 	}
 	
-	//Controlli per save di una nuova pianta
+	//controllo che i valori arrivino maggiori di 1
+	public List<String> checkValoreSelect(Long valore, String messaggio) {
+		LOGGER.info("Controllo se i valori inseriti sono maggiori di 1");
+		List<String> messaggiList = new ArrayList<>();
+		
+		if(valore<1) {
+			messaggiList.add(messaggio);
+		} 
+		return messaggiList;
+		
+	}
+	
+	// --- Controlli congiunti ---
+	
+	//Controlli per l'edit di una pianta
 	public List<String> editPiantaCheck(PiantaTO piantaTO, Long idPianta) {
 		LOGGER.info("Controllo i campi inseriti in input per edit");
 		List<String> messaggiList = new ArrayList<>();
@@ -75,6 +89,9 @@ public class PiantaCheckErrors extends BaseCheckErrors{
 		
 		if(messaggiList.isEmpty()) {
 			messaggiList.addAll(checkSpecieAlreadyExistEdit(piantaTO, idPianta));
+			messaggiList.addAll(checkValoreSelect(piantaTO.getParco(), "Inserire un parco"));
+			messaggiList.addAll(checkValoreSelect(piantaTO.getTipoPianta(), "Inserire un tipo pianta"));
+			messaggiList.addAll(checkValoreSelect(piantaTO.getStagioneFioritura(), "Inserire una stagione fioritura"));
 		} 
 		
 		LOGGER.info("Fine controlli per edit");

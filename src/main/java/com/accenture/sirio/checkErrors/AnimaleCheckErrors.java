@@ -69,6 +69,18 @@ public class AnimaleCheckErrors extends BaseCheckErrors{
 		return messaggiList;
 	}
 	
+	//controllo che i valori arrivino maggiori di 1
+	public List<String> checkValoreSelect(Long valore, String messaggio) {
+		LOGGER.info("Controllo se i valori inseriti sono maggiori di 1");
+		List<String> messaggiList = new ArrayList<>();
+		
+		if(valore<1) {
+			messaggiList.add(messaggio);
+		} 
+		return messaggiList;
+		
+	}
+	
 	//---Controlli congiunti---
 	
 	//Controlli per save di un nuovo animale
@@ -95,6 +107,9 @@ public class AnimaleCheckErrors extends BaseCheckErrors{
 		if(messaggiList.isEmpty()) {
 			messaggiList.addAll(checkSpecieAlreadyExistEdit(animaleTO, idAnimale));
 			messaggiList.addAll(checkSesso(animaleTO.getSesso()));
+			messaggiList.addAll(checkValoreSelect(animaleTO.getParco(), "Inserire un parco"));
+			messaggiList.addAll(checkValoreSelect(animaleTO.getTipoAnimale(), "Inserire un tipo animale"));
+			messaggiList.addAll(checkValoreSelect(animaleTO.getTipoStatoSalute(), "Inserire un tipo stato salute"));
 		}
 		
 		return messaggiList;
