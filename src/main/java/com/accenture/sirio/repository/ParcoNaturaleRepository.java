@@ -31,5 +31,9 @@ public interface ParcoNaturaleRepository extends JpaRepository<ParcoNaturale, Lo
 			+ "WHERE pi.parcoNaturale = pa.id "
 			+ "AND i.id=1 ")
 	public List<XlsInfoParchiRTO> findInfoParchiPianteXls();
-
+	
+	@Query("Select p.nome "
+			+ "FROM ParcoNaturale p "
+			+ "WHERE p.nome=?1")
+	public String findParcoByNome(String nomeParco);
 }

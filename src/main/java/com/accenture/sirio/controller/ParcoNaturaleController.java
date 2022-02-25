@@ -3,6 +3,8 @@ package com.accenture.sirio.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +14,23 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accenture.sirio.checkErrors.ParcoCheckErrors;
 import com.accenture.sirio.entityRTO.InfoParcoRTO;
 import com.accenture.sirio.entityTO.ListParchiTO;
+import com.accenture.sirio.entityTO.ListRegioniTO;
 import com.accenture.sirio.entityTO.ListTipoEntitaInserimentoTO;
+import com.accenture.sirio.entityTO.ParcoNaturaleTO;
+import com.accenture.sirio.entityTO.ParcoSalvataggioTO;
 import com.accenture.sirio.facade.ParcoNaturaleFacade;
+import com.accenture.sirio.facade.RegioneFacade;
 import com.accenture.sirio.facade.TipoEntitaInserimentoFacade;
 import com.accenture.sirio.facade.XlsInfoParchiFacade;
+import com.accenture.sirio.service.RegioneService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path="/parco")
@@ -41,6 +50,9 @@ public class ParcoNaturaleController {
 	
 	@Autowired
 	private XlsInfoParchiFacade xlsInfoParchiFacade;
+	
+	@Autowired
+	private RegioneFacade regioneFacade;
 	
 	@GetMapping(path="/getInitCreazione")
 	public ResponseEntity<Object> getInitCreazione(){
@@ -95,6 +107,34 @@ public class ParcoNaturaleController {
 
 	}
 	
+	@GetMapping(path="/getInitCreazioneParco")
+	public ResponseEntity<Object> getInitCreazioneParco(){
+		LOGGER.info("Enter getInitCreazioneParco");
+		ListRegioniTO listRegionioTO = new ListRegioniTO();
+		
+		listRegionioTO.setListRegioni(regioneFacade.getListRegioni());
+		
+		LOGGER.info("Output getInitCreazioneParco : " + listRegionioTO.toString());
+		
+		return new ResponseEntity<>(listRegionioTO, HttpStatus.OK);
+	}
 	
+	@PostMapping(path="")
+	public ResponseEntity<Object> saveParco(@Valid @RequestBody ParcoSalvataggioTO parcoSalvataggioTO){
+
+		LOGGER.info("Enter saveParco");
+		LOGGER.info("ParcoNaturale in input : " + parcoSalvataggioTO.toString());
+		
+		List<String> eList = parcoCheckErrors.checkParcoSave(parcoSalvataggioTO);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			Long saveParco = parcoNaturaleFacade.saveParco(parcoSalvataggioTO);
+			LOGGER.info("Output saveParco : " + saveParco.toString());
+			return new ResponseEntity<>(saveParco, HttpStatus.OK);
+			} else {
+				LOGGER.info("Errori di validazione in saveParco : " + eList.toString());
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
 
 }

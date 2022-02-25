@@ -2,6 +2,8 @@ package com.accenture.sirio.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ParcoNaturale {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
 	
@@ -23,7 +26,10 @@ public class ParcoNaturale {
 	
 	@ManyToOne
 	@JoinColumn(name = "regione", insertable = false, updatable = false)
-	private Regione regione;
+	private Regione regioneBean;
+	
+	@Column(name = "regione", nullable = false)
+	private Long regione;
 
 	public Long getId() {
 		return id;
@@ -43,11 +49,20 @@ public class ParcoNaturale {
 		this.nome = nome;
 	}
 
-	public Regione getRegione() {
+	public Regione getRegioneBean() {
+		return regioneBean;
+	}
+
+	public void setRegioneBean(Regione regioneBean) {
+		this.regioneBean = regioneBean;
+	}
+
+	public Long getRegione() {
 		return regione;
 	}
 
-	public void setRegione(Regione regione) {
+	public void setRegione(Long regione) {
 		this.regione = regione;
 	}
+
 }

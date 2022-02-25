@@ -66,18 +66,6 @@ public class PiantaCheckErrors extends BaseCheckErrors{
 		
 	}
 	
-	//controllo che i valori arrivino maggiori di 1
-	public List<String> checkValoreSelect(Long valore, String messaggio) {
-		LOGGER.info("Controllo se i valori inseriti sono maggiori di 1");
-		List<String> messaggiList = new ArrayList<>();
-		
-		if(valore<1) {
-			messaggiList.add(messaggio);
-		} 
-		return messaggiList;
-		
-	}
-	
 	// --- Controlli congiunti ---
 	
 	//Controlli per l'edit di una pianta

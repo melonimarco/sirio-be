@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.accenture.sirio.entity.ParcoNaturale;
 import com.accenture.sirio.entityRTO.XlsInfoParchiRTO;
 import com.accenture.sirio.entityTO.ParcoNaturaleTO;
-
+import com.accenture.sirio.entityTO.ParcoSalvataggioTO;
 import com.accenture.sirio.repository.ParcoNaturaleRepository;
 
 
@@ -31,6 +32,28 @@ public class ParcoNaturaleService {
 	
 	public List<XlsInfoParchiRTO> getInfoParchiPianteXls() {
 		return parcoNaturaleRepository.findInfoParchiPianteXls();
+	}
+
+	public Long saveParco(ParcoSalvataggioTO parcoSalvataggioTO) {
+		
+		ParcoNaturale save = parcoNaturaleRepository.save(convertToParco(parcoSalvataggioTO));
+		
+		return save.getId();
+	}
+	
+	public ParcoNaturale convertToParco(ParcoSalvataggioTO parcoSalvataggioTO) {
+		
+		ParcoNaturale parcoNaturale = new ParcoNaturale();
+		
+		parcoNaturale.setNome(parcoSalvataggioTO.getNome());
+		parcoNaturale.setRegione(parcoSalvataggioTO.getRegione());
+		
+		return parcoNaturale;
+	}
+
+	public String getParcoByNome(String nomeParco) {
+		return parcoNaturaleRepository.findParcoByNome(nomeParco);
+		
 	}
 	
 }
