@@ -81,14 +81,6 @@ public class PiantaFacade {
 	@Transactional
 	public Long deletePianta(Long idPianta) {
 		return piantaService.deletePianta(idPianta);
-	}
-
-	@Transactional
-	public Long duplicatePianta(PiantaTO piantaTO, Long idPianta) {
-		return piantaService.duplicatePianta(piantaTO, idPianta);
-	}
-
-	
-	
+	}	
 	
 }

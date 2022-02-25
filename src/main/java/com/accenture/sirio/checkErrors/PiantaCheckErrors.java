@@ -78,12 +78,6 @@ public class PiantaCheckErrors extends BaseCheckErrors{
 		
 	}
 	
-	public boolean checkIfParcoChanged(Long idPianta, Long parco) {
-		LOGGER.info("Controllo se i valori inseriti sono maggiori di 1");
-		
-		return piantaService.checkIfParcoChanged(idPianta, parco);
-	}
-	
 	// --- Controlli congiunti ---
 	
 	//Controlli per l'edit di una pianta
@@ -101,30 +95,6 @@ public class PiantaCheckErrors extends BaseCheckErrors{
 		} 
 		
 		LOGGER.info("Fine controlli per edit");
-		return messaggiList;
-		
-	}
-
-	//Controlli per il duplicate di una pianta
-	public List<String> duplicatePiantaCheck(PiantaTO piantaTO, Long idPianta) {
-		LOGGER.info("Controllo i campi inseriti in input per duplicate");
-		List<String> messaggiList = new ArrayList<>();
-		
-		messaggiList.addAll(checkIdExist(idPianta));
-		
-		if(messaggiList.isEmpty()) {
-			messaggiList.addAll(checkValoreSelect(piantaTO.getParco(), "Inserire un parco"));
-			messaggiList.addAll(checkValoreSelect(piantaTO.getTipoPianta(), "Inserire un tipo pianta"));
-			messaggiList.addAll(checkValoreSelect(piantaTO.getStagioneFioritura(), "Inserire una stagione fioritura"));
-		
-//			if(checkIfParcoChanged(idPianta, piantaTO.getParco())) {
-				messaggiList.addAll(checkSpecieAlreadyExist(piantaTO));
-//			} else {
-//				messaggiList.addAll(checkSpecieAlreadyExistEdit(piantaTO, idPianta));
-//			}
-		} 
-		
-		LOGGER.info("Fine controlli per duplicate");
 		return messaggiList;
 		
 	}

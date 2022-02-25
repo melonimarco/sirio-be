@@ -124,19 +124,5 @@ public class AnimaleService {
 		animaleRepository.deleteById(idAnimale);
 		return idAnimale;
 	}
-
-	//Cerco a db una specie con quell'id e quel parco
-	//Se la trovo il parco non è stato cambiato - false
-	//Se non la trovo il parco è stato cambiato - true
-	public boolean checkIfParcoChanged(Long idAnimale, Long parco) {
-		return animaleRepository.findIfParcoChanged(idAnimale, parco)==null;
-	}
-
-	public Long duplicateAnimale(AnimaleTO animaleTO, Long idAnimale) {
-//		if(checkIfParcoChanged(idAnimale, animaleTO.getParco())) {
-			return saveAnimale(animaleTO);
-//		} 
-//		return idAnimale;
-	}
 	
 }

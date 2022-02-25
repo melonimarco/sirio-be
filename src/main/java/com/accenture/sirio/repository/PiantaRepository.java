@@ -51,10 +51,4 @@ public interface PiantaRepository extends JpaRepository<Pianta, Long>{
 			+ "AND p.parcoNaturale = ?3")
 	public String findSpecieEdit(Long idPianta, String specie, Long parco);
 
-	@Query("SELECT p.specie "
-			+ "FROM Pianta p "
-			+ "WHERE p.id = ?1 "
-			+ "AND p.parcoNaturale = ?2")
-	public String findIfParcoChanged(Long idPianta, Long parco);
-
 }

@@ -103,16 +103,4 @@ public class PiantaService {
 		return piantaRepository.findPiantaById(idPianta)!=null;
 	}
 
-	public boolean checkIfParcoChanged(Long idPianta, Long parco) {
-		return piantaRepository.findIfParcoChanged(idPianta, parco)==null;
-	}
-
-	public Long duplicatePianta(PiantaTO piantaTO, Long idPianta) {
-		
-//		if(checkIfParcoChanged(idPianta, piantaTO.getParco())) {
-			return savePianta(piantaTO);
-//		}
-//		
-//		return idPianta;
-	}
 }

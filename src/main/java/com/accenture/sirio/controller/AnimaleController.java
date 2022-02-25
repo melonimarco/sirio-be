@@ -141,22 +141,4 @@ public class AnimaleController extends BaseController {
 		}
 	}
 	
-	@PostMapping("/duplicate/{idAnimale}")
-	public ResponseEntity<Object> duplicateAnimale(@Valid @RequestBody AnimaleTO animaleTO, @PathVariable Long idAnimale) {
-		LOGGER.info("Enter duplicateAnimale");
-		LOGGER.info("animaleTO in input : {}", animaleTO.toString());
-		LOGGER.info("id in input : {}" , idAnimale.toString());
-		
-		List<String> eList = animaleCheckErrors.duplicateAnimaleCheck(animaleTO, idAnimale);
-		
-		if(ObjectUtils.isEmpty(eList)) {
-			Long duplicateAnimale = animaleFacade.duplicateAnimale(animaleTO, idAnimale);
-			LOGGER.info("Output duplicateAnimale : " + duplicateAnimale.toString());
-			return new ResponseEntity<>(duplicateAnimale, HttpStatus.OK);
-		} else {
-			LOGGER.error("Errori in duplicateAnimale : " + eList.toString());
-			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
-		}
-	}
-
 }
