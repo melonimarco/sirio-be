@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accenture.sirio.checkErrors.ParcoCheckErrors;
 import com.accenture.sirio.entityRTO.InfoParcoRTO;
+import com.accenture.sirio.entityRTO.InitEditParcoRTO;
 import com.accenture.sirio.entityTO.ListParchiTO;
 import com.accenture.sirio.entityTO.ListRegioniTO;
 import com.accenture.sirio.entityTO.ListTipoEntitaInserimentoTO;
@@ -110,13 +112,13 @@ public class ParcoNaturaleController {
 	@GetMapping(path="/getInitCreazioneParco")
 	public ResponseEntity<Object> getInitCreazioneParco(){
 		LOGGER.info("Enter getInitCreazioneParco");
-		ListRegioniTO listRegionioTO = new ListRegioniTO();
+		ListRegioniTO listRegioniTO = new ListRegioniTO();
 		
-		listRegionioTO.setListRegioni(regioneFacade.getListRegioni());
+		listRegioniTO.setListRegioni(regioneFacade.getListRegioni());
 		
-		LOGGER.info("Output getInitCreazioneParco : " + listRegionioTO.toString());
+		LOGGER.info("Output getInitCreazioneParco : " + listRegioniTO.toString());
 		
-		return new ResponseEntity<>(listRegionioTO, HttpStatus.OK);
+		return new ResponseEntity<>(listRegioniTO, HttpStatus.OK);
 	}
 	
 	@PostMapping(path="")
@@ -133,6 +135,41 @@ public class ParcoNaturaleController {
 			return new ResponseEntity<>(saveParco, HttpStatus.OK);
 			} else {
 				LOGGER.info("Errori di validazione in saveParco : " + eList.toString());
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
+	
+	@GetMapping(path="/initEdit/{idParco}")
+	public ResponseEntity<Object> getInitEditParco(@PathVariable Long idParco){
+		LOGGER.info("Enter getInitEditParco");
+		LOGGER.info("idParco in input : " + idParco.toString());
+		
+		List<String> eList = parcoCheckErrors.checkIdExist(idParco);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			InitEditParcoRTO initEditParcoRTO = new InitEditParcoRTO();
+			initEditParcoRTO = parcoNaturaleFacade.getInitEditParco(idParco);
+			LOGGER.info("Output getInitEditParco : " + initEditParcoRTO.toString());
+			return new ResponseEntity<>(initEditParcoRTO, HttpStatus.OK);
+			} else {
+				LOGGER.info("Errori di validazione in saveParco : " + eList.toString());
+			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
+	
+	@PutMapping(path="/{idParco}")
+	public ResponseEntity<Object> editParco(@Valid @RequestBody ParcoSalvataggioTO parcoSalvataggioTO, @PathVariable Long idParco) {
+		LOGGER.info("Enter editParco");
+		LOGGER.info("ParcoNaturale in input : " + parcoSalvataggioTO.toString());
+		
+		List<String> eList = parcoCheckErrors.checkParcoEdit(parcoSalvataggioTO, idParco);
+		
+		if(ObjectUtils.isEmpty(eList)) {
+			Long saveParco = parcoNaturaleFacade.editParco(parcoSalvataggioTO, idParco);
+			LOGGER.info("Output editParco : " + saveParco.toString());
+			return new ResponseEntity<>(saveParco, HttpStatus.OK);
+			} else {
+				LOGGER.info("Errori di validazione in editParco : " + eList.toString());
 			return new ResponseEntity<>(eList, HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}

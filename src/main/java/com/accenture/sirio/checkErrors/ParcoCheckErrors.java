@@ -21,11 +21,17 @@ public class ParcoCheckErrors extends BaseCheckErrors{
 	private ParcoNaturaleService parcoService;
 	
 	public List<String> checkIdExist(Long idParco) {
-		LOGGER.info("Controllo tramite l'id che il parco sia presente a DB");
+		LOGGER.info("Controlli campo id");
 		List<String> messaggiList = new ArrayList<>();
 		
-		if(parcoService.getParcoById(idParco)==null) {
-			messaggiList.add("Id non trovato");
+		LOGGER.info("Controllo se l'id è null");
+		if(idParco!=null) {
+			LOGGER.info("Controllo se l'id è presente a DB");
+			if(parcoService.getParcoById(idParco)==null) {
+				messaggiList.add("Id non trovato");
+			}
+		} else {
+			messaggiList.add("l'id non può essere null");
 		}
 		
 		return messaggiList;
@@ -39,12 +45,33 @@ public class ParcoCheckErrors extends BaseCheckErrors{
 		}
 		return messaggiList;
 	}
+	public List<String> checkParcoExistEdit(String nomeParco, Long idParco) {
+		LOGGER.info("Controllo tramite il nome che il parco sia presente a DB");
+		List<String> messaggiList = new ArrayList<>();
+		if(parcoService.checkParcoExistEdit(nomeParco, idParco)) {
+			messaggiList.add("Parco già inserito");
+		}
+		return messaggiList;
+	}
 	
 	public List<String> checkParcoSave(ParcoSalvataggioTO parcoSalvataggioTO) {
 		List<String> messaggiList = new ArrayList<>();
 		
 		messaggiList.addAll(checkParcoExist(parcoSalvataggioTO.getNome())); 
 		messaggiList.addAll(checkValoreSelect(parcoSalvataggioTO.getRegione(), "Inserire una regione"));
+		
+		return messaggiList;
+	}
+	
+	public List<String> checkParcoEdit(ParcoSalvataggioTO parcoSalvataggioTO, Long idParco) {
+		List<String> messaggiList = new ArrayList<>();
+		
+		messaggiList.addAll(checkIdExist(idParco));
+		
+		if(messaggiList.isEmpty()) {
+			messaggiList.addAll(checkParcoExistEdit(parcoSalvataggioTO.getNome(), idParco)); 
+			messaggiList.addAll(checkValoreSelect(parcoSalvataggioTO.getRegione(), "Inserire una regione"));
+		}
 		
 		return messaggiList;
 	}

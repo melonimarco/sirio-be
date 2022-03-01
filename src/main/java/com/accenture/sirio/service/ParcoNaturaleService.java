@@ -56,4 +56,30 @@ public class ParcoNaturaleService {
 		
 	}
 	
+	public ParcoSalvataggioTO getDettaglioParcoPerEdit(Long idParco) {
+		return parcoNaturaleRepository.findDettaglioParcoPerEdit(idParco);
+	}
+
+	public Boolean checkParcoExistEdit(String nomeParco, Long idParco) {
+		return parcoNaturaleRepository.findParcoByNomeEdit(nomeParco, idParco)!=null;
+	}
+
+	public Long editParco(ParcoSalvataggioTO parcoSalvataggioTO, Long idParco) {
+		
+		ParcoNaturale parco = parcoNaturaleRepository.getById(idParco);
+		
+		ParcoNaturale save = parcoNaturaleRepository.save(convertToParcoEdit(parcoSalvataggioTO, parco));
+		
+		return save.getId();
+
+	}
+
+	private ParcoNaturale convertToParcoEdit(ParcoSalvataggioTO parcoSalvataggioTO, ParcoNaturale parco) {
+		parco.setId(parcoSalvataggioTO.getId());
+		parco.setNome(parcoSalvataggioTO.getNome());
+		parco.setRegione(parcoSalvataggioTO.getRegione());
+		
+		return parco;
+	}
+	
 }

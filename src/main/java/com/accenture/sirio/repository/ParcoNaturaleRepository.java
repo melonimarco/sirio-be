@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.accenture.sirio.entity.ParcoNaturale;
 import com.accenture.sirio.entityRTO.XlsInfoParchiRTO;
 import com.accenture.sirio.entityTO.ParcoNaturaleTO;
+import com.accenture.sirio.entityTO.ParcoSalvataggioTO;
 
 public interface ParcoNaturaleRepository extends JpaRepository<ParcoNaturale, Long>  {
 	
@@ -36,4 +37,16 @@ public interface ParcoNaturaleRepository extends JpaRepository<ParcoNaturale, Lo
 			+ "FROM ParcoNaturale p "
 			+ "WHERE p.nome=?1")
 	public String findParcoByNome(String nomeParco);
+	
+	@Query("Select p.nome "
+			+ "FROM ParcoNaturale p "
+			+ "WHERE p.nome=?1 "
+			+ "AND p.id <> ?2")
+	public String findParcoByNomeEdit(String nomeParco, Long idParco);
+
+	@Query("Select new com.accenture.sirio.entityTO.ParcoSalvataggioTO(pa.id, pa.nome, pa.regione) "
+			+ "FROM ParcoNaturale pa "
+			+ "WHERE  pa.id = ?1")
+	public ParcoSalvataggioTO findDettaglioParcoPerEdit(Long idParco);
+	
 }
