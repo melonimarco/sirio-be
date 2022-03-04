@@ -61,10 +61,14 @@ public class XlsInfoParchiFacade {
 		headerCell.setCellStyle(headerStyle);
 		
 		headerCell = header.createCell(2);
-		headerCell.setCellValue("TIPOLOGIA");
+		headerCell.setCellValue("REGIONE");
 		headerCell.setCellStyle(headerStyle);
 		
 		headerCell = header.createCell(3);
+		headerCell.setCellValue("TIPOLOGIA");
+		headerCell.setCellStyle(headerStyle);
+		
+		headerCell = header.createCell(4);
 		headerCell.setCellValue("SPECIE");
 		headerCell.setCellStyle(headerStyle);
 		
@@ -103,14 +107,19 @@ public class XlsInfoParchiFacade {
 				sheet.autoSizeColumn(1);
 				
 				cell = row.createCell(2);
-				cell.setCellValue(info.getTipologia());
+				cell.setCellValue(info.getRegione());
 				cell.setCellStyle(style);
 				sheet.autoSizeColumn(2);
 				
 				cell = row.createCell(3);
-				cell.setCellValue(info.getSpecie());
+				cell.setCellValue(info.getTipologia());
 				cell.setCellStyle(style);
 				sheet.autoSizeColumn(3);
+				
+				cell = row.createCell(4);
+				cell.setCellValue(info.getSpecie());
+				cell.setCellStyle(style);
+				sheet.autoSizeColumn(4);
 					
 		}
 		

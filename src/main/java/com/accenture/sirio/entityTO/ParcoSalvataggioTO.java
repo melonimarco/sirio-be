@@ -1,11 +1,17 @@
 package com.accenture.sirio.entityTO;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class ParcoSalvataggioTO {
 	
 	private Long id;
 
+	@NotNull(message = "Nome cannot be null")
+	@NotBlank(message = "Nome cannot be null")
 	private String nome;
 	
+	@NotNull(message = "Regione cannot be null")
 	private Long regione;
 
 	public ParcoSalvataggioTO() {

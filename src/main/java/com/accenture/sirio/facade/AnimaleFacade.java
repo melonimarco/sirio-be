@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.accenture.sirio.controller.AnimaleController;
 import com.accenture.sirio.entityRTO.InfoCompleteAnimaleRTO;
 import com.accenture.sirio.entityRTO.InitEditAnimaleRTO;
+import com.accenture.sirio.entityRTO.ParcoNaturaleCompletoRTO;
 import com.accenture.sirio.entityTO.AnimaleTO;
 import com.accenture.sirio.entityTO.InitAnimaleTO;
 import com.accenture.sirio.entityTO.ParcoNaturaleTO;
@@ -50,7 +51,7 @@ public class AnimaleFacade {
 		List<TipoEntitaInserimentoTO> listEntitaInserimento = tipoEntitaInserimentoService.getListEntitaInserimento();
 		List<TipoStatoSaluteTO> listStatiSalute = tipoStatoSaluteService.getListStatiSalute();
 		List<TipoOrdineAppartenenzaAnimaleTO> listOrdAppAnimale = tipoOrdineAppartenenzaAnimaleService.getListOrdAppAnimale();
-		List<ParcoNaturaleTO> listParchi = parcoNaturaleService.getListParchi();
+		List<ParcoNaturaleCompletoRTO> listParchi = parcoNaturaleService.getListParchiCompleti();
 		
 		InitAnimaleTO initAnimaleTO = new InitAnimaleTO(listEntitaInserimento, listStatiSalute,
 				listOrdAppAnimale, listParchi);

@@ -37,7 +37,7 @@ import com.accenture.sirio.service.RegioneService;
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path="/parco")
 @RestController
-public class ParcoNaturaleController {
+public class ParcoNaturaleController extends BaseController{
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(PiantaController.class);
 	
@@ -73,7 +73,7 @@ public class ParcoNaturaleController {
 		LOGGER.info("Enter getListParchi");
 		ListParchiTO listParchiTO = new ListParchiTO();
 		
-		listParchiTO.setListParchi(parcoNaturaleFacade.getListParchi());
+		listParchiTO.setListParchi(parcoNaturaleFacade.getListParchiCompleti());
 		
 		LOGGER.info("Output getListParchi : " + listParchiTO.toString());
 		

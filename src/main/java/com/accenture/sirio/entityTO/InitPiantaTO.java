@@ -2,15 +2,17 @@ package com.accenture.sirio.entityTO;
 
 import java.util.List;
 
+import com.accenture.sirio.entityRTO.ParcoNaturaleCompletoRTO;
+
 public class InitPiantaTO {
 	
 	private List<TipoEntitaInserimentoTO> listTipoEntita;
 	private List<TipoStagioneFiorituraTO> listStagioni;
 	private List<TipoOrdineAppartenenzaPiantaTO> listTipoPianta;
-	private List<ParcoNaturaleTO> listParchi;
+	private List<ParcoNaturaleCompletoRTO> listParchi;
 	
 	public InitPiantaTO(List<TipoEntitaInserimentoTO> listTipoEntita, List<TipoStagioneFiorituraTO> listStagioni,
-			List<TipoOrdineAppartenenzaPiantaTO> listTipoPianta, List<ParcoNaturaleTO> listParchi) {
+			List<TipoOrdineAppartenenzaPiantaTO> listTipoPianta, List<ParcoNaturaleCompletoRTO> listParchi) {
 		super();
 		this.listTipoEntita = listTipoEntita;
 		this.listStagioni = listStagioni;
@@ -35,10 +37,10 @@ public class InitPiantaTO {
 	public void setListTipoPianta(List<TipoOrdineAppartenenzaPiantaTO> listTipoPianta) {
 		this.listTipoPianta = listTipoPianta;
 	}
-	public List<ParcoNaturaleTO> getListParchi() {
+	public List<ParcoNaturaleCompletoRTO> getListParchi() {
 		return listParchi;
 	}
-	public void setListParchi(List<ParcoNaturaleTO> listParchi) {
+	public void setListParchi(List<ParcoNaturaleCompletoRTO> listParchi) {
 		this.listParchi = listParchi;
 	}
 	

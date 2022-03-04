@@ -1,6 +1,5 @@
 package com.accenture.sirio.entityRTO;
 
-import com.accenture.sirio.entityTO.ParcoNaturaleTO;
 import com.accenture.sirio.entityTO.TipoOrdineAppartenenzaAnimaleTO;
 import com.accenture.sirio.entityTO.TipoStatoSaluteTO;
 
@@ -14,7 +13,7 @@ public class InfoCompleteAnimaleRTO {
 	
 	private Character sesso;
 	
-	private ParcoNaturaleTO parco;
+	private ParcoNaturaleCompletoRTO parco;
 	
 	private TipoStatoSaluteTO tipoStatoSalute;
 	
@@ -24,18 +23,47 @@ public class InfoCompleteAnimaleRTO {
 	public InfoCompleteAnimaleRTO() {
 		super();
 	}
-
-	public InfoCompleteAnimaleRTO(Long id, TipoOrdineAppartenenzaAnimaleTO tipoAnimale, String specie, Character sesso,
-			ParcoNaturaleTO parco, TipoStatoSaluteTO tipoStatoSalute, Integer numEsemplari) {
+	
+	public InfoCompleteAnimaleRTO(Long id, Long tipoAnimaleLong,
+			String descrizioneTipoAnimale, String specie, Character sesso,
+			Long parcoLong, String descrizioneParco, Long regioneLong, String regioneString,
+			Long statoSaluteLong, String descrizioneStatoSalute,
+			Integer numEsemplari) {
 		super();
+		
+		TipoOrdineAppartenenzaAnimaleTO tipoAnimaleTO = new TipoOrdineAppartenenzaAnimaleTO();
+		
+		TipoStatoSaluteTO statoSaluteTO = new TipoStatoSaluteTO();
+		
 		this.id = id;
-		this.tipoAnimale = tipoAnimale;
 		this.specie = specie;
 		this.sesso = sesso;
-		this.parco = parco;
-		this.tipoStatoSalute = tipoStatoSalute;
 		this.numEsemplari = numEsemplari;
+		
+		tipoAnimaleTO.setId(tipoAnimaleLong);
+		tipoAnimaleTO.setDescrizione(descrizioneTipoAnimale);
+		this.tipoAnimale = tipoAnimaleTO;
+		
+		statoSaluteTO.setId(statoSaluteLong);
+		statoSaluteTO.setDescrizione(descrizioneStatoSalute);
+		this.tipoStatoSalute = statoSaluteTO;
+		
+		ParcoNaturaleCompletoRTO parcoTO = new ParcoNaturaleCompletoRTO(parcoLong, descrizioneParco, regioneLong, regioneString);
+		this.parco = parcoTO;
+		
 	}
+
+//	public InfoCompleteAnimaleRTO(Long id, TipoOrdineAppartenenzaAnimaleTO tipoAnimale, String specie, Character sesso,
+//			ParcoNaturaleCompletoRTO parco, TipoStatoSaluteTO tipoStatoSalute, Integer numEsemplari) {
+//		super();
+//		this.id = id;
+//		this.tipoAnimale = tipoAnimale;
+//		this.specie = specie;
+//		this.sesso = sesso;
+//		this.parco = parco;
+//		this.tipoStatoSalute = tipoStatoSalute;
+//		this.numEsemplari = numEsemplari;
+//	}
 
 	public Long getId() {
 		return id;
@@ -76,12 +104,12 @@ public class InfoCompleteAnimaleRTO {
 	}
 
 
-	public ParcoNaturaleTO getParco() {
+	public ParcoNaturaleCompletoRTO getParco() {
 		return parco;
 	}
 
 
-	public void setParco(ParcoNaturaleTO parco) {
+	public void setParco(ParcoNaturaleCompletoRTO parco) {
 		this.parco = parco;
 	}
 

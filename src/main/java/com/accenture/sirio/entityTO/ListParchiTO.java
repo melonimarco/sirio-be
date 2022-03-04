@@ -2,14 +2,16 @@ package com.accenture.sirio.entityTO;
 
 import java.util.List;
 
-public class ListParchiTO {
-	private List<ParcoNaturaleTO> listParchi;
+import com.accenture.sirio.entityRTO.ParcoNaturaleCompletoRTO;
 
-	public List<ParcoNaturaleTO> getListParchi() {
+public class ListParchiTO {
+	private List<ParcoNaturaleCompletoRTO> listParchi;
+
+	public List<ParcoNaturaleCompletoRTO> getListParchi() {
 		return listParchi;
 	}
 
-	public void setListParchi(List<ParcoNaturaleTO> listParchi) {
+	public void setListParchi(List<ParcoNaturaleCompletoRTO> listParchi) {
 		this.listParchi = listParchi;
 	}
 

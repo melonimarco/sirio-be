@@ -2,10 +2,8 @@ package com.accenture.sirio.entityRTO;
 
 import java.util.List;
 
-import com.accenture.sirio.entityTO.ParcoNaturaleTO;
-
 public class InfoParcoRTO {
-	private ParcoNaturaleTO parco;
+	private ParcoNaturaleCompletoRTO parco;
 	private List<InfoAnimaleRTO> listAnimali;
 	private List<InfoPiantaRTO> listPiante;
 	
@@ -13,18 +11,18 @@ public class InfoParcoRTO {
 		
 	}
 	
-	public InfoParcoRTO(ParcoNaturaleTO parco, List<InfoAnimaleRTO> listAnimali, List<InfoPiantaRTO> listPiante) {
+	public InfoParcoRTO(ParcoNaturaleCompletoRTO parco, List<InfoAnimaleRTO> listAnimali, List<InfoPiantaRTO> listPiante) {
 		super();
 		this.parco = parco;
 		this.listAnimali = listAnimali;
 		this.listPiante = listPiante;
 	}
 
-	public ParcoNaturaleTO getParco() {
+	public ParcoNaturaleCompletoRTO getParco() {
 		return parco;
 	}
 
-	public void setParco(ParcoNaturaleTO parco) {
+	public void setParco(ParcoNaturaleCompletoRTO parco) {
 		this.parco = parco;
 	}
 

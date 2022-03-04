@@ -8,10 +8,6 @@ public class InfoPiantaRTO {
 	
 	private TipoOrdineAppartenenzaPiantaTO tipoPianta;
 	
-	private Long tipoPiantaLong;
-	
-	private String DescrizioneTipoPianta;
-	
 	private String specie;
 
 	public InfoPiantaRTO() {
@@ -24,8 +20,6 @@ public class InfoPiantaRTO {
 		TipoOrdineAppartenenzaPiantaTO tipoPiantaTO = new TipoOrdineAppartenenzaPiantaTO();
 		
 		this.id = id;
-		this.tipoPiantaLong = tipoPiantaLong;
-		this.DescrizioneTipoPianta = descrizioneTipoPianta;
 		this.specie = specie;
 		
 		tipoPiantaTO.setId(tipoPiantaLong);
@@ -47,22 +41,6 @@ public class InfoPiantaRTO {
 
 	public void setTipoPianta(TipoOrdineAppartenenzaPiantaTO tipoPianta) {
 		this.tipoPianta = tipoPianta;
-	}
-	
-	public Long getTipoPiantaLong() {
-		return tipoPiantaLong;
-	}
-
-	public void setTipoPiantaLong(Long tipoPiantaLong) {
-		this.tipoPiantaLong = tipoPiantaLong;
-	}
-
-	public String getDescrizioneTipoPianta() {
-		return DescrizioneTipoPianta;
-	}
-
-	public void setDescrizioneTipoPianta(String descrizioneTipoPianta) {
-		DescrizioneTipoPianta = descrizioneTipoPianta;
 	}
 
 	public String getSpecie() {

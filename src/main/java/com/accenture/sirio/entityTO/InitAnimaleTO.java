@@ -2,16 +2,18 @@ package com.accenture.sirio.entityTO;
 
 import java.util.List;
 
+import com.accenture.sirio.entityRTO.ParcoNaturaleCompletoRTO;
+
 public class InitAnimaleTO {
 	
 	private List<TipoEntitaInserimentoTO> listTipoEntita;
 	private List<TipoStatoSaluteTO> listTipoStatoSalute;
 	private List<TipoOrdineAppartenenzaAnimaleTO> listTipoAnimale;
-	private List<ParcoNaturaleTO> listParchi;
+	private List<ParcoNaturaleCompletoRTO> listParchi;
 	
 	public InitAnimaleTO(List<TipoEntitaInserimentoTO> listTipoEntita, List<TipoStatoSaluteTO> listTipoStatoSalute,
 			List<TipoOrdineAppartenenzaAnimaleTO> listTipoAnimale,
-			List<ParcoNaturaleTO> listParchi) {
+			List<ParcoNaturaleCompletoRTO> listParchi) {
 		super();
 		this.listTipoEntita = listTipoEntita;
 		this.listTipoStatoSalute = listTipoStatoSalute;
@@ -37,10 +39,10 @@ public class InitAnimaleTO {
 		this.listTipoAnimale = listTipoAnimale;
 	}
 
-	public List<ParcoNaturaleTO> getListParchi() {
+	public List<ParcoNaturaleCompletoRTO> getListParchi() {
 		return listParchi;
 	}
-	public void setListParchi(List<ParcoNaturaleTO> listParchi) {
+	public void setListParchi(List<ParcoNaturaleCompletoRTO> listParchi) {
 		this.listParchi = listParchi;
 	}
 	@Override

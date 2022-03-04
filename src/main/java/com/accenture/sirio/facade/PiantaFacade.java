@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.accenture.sirio.entityRTO.InfoCompletePiantaRTO;
 import com.accenture.sirio.entityRTO.InitEditPiantaRTO;
+import com.accenture.sirio.entityRTO.ParcoNaturaleCompletoRTO;
 import com.accenture.sirio.entityTO.InitPiantaTO;
 import com.accenture.sirio.entityTO.ParcoNaturaleTO;
 import com.accenture.sirio.entityTO.PiantaTO;
@@ -44,7 +45,7 @@ public class PiantaFacade {
 		List<TipoEntitaInserimentoTO> listEntitaInserimento = tipoEntitaInserimentoService.getListEntitaInserimento();
 		List<TipoStagioneFiorituraTO> listStagioniFioritura = tipoStagioneFiorituraService.getListStagioniFioritura();
 		List<TipoOrdineAppartenenzaPiantaTO> listOrdAppPiante = tipoOrdineAppartenenzaPianteService.getListOrdAppPiante();
-		List<ParcoNaturaleTO> listParchi = parcoNaturaleService.getListParchi();
+		List<ParcoNaturaleCompletoRTO> listParchi = parcoNaturaleService.getListParchiCompleti();
 		
 		InitPiantaTO initPiantaTO = new InitPiantaTO(listEntitaInserimento, listStagioniFioritura,
 				listOrdAppPiante, listParchi);

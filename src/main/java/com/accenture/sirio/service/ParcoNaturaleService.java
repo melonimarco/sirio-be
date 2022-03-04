@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.accenture.sirio.entity.ParcoNaturale;
+import com.accenture.sirio.entityRTO.ParcoNaturaleCompletoRTO;
+import com.accenture.sirio.entityRTO.ParcoNaturaleCompletoRTO;
 import com.accenture.sirio.entityRTO.XlsInfoParchiRTO;
 import com.accenture.sirio.entityTO.ParcoNaturaleTO;
 import com.accenture.sirio.entityTO.ParcoSalvataggioTO;
@@ -16,14 +18,13 @@ import com.accenture.sirio.repository.ParcoNaturaleRepository;
 public class ParcoNaturaleService {
 	@Autowired
 	private ParcoNaturaleRepository parcoNaturaleRepository;
-
-
-	public List<ParcoNaturaleTO> getListParchi() {
-		return parcoNaturaleRepository.findAllParchi();
+	
+	public List<ParcoNaturaleCompletoRTO> getListParchiCompleti() {
+		return parcoNaturaleRepository.findAllParchiCompleti();
 	}
-
-	public ParcoNaturaleTO getParcoById(Long idParco) {
-		return parcoNaturaleRepository.findParcoById(idParco);
+	
+	public ParcoNaturaleCompletoRTO getParcoCompletoById(Long idParco) {
+		return parcoNaturaleRepository.findParcoCompletoById(idParco);
 	}
 	
 	public List<XlsInfoParchiRTO> getInfoParchiAnimaliXls() {

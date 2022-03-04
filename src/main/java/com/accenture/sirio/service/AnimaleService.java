@@ -14,7 +14,6 @@ import com.accenture.sirio.entity.Animale;
 import com.accenture.sirio.entityRTO.InfoAnimaleRTO;
 import com.accenture.sirio.entityRTO.InfoCompleteAnimaleRTO;
 import com.accenture.sirio.entityTO.AnimaleTO;
-import com.accenture.sirio.entityTO.InfoCompleteAnimaleTO;
 import com.accenture.sirio.repository.AnimaleRepository;
 
 
@@ -59,31 +58,9 @@ public class AnimaleService {
 
 	//Metodo che prende dal DB un animale
 	public InfoCompleteAnimaleRTO getAnimale(Long idAnimale) {
-		
-		InfoCompleteAnimaleTO findInfoCompleteAnimaleTO = animaleRepository.findInfoCompleteAnimaleById(idAnimale);
-		
-		InfoCompleteAnimaleRTO infoCompleteAnimaleRTO = convertToInfoAnimaleRTO(findInfoCompleteAnimaleTO);
-		
-		return infoCompleteAnimaleRTO;
+		return animaleRepository.findInfoCompleteAnimaleById(idAnimale);
 	}
 	
-	
-	
-	private InfoCompleteAnimaleRTO convertToInfoAnimaleRTO(InfoCompleteAnimaleTO findInfoCompleteAnimaleTO) {
-		
-		InfoCompleteAnimaleRTO infoCompleteAnimaleRTO = new InfoCompleteAnimaleRTO();
-		
-		infoCompleteAnimaleRTO.setId(findInfoCompleteAnimaleTO.getId());
-		infoCompleteAnimaleRTO.setTipoAnimale(findInfoCompleteAnimaleTO.getTipoAnimale());
-		infoCompleteAnimaleRTO.setSpecie(findInfoCompleteAnimaleTO.getSpecie());
-		infoCompleteAnimaleRTO.setSesso(findInfoCompleteAnimaleTO.getSesso());
-		infoCompleteAnimaleRTO.setParco(findInfoCompleteAnimaleTO.getParco());
-		infoCompleteAnimaleRTO.setTipoStatoSalute(findInfoCompleteAnimaleTO.getTipoStatoSalute());
-		infoCompleteAnimaleRTO.setNumEsemplari(findInfoCompleteAnimaleTO.getNumEsemplari());
-		
-		return infoCompleteAnimaleRTO;
-	}
-
 	//-----Inizio gestione Edit Animale-----
 	
 	//Metodo che controlla se esiste a DB un animale con quelle caratteristiche - controlla ID

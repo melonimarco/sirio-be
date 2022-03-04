@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.accenture.sirio.entityRTO.InfoParcoRTO;
 import com.accenture.sirio.entityRTO.InitEditParcoRTO;
+import com.accenture.sirio.entityRTO.ParcoNaturaleCompletoRTO;
 import com.accenture.sirio.entityTO.ListRegioniTO;
 import com.accenture.sirio.entityTO.ParcoNaturaleTO;
 import com.accenture.sirio.entityTO.ParcoSalvataggioTO;
@@ -33,15 +34,13 @@ public class ParcoNaturaleFacade {
 	@Autowired
 	private RegioneService regioneService;
 	
-
-	public List<ParcoNaturaleTO> getListParchi() {
-		
-		return parcoNaturaleService.getListParchi();
+	public List<ParcoNaturaleCompletoRTO> getListParchiCompleti() {
+		return parcoNaturaleService.getListParchiCompleti();
 	}
 
 	public InfoParcoRTO getInfoParco(Long idParco) {
 		
-		InfoParcoRTO infoParcoRTO = new InfoParcoRTO(parcoNaturaleService.getParcoById(idParco), 
+		InfoParcoRTO infoParcoRTO = new InfoParcoRTO(parcoNaturaleService.getParcoCompletoById(idParco), //getParcoCompletoById
 				animaleService.getListInfoAnimaleByIdParco(idParco), 
 				piantaService.getListInfoPiantaTOByIdParco(idParco));
 

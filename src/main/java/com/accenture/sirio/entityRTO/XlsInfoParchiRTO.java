@@ -4,6 +4,7 @@ public class XlsInfoParchiRTO{
 	
 	private Long idParco;
 	private String nomeParco;
+	private String regione;
 	private String tipologia;
 	private String specie;
 	
@@ -11,10 +12,11 @@ public class XlsInfoParchiRTO{
 		super();
 	}
 
-	public XlsInfoParchiRTO(Long idParco, String nomeParco, String tipologia, String specie) {
+	public XlsInfoParchiRTO(Long idParco, String nomeParco, String regione, String tipologia, String specie) {
 		super();
 		this.idParco = idParco;
 		this.nomeParco = nomeParco;
+		this.regione = regione;
 		this.tipologia = tipologia;
 		this.specie = specie;
 	}
@@ -35,6 +37,14 @@ public class XlsInfoParchiRTO{
 		this.nomeParco = nomeParco;
 	}
 
+	public String getRegione() {
+		return regione;
+	}
+
+	public void setRegione(String regione) {
+		this.regione = regione;
+	}
+
 	public String getTipologia() {
 		return tipologia;
 	}
@@ -51,10 +61,10 @@ public class XlsInfoParchiRTO{
 		this.specie = specie;
 	}
 
+	@Override
+	public String toString() {
+		return "XlsInfoParchiRTO [idParco=" + idParco + ", nomeParco=" + nomeParco + ", regione=" + regione
+				+ ", tipologia=" + tipologia + ", specie=" + specie + "]";
+	}
 
-
-	
-	
-	
-	
 }

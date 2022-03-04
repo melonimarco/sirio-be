@@ -27,7 +27,7 @@ public class ParcoCheckErrors extends BaseCheckErrors{
 		LOGGER.info("Controllo se l'id è null");
 		if(idParco!=null) {
 			LOGGER.info("Controllo se l'id è presente a DB");
-			if(parcoService.getParcoById(idParco)==null) {
+			if(parcoService.getParcoCompletoById(idParco)==null) {
 				messaggiList.add("Id non trovato");
 			}
 		} else {
